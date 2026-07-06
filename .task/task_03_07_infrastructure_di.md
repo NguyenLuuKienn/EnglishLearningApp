@@ -60,17 +60,28 @@ public static class DependencyInjection
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] `AddInfrastructure()` accepts `IConfiguration` parameter
-- [ ] DbContext is registered with SQL Server provider
-- [ ] IUnitOfWork is registered as Scoped
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] `AddInfrastructure()` accepts `IConfiguration` parameter ✅
+- [x] DbContext is registered with SQL Server provider ✅
+- [x] IUnitOfWork is registered as Scoped ✅
 
 ## Acceptance Criteria
 
-- [ ] `DependencyInjection` is a `public static class`
-- [ ] `AddInfrastructure()` extension method on `IServiceCollection`
-- [ ] Method accepts `IConfiguration` parameter
-- [ ] `ApplicationDbContext` registered with `UseSqlServer`
-- [ ] Connection string read from `DefaultConnection` key
-- [ ] `IUnitOfWork` registered as Scoped with `UnitOfWork` implementation
-- [ ] Infrastructure project builds successfully
+- [x] `DependencyInjection` is a `public static class` ✅
+- [x] `AddInfrastructure()` extension method on `IServiceCollection` ✅
+- [x] Method accepts `IConfiguration` parameter ✅
+- [x] `ApplicationDbContext` registered with `UseSqlServer` ✅
+- [x] Connection string read from `DefaultConnection` key ✅
+- [x] `IUnitOfWork` registered as Scoped with `UnitOfWork` implementation ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `DependencyInjection` là `public static class`
+- `AddInfrastructure(IServiceCollection, IConfiguration)` extension method:
+  - Đọc connection string `DefaultConnection` từ `IConfiguration`
+  - Register `ApplicationDbContext` với `UseSqlServer`
+  - Register `IUnitOfWork` → `UnitOfWork` (Scoped)
+- Build verified: 0 errors

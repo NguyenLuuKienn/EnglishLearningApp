@@ -197,19 +197,32 @@ public class QuizResultConfiguration : IEntityTypeConfiguration<QuizResult>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] All 5 configurations implement `IEntityTypeConfiguration<T>`
-- [ ] All string properties have `HasMaxLength` constraints
-- [ ] All required properties have `IsRequired()`
-- [ ] Enums are converted to `int` with `HasConversion<int>()`
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] All 5 configurations implement `IEntityTypeConfiguration<T>` ✅
+- [x] All string properties have `HasMaxLength` constraints ✅
+- [x] All required properties have `IsRequired()` ✅
+- [x] Enums are converted to `int` with `HasConversion<int>()` ✅
 
 ## Acceptance Criteria
 
-- [ ] `BaseEntityConfiguration` — Id, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy configured
-- [ ] `VocabularyConfiguration` — Word indexed, max lengths configured
-- [ ] `QuizConfiguration` — PassingScore precision (5,2), defaults configured
-- [ ] `QuestionConfiguration` — QuestionText max 2000, enums converted
-- [ ] `ChoiceConfiguration` — ChoiceText max 500, IsCorrect required
-- [ ] `QuizResultConfiguration` — Score precision (5,2), all fields required
-- [ ] All configurations use correct table names
-- [ ] Infrastructure project builds successfully
+- [x] `BaseEntityConfiguration` — Id, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy configured ✅
+- [x] `VocabularyConfiguration` — Word indexed, max lengths configured ✅
+- [x] `QuizConfiguration` — PassingScore precision (5,2), defaults configured ✅
+- [x] `QuestionConfiguration` — QuestionText max 2000, enums converted ✅
+- [x] `ChoiceConfiguration` — ChoiceText max 500, IsCorrect required ✅
+- [x] `QuizResultConfiguration` — Score precision (5,2), all fields required ✅
+- [x] All configurations use correct table names ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- 6 entity configurations created:
+  - `BaseEntityConfiguration` — Id (PK, ValueGeneratedOnAdd), CreatedAt, UpdatedAt, CreatedBy (max 200), UpdatedBy (max 200)
+  - `VocabularyConfiguration` — Word (indexed, max 200), Definition (max 1000), Example (max 1000), PartOfSpeech (max 50), Difficulty (enum→int)
+  - `QuizConfiguration` — Title (max 200), Description (max 1000), Difficulty (enum→int), TimeLimitMinutes (default 0), PassingScore (precision 5,2, default 50m)
+  - `QuestionConfiguration` — QuestionText (max 2000), QuestionType (enum→int), Difficulty (enum→int), CorrectAnswer (max 1000), Explanation (max 1000)
+  - `ChoiceConfiguration` — ChoiceText (max 500), IsCorrect (required)
+  - `QuizResultConfiguration` — UserId (max 200), Score (precision 5,2), TotalQuestions, CorrectAnswers, DurationMinutes, CompletedAt (all required)
+- Build verified: 0 errors

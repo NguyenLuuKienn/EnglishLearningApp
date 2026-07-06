@@ -66,16 +66,29 @@ public class UnitOfWork : IUnitOfWork
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] All repository properties use lazy initialization (`??=`)
-- [ ] `SaveChangesAsync` delegates to DbContext
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] All repository properties use lazy initialization (`??=`) ✅
+- [x] `SaveChangesAsync` delegates to DbContext ✅
 
 ## Acceptance Criteria
 
-- [ ] `UnitOfWork` implements `IUnitOfWork`
-- [ ] Constructor accepts `ApplicationDbContext`
-- [ ] `Quizzes` property returns `IQuizRepository` (lazy initialized)
-- [ ] `Vocabularies` property returns `IVocabularyRepository` (lazy initialized)
-- [ ] `QuizResults` property returns `IQuizResultRepository` (lazy initialized)
-- [ ] `SaveChangesAsync` calls `_context.SaveChangesAsync()`
-- [ ] Infrastructure project builds successfully
+- [x] `UnitOfWork` implements `IUnitOfWork` ✅
+- [x] Constructor accepts `ApplicationDbContext` ✅
+- [x] `Quizzes` property returns `IQuizRepository` (lazy initialized) ✅
+- [x] `Vocabularies` property returns `IVocabularyRepository` (lazy initialized) ✅
+- [x] `QuizResults` property returns `IQuizResultRepository` (lazy initialized) ✅
+- [x] `SaveChangesAsync` calls `_context.SaveChangesAsync()` ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `UnitOfWork` implements `IUnitOfWork`
+- Constructor injects `ApplicationDbContext`
+- Lazy-initialized repository properties (`??=`):
+  - `Quizzes` → `QuizRepository`
+  - `Vocabularies` → `VocabularyRepository`
+  - `QuizResults` → `QuizResultRepository`
+- `SaveChangesAsync` delegates to `_context.SaveChangesAsync(cancellationToken)`
+- Build verified: 0 errors

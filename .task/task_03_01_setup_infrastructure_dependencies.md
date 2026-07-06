@@ -48,24 +48,38 @@ Configure the Infrastructure layer project file with required project references
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
 ```
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] All NuGet packages are restored
-- [ ] Project references to Domain and Application are working
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] All NuGet packages are restored ✅
+- [x] Project references to Domain and Application are working ✅
 
 ## Acceptance Criteria
 
-- [ ] `EnglishLearning.Infrastructure` references `EnglishLearning.Domain`
-- [ ] `EnglishLearning.Infrastructure` references `EnglishLearning.Application`
-- [ ] EF Core packages are installed
-- [ ] SQL Server provider is installed
-- [ ] EF Core Tools are installed
-- [ ] Infrastructure project builds successfully
+- [x] `EnglishLearning.Infrastructure` references `EnglishLearning.Domain` ✅
+- [x] `EnglishLearning.Infrastructure` references `EnglishLearning.Application` ✅
+- [x] EF Core packages are installed ✅
+- [x] SQL Server provider is installed ✅
+- [x] EF Core Tools are installed ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- Project references: `EnglishLearning.Domain` + `EnglishLearning.Application`
+- NuGet packages installed:
+  - `Microsoft.EntityFrameworkCore` 8.0.8
+  - `Microsoft.EntityFrameworkCore.SqlServer` 8.0.8
+  - `Microsoft.EntityFrameworkCore.Tools` 8.0.8 (design-time)
+- Build verified: 0 errors

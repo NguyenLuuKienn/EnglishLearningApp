@@ -134,20 +134,35 @@ public class QuizResultRepository : Repository<QuizResult>, IQuizResultRepositor
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] QuizRepository eager loads Questions and Choices
-- [ ] VocabularyRepository does case-insensitive word search
-- [ ] QuizResultRepository orders by CompletedAt descending
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] QuizRepository eager loads Questions and Choices ✅
+- [x] VocabularyRepository does case-insensitive word search ✅
+- [x] QuizResultRepository orders by CompletedAt descending ✅
 
 ## Acceptance Criteria
 
-- [ ] `QuizRepository` extends `Repository<Quiz>` and implements `IQuizRepository`
-- [ ] `GetQuizWithQuestionsAsync` uses Include/ThenInclude for Questions + Choices
-- [ ] `GetQuizzesByDifficultyAsync` filters by DifficultyLevel
-- [ ] `VocabularyRepository` extends `Repository<Vocabulary>` and implements `IVocabularyRepository`
-- [ ] `GetByWordAsync` does case-insensitive comparison
-- [ ] `SearchByDifficultyAsync` filters by DifficultyLevel
-- [ ] `QuizResultRepository` extends `Repository<QuizResult>` and implements `IQuizResultRepository`
-- [ ] `GetByUserIdAsync` filters by UserId, ordered by CompletedAt desc
-- [ ] `GetRecentResultsAsync` returns top N recent results
-- [ ] Infrastructure project builds successfully
+- [x] `QuizRepository` extends `Repository<Quiz>` and implements `IQuizRepository` ✅
+- [x] `GetQuizWithQuestionsAsync` uses Include/ThenInclude for Questions + Choices ✅
+- [x] `GetQuizzesByDifficultyAsync` filters by DifficultyLevel ✅
+- [x] `VocabularyRepository` extends `Repository<Vocabulary>` and implements `IVocabularyRepository` ✅
+- [x] `GetByWordAsync` does case-insensitive comparison ✅
+- [x] `SearchByDifficultyAsync` filters by DifficultyLevel ✅
+- [x] `QuizResultRepository` extends `Repository<QuizResult>` and implements `IQuizResultRepository` ✅
+- [x] `GetByUserIdAsync` filters by UserId, ordered by CompletedAt desc ✅
+- [x] `GetRecentResultsAsync` returns top N recent results ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `QuizRepository` extends `Repository<Quiz>`, implements `IQuizRepository`:
+  - `GetQuizWithQuestionsAsync` — Include Questions + ThenInclude Choices
+  - `GetQuizzesByDifficultyAsync` — filter by DifficultyLevel
+- `VocabularyRepository` extends `Repository<Vocabulary>`, implements `IVocabularyRepository`:
+  - `GetByWordAsync` — case-insensitive word search
+  - `SearchByDifficultyAsync` — filter by DifficultyLevel
+- `QuizResultRepository` extends `Repository<QuizResult>`, implements `IQuizResultRepository`:
+  - `GetByUserIdAsync` — filter by UserId, order by CompletedAt desc
+  - `GetRecentResultsAsync` — top N recent results by CompletedAt desc
+- Build verified: 0 errors

@@ -100,19 +100,35 @@ public class Repository<T> : IRepository<T> where T : class
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] All interface methods are implemented
-- [ ] Generic constraint `where T : class` is applied
-- [ ] DbContext is injected via constructor
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] All interface methods are implemented ✅
+- [x] Generic constraint `where T : class` is applied ✅
+- [x] DbContext is injected via constructor ✅
 
 ## Acceptance Criteria
 
-- [ ] `Repository<T>` implements `IRepository<T>`
-- [ ] Generic constraint `where T : class`
-- [ ] Constructor accepts `ApplicationDbContext`
-- [ ] `GetByIdAsync` uses `FindAsync`
-- [ ] `GetAllAsync` returns all entities
-- [ ] `GetByExpressionAsync` filters by expression
-- [ ] `GetPagedAsync` returns tuple `(Items, TotalRecords)` with count
-- [ ] `AddAsync`, `Update`, `Delete` properly use DbSet methods
-- [ ] Infrastructure project builds successfully
+- [x] `Repository<T>` implements `IRepository<T>` ✅
+- [x] Generic constraint `where T : class` ✅
+- [x] Constructor accepts `ApplicationDbContext` ✅
+- [x] `GetByIdAsync` uses `FindAsync` ✅
+- [x] `GetAllAsync` returns all entities ✅
+- [x] `GetByExpressionAsync` filters by expression ✅
+- [x] `GetPagedAsync` returns tuple `(Items, TotalRecords)` with count ✅
+- [x] `AddAsync`, `Update`, `Delete` properly use DbSet methods ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `Repository<T>` implements `IRepository<T>` with generic constraint `where T : class`
+- Constructor injects `ApplicationDbContext`, exposes `_dbSet` via `context.Set<T>()`
+- Methods implemented:
+  - `GetByIdAsync` — `FindAsync`
+  - `GetAllAsync` — `ToListAsync`
+  - `GetByExpressionAsync` — `Where(predicate).ToListAsync`
+  - `GetPagedAsync` — supports `predicate`, `orderBy`, `ascending` parameters
+  - `AddAsync` — `AddAsync`
+  - `Update` — `Update`
+  - `Delete` — `Remove`
+- Build verified: 0 errors

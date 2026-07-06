@@ -20,10 +20,4 @@
     <ProjectReference Include="..\EnglishLearning.Domain\EnglishLearning.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UnitOfWork\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Persistence\" />
-  </ItemGroup>
-
 </Project>

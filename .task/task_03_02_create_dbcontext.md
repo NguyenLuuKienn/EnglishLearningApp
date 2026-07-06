@@ -90,18 +90,31 @@ public class ApplicationDbContext : DbContext
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] DbContext has DbSet for all 5 entities
-- [ ] Relationships are configured with cascade delete
-- [ ] Configurations are loaded from assembly
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] DbContext has DbSet for all 5 entities ✅
+- [x] Relationships are configured with cascade delete ✅
+- [x] Configurations are loaded from assembly ✅
 
 ## Acceptance Criteria
 
-- [ ] `ApplicationDbContext` inherits from `DbContext`
-- [ ] Has DbSet properties: Vocabularies, Quizzes, Questions, Choices, QuizResults
-- [ ] Constructor accepts `DbContextOptions<ApplicationDbContext>`
-- [ ] `OnModelCreating` applies configurations from assembly
-- [ ] Quiz → Questions relationship configured (cascade delete)
-- [ ] Question → Choices relationship configured (cascade delete)
-- [ ] Quiz → QuizResults relationship configured (cascade delete)
-- [ ] Infrastructure project builds successfully
+- [x] `ApplicationDbContext` inherits from `DbContext` ✅
+- [x] Has DbSet properties: Vocabularies, Quizzes, Questions, Choices, QuizResults ✅
+- [x] Constructor accepts `DbContextOptions<ApplicationDbContext>` ✅
+- [x] `OnModelCreating` applies configurations from assembly ✅
+- [x] Quiz → Questions relationship configured (cascade delete) ✅
+- [x] Question → Choices relationship configured (cascade delete) ✅
+- [x] Quiz → QuizResults relationship configured (cascade delete) ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `ApplicationDbContext` inherits from `DbContext`
+- 5 DbSet properties: Vocabularies, Quizzes, Questions, Choices, QuizResults
+- `OnModelCreating` configures:
+  - `ApplyConfigurationsFromAssembly` for entity configurations
+  - Quiz → Questions (one-to-many, cascade delete)
+  - Question → Choices (one-to-many, cascade delete)
+  - Quiz → QuizResults (one-to-many, cascade delete)
+- Build verified: 0 errors
