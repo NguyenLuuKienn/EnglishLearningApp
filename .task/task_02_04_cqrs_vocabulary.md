@@ -117,20 +117,44 @@ public class CreateVocabularyCommandValidator : AbstractValidator<Commands.Creat
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] All commands use `record` types implementing `IRequest<Result<T>>`
-- [ ] All handlers inject `IUnitOfWork` via constructor
-- [ ] Validators are registered with FluentValidation
-- [ ] Commands return `Result<Guid>` for create/update, `Result` for delete
-- [ ] Queries return `Result<DTO>` for single, `Result<PagedResult<DTO>>` for list
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] All commands use `record` types implementing `IRequest<Result<T>>` ✅
+- [x] All handlers inject `IUnitOfWork` via constructor ✅
+- [x] Validators are registered with FluentValidation ✅
+- [x] Commands return `Result<Guid>` for create/update, `Result` for delete ✅
+- [x] Queries return `Result<DTO>` for single, `Result<PagedResult<DTO>>` for list ✅
 
 ## Acceptance Criteria
 
-- [ ] CreateVocabularyCommand + Handler + Validator created
-- [ ] UpdateVocabularyCommand + Handler + Validator created
-- [ ] DeleteVocabularyCommand + Handler created
-- [ ] GetVocabularyQuery + Handler created (single by Id)
-- [ ] GetVocabulariesQuery + Handler created (paged, filter by difficulty)
-- [ ] All handlers use IUnitOfWork for data access
-- [ ] All handlers return Result<T> pattern
-- [ ] Application project builds successfully
+- [x] CreateVocabularyCommand + Handler + Validator created ✅
+- [x] UpdateVocabularyCommand + Handler + Validator created ✅
+- [x] DeleteVocabularyCommand + Handler created ✅
+- [x] GetVocabularyQuery + Handler created (single by Id) ✅
+- [x] GetVocabulariesQuery + Handler created (paged, filter by difficulty) ✅
+- [x] All handlers use IUnitOfWork for data access ✅
+- [x] All handlers return Result<T> pattern ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+### Commands (3)
+- `CreateVocabularyCommand` + Handler — tạo Vocabulary mới, trả về Id
+- `UpdateVocabularyCommand` + Handler — tìm theo Id, set properties, update UpdatedAt, save
+- `DeleteVocabularyCommand` + Handler — tìm theo Id, delete, save
+
+### Queries (2)
+- `GetVocabularyQuery` + Handler — tìm theo Id, map to VocabularyDto
+- `GetVocabulariesQuery` + Handler — paged + filter by difficulty, sort by CreatedAt desc
+
+### Validators (2)
+- `CreateVocabularyCommandValidator` — Word/Definition required, max lengths
+- `UpdateVocabularyCommandValidator` — Id required, same rules as Create
+
+### Notes
+- Handlers inject `IUnitOfWork` qua constructor
+- Commands dùng `record` types, implement `IRequest<Result<T>>`
+- Handlers return `Result<Guid>` (create/update), `Result` (delete), `Result<DTO>` (queries)
+- `GetVocabulariesQueryHandler` dùng `GetPagedAsync` với predicate + orderBy
+- Build verified: 0 errors

@@ -7,6 +7,9 @@ Create the `AddApplication()` extension method for `IServiceCollection` that reg
 ## Priority
 🔴 Critical — Entry point for registering Application services in WebAPI
 
+## Status
+✅ Completed
+
 ## Dependencies
 - Task 2.1 (Application dependencies)
 - Task 2.4 (Vocabulary CQRS — MediatR commands/queries)
@@ -35,6 +38,7 @@ Create the `AddApplication()` extension method for `IServiceCollection` that reg
 
 ```csharp
 using AutoMapper;
+using EnglishLearning.Application.Common;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,7 +59,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
         // Register AutoMapper
-        services.AddAutoMapper(typeof(MappingsProfile).Assembly);
+        services.AddAutoMapper(typeof(MappingsProfile));
 
         return services;
     }
@@ -64,17 +68,19 @@ public static class DependencyInjection
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] `AddApplication()` method is discoverable from WebAPI
-- [ ] MediatR is configured to scan the Application assembly
-- [ ] FluentValidation is configured to scan the Application assembly
-- [ ] AutoMapper is configured with the MappingsProfile assembly
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors
+- [x] `AddApplication()` method is discoverable from WebAPI
+- [x] MediatR is configured to scan the Application assembly
+- [x] FluentValidation is configured to scan the Application assembly
+- [x] AutoMapper is configured with the MappingsProfile assembly
 
 ## Acceptance Criteria
 
-- [ ] `DependencyInjection` is a `public static class`
-- [ ] `AddApplication()` extension method on `IServiceCollection`
-- [ ] MediatR registered with assembly scanning
-- [ ] FluentValidation registered with assembly scanning
-- [ ] AutoMapper registered with MappingsProfile
-- [ ] Application project builds successfully
+- [x] `DependencyInjection` is a `public static class`
+- [x] `AddApplication()` extension method on `IServiceCollection`
+- [x] MediatR registered with assembly scanning
+- [x] FluentValidation registered with assembly scanning
+- [x] AutoMapper registered with MappingsProfile
+- [x] Application project builds successfully
+
+## ✅ Completed: 2026-07-06

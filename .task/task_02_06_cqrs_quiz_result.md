@@ -119,18 +119,42 @@ public async Task<Common.Result<DTOs.QuizResultDto>> Handle(SubmitQuizResultComm
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Auto-grading correctly handles MultipleChoice (compare ChoiceId)
-- [ ] Auto-grading correctly handles FillInBlank (case-insensitive text compare)
-- [ ] Score is calculated as percentage
-- [ ] QuizResult entity is created and saved
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Auto-grading correctly handles MultipleChoice (compare ChoiceId) ✅
+- [x] Auto-grading correctly handles FillInBlank (case-insensitive text compare) ✅
+- [x] Score is calculated as percentage ✅
+- [x] QuizResult entity is created and saved ✅
 
 ## Acceptance Criteria
 
-- [ ] SubmitQuizResultCommand with nested AnswerCommand record
-- [ ] SubmitQuizResultCommandHandler implements auto-grading for MultipleChoice and FillInBlank
-- [ ] Auto-grading returns QuizResultDto with calculated score
-- [ ] GetQuizResultQuery + Handler returns single result by Id
-- [ ] GetUserQuizResultsQuery + Handler returns paged results by UserId
-- [ ] SubmitQuizResultCommandValidator validates required fields
-- [ ] Application project builds successfully
+- [x] SubmitQuizResultCommand with nested AnswerCommand record ✅
+- [x] SubmitQuizResultCommandHandler implements auto-grading for MultipleChoice and FillInBlank ✅
+- [x] Auto-grading returns QuizResultDto with calculated score ✅
+- [x] GetQuizResultQuery + Handler returns single result by Id ✅
+- [x] GetUserQuizResultsQuery + Handler returns paged results by UserId ✅
+- [x] SubmitQuizResultCommandValidator validates required fields ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+### Commands (1)
+- `SubmitQuizResultCommand` + Handler — **Auto-grading logic**:
+  - MultipleChoice: so sánh `SelectedChoiceId` với `Choice.IsCorrect == true`
+  - FillInBlank: so sánh `AnswerText` với `Question.CorrectAnswer` (case-insensitive)
+  - Dùng `QuizResult.Create()` factory để tính score percentage
+  - Trả về `QuizResultDto` với score đã tính
+
+### Queries (2)
+- `GetQuizResultQuery` + Handler — tìm theo Id, map to QuizResultDto
+- `GetUserQuizResultsQuery` + Handler — filter by UserId, paged, sort by CompletedAt desc
+
+### Validators (1)
+- `SubmitQuizResultCommandValidator` — QuizId/UserId required, DurationMinutes >= 0, Answers không rỗng
+
+### Notes
+- Handlers inject `IUnitOfWork` qua constructor
+- Auto-grading dùng `GetQuizWithQuestionsAsync` để load quiz + questions + choices
+- Score tính bằng `(correctAnswers / totalQuestions) * 100` qua `QuizResult.Create()`
+- Build verified: 0 errors

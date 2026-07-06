@@ -107,16 +107,29 @@ public class QuizResultDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] All DTOs are `public class`
-- [ ] All DTOs have appropriate properties matching entities
-- [ ] Nested DTOs (ChoiceDto in QuestionDto, QuestionDto in QuizDto) are correctly referenced
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] All DTOs are `public class` ✅
+- [x] All DTOs have appropriate properties matching entities ✅
+- [x] Nested DTOs (ChoiceDto in QuestionDto, QuestionDto in QuizDto) are correctly referenced ✅
 
 ## Acceptance Criteria
 
-- [ ] `VocabularyDto` with Id, Word, Definition, Example, PartOfSpeech, Difficulty
-- [ ] `ChoiceDto` with Id, ChoiceText, IsCorrect
-- [ ] `QuestionDto` with Id, QuestionText, QuestionType, Difficulty, Choices
-- [ ] `QuizDto` with Id, Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions
+- [x] `VocabularyDto` with Id, Word, Definition, Example, PartOfSpeech, Difficulty ✅
+- [x] `ChoiceDto` with Id, ChoiceText, IsCorrect ✅
+- [x] `QuestionDto` with Id, QuestionText, QuestionType, Difficulty, Choices ✅
+- [x] `QuizDto` with Id, Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions ✅
+- [x] `QuizResultDto` with Id, QuizId, UserId, Score, TotalQuestions, CorrectAnswers, DurationMinutes, CompletedAt ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `VocabularyDto` — Id, Word, Definition, Example, PartOfSpeech, Difficulty
+- `ChoiceDto` — Id, ChoiceText, IsCorrect
+- `QuestionDto` — Id, QuestionText, QuestionType, Difficulty, Choices (List<ChoiceDto>)
+- `QuizDto` — Id, Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions (List<QuestionDto>)
+- `QuizResultDto` — Id, QuizId, UserId, Score, TotalQuestions, CorrectAnswers, DurationMinutes, CompletedAt
+- Build verified: 0 errors
 - [ ] `QuizResultDto` with Id, QuizId, UserId, Score, TotalQuestions, CorrectAnswers, DurationMinutes, CompletedAt
 - [ ] Application project builds successfully

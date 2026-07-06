@@ -51,13 +51,13 @@ Clean Architecture + CQRS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 2.1 | Setup Dependencies | [.task/task_02_01_setup_application_dependencies.md](../.task/task_02_01_setup_application_dependencies.md) | ⬜ Pending |
-| 2.2 | Common Classes (Result, PagedResult) | [.task/task_02_02_common_classes.md](../.task/task_02_02_common_classes.md) | ⬜ Pending |
-| 2.3 | Create DTOs | [.task/task_02_03_create_dtos.md](../.task/task_02_03_create_dtos.md) | ⬜ Pending |
-| 2.4 | CQRS: Vocabulary Features | [.task/task_02_04_cqrs_vocabulary.md](../.task/task_02_04_cqrs_vocabulary.md) | ⬜ Pending |
-| 2.5 | CQRS: Quiz Features | [.task/task_02_05_cqrs_quiz.md](../.task/task_02_05_cqrs_quiz.md) | ⬜ Pending |
-| 2.6 | CQRS: QuizResult Features | [.task/task_02_06_cqrs_quiz_result.md](../.task/task_02_06_cqrs_quiz_result.md) | ⬜ Pending |
-| 2.7 | AutoMapper Profiles | [.task/task_02_07_automapper_profiles.md](../.task/task_02_07_automapper_profiles.md) | ⬜ Pending |
+| 2.1 | Setup Dependencies | [.task/task_02_01_setup_application_dependencies.md](../.task/task_02_01_setup_application_dependencies.md) | ✅ Done |
+| 2.2 | Common Classes (Result, PagedResult) | [.task/task_02_02_common_classes.md](../.task/task_02_02_common_classes.md) | ✅ Done |
+| 2.3 | Create DTOs | [.task/task_02_03_create_dtos.md](../.task/task_02_03_create_dtos.md) | ✅ Done |
+| 2.4 | CQRS: Vocabulary Features | [.task/task_02_04_cqrs_vocabulary.md](../.task/task_02_04_cqrs_vocabulary.md) | ✅ Done |
+| 2.5 | CQRS: Quiz Features | [.task/task_02_05_cqrs_quiz.md](../.task/task_02_05_cqrs_quiz.md) | ✅ Done |
+| 2.6 | CQRS: QuizResult Features | [.task/task_02_06_cqrs_quiz_result.md](../.task/task_02_06_cqrs_quiz_result.md) | ✅ Done |
+| 2.7 | AutoMapper Profiles | [.task/task_02_07_automapper_profiles.md](../.task/task_02_07_automapper_profiles.md) | ✅ Done |
 | 2.8 | DependencyInjection | [.task/task_02_08_application_di.md](../.task/task_02_08_application_di.md) | ⬜ Pending |
 
 ---

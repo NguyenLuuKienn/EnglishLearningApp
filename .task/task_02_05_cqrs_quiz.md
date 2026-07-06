@@ -87,18 +87,41 @@ public record CreateQuizCommand(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] CreateQuizCommand supports nested Questions and Choices
-- [ ] Handlers properly create entity graph (Quiz → Questions → Choices)
-- [ ] GetQuizQuery returns quiz with all questions and choices loaded
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] CreateQuizCommand supports nested Questions and Choices ✅
+- [x] Handlers properly create entity graph (Quiz → Questions → Choices) ✅
+- [x] GetQuizQuery returns quiz with all questions and choices loaded ✅
 
 ## Acceptance Criteria
 
-- [ ] CreateQuizCommand with nested QuestionCommand and ChoiceCommand records
-- [ ] CreateQuizCommandHandler creates Quiz + Questions + Choices in one transaction
-- [ ] UpdateQuizCommand + Handler created
-- [ ] DeleteQuizCommand + Handler created
-- [ ] GetQuizQuery + Handler returns quiz with questions and choices
-- [ ] GetQuizzesQuery + Handler supports filtering by difficulty
-- [ ] Validators for Create and Update commands
-- [ ] Application project builds successfully
+- [x] CreateQuizCommand with nested QuestionCommand and ChoiceCommand records ✅
+- [x] CreateQuizCommandHandler creates Quiz + Questions + Choices in one transaction ✅
+- [x] UpdateQuizCommand + Handler created ✅
+- [x] DeleteQuizCommand + Handler created ✅
+- [x] GetQuizQuery + Handler returns quiz with questions and choices ✅
+- [x] GetQuizzesQuery + Handler supports filtering by difficulty ✅
+- [x] Validators for Create and Update commands ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+### Commands (3)
+- `CreateQuizCommand` + Handler — tạo Quiz với Questions + Choices (nested records), trả về Id
+- `UpdateQuizCommand` + Handler — tìm theo Id, update properties, update UpdatedAt, save
+- `DeleteQuizCommand` + Handler — tìm theo Id, delete, save
+
+### Queries (2)
+- `GetQuizQuery` + Handler — dùng `GetQuizWithQuestionsAsync`, map nested QuizDto → Questions → Choices
+- `GetQuizzesQuery` + Handler — paged + filter by difficulty, sort by CreatedAt desc
+
+### Validators (2)
+- `CreateQuizCommandValidator` — Title required, PassingScore 0-100, Questions không rỗng
+- `UpdateQuizCommandValidator` — Id required, same rules as Create
+
+### Notes
+- Handlers inject `IUnitOfWork` qua constructor
+- CreateQuizCommandHandler tạo entity graph: Quiz → Questions → Choices trong 1 transaction
+- GetQuizQueryHandler map nested DTOs (QuizDto → QuestionDto → ChoiceDto)
+- Build verified: 0 errors
