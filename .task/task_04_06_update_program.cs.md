@@ -117,20 +117,40 @@ app.Run();
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] `AddApplication()` is called
-- [ ] `AddInfrastructure(builder.Configuration)` is called
-- [ ] JWT authentication is configured
-- [ ] Exception middleware is registered
-- [ ] Swagger is configured for development
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] `AddApplication()` is called ✅
+- [x] `AddInfrastructure(builder.Configuration)` is called ✅
+- [x] JWT authentication is configured ✅
+- [x] Exception middleware is registered ✅
+- [x] Swagger is configured for development ✅
 
 ## Acceptance Criteria
 
-- [ ] `AddApplication()` registers Application layer services
-- [ ] `AddInfrastructure(builder.Configuration)` registers Infrastructure services
-- [ ] JWT authentication configured with Issuer, Audience, Key from appsettings
-- [ ] `UseGlobalExceptionHandling()` is first middleware
-- [ ] `UseAuthentication()` and `UseAuthorization()` are configured
-- [ ] Swagger enabled in Development environment
-- [ ] `MapControllers()` maps API endpoints
-- [ ] WebAPI project builds successfully
+- [x] `AddApplication()` registers Application layer services ✅
+- [x] `AddInfrastructure(builder.Configuration)` registers Infrastructure services ✅
+- [x] JWT authentication configured with Issuer, Audience, Key from appsettings ✅
+- [x] `UseGlobalExceptionHandling()` is first middleware ✅
+- [x] `UseAuthentication()` and `UseAuthorization()` are configured ✅
+- [x] Swagger enabled in Development environment ✅
+- [x] `MapControllers()` maps API endpoints ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- **Program.cs** — wire up toàn bộ layers:
+  - **Services registration:**
+    - `AddControllers()`, `AddEndpointsApiExplorer()`
+    - `AddSwaggerGen()` — Swagger doc "English Learning API" v1
+    - `AddApplication()` — MediatR, FluentValidation, AutoMapper
+    - `AddInfrastructure(builder.Configuration)` — DbContext (SQL Server), UnitOfWork
+    - `AddAuthentication(JwtBearer)` — JWT với Issuer, Audience, Key từ `appsettings.json`
+    - `AddAuthorization()`
+  - **Middleware pipeline:**
+    - `UseSwagger()` + `UseSwaggerUI()` (Development only)
+    - `UseGlobalExceptionHandling()` — exception middleware đầu tiên
+    - `UseHttpsRedirection()`
+    - `UseAuthentication()` → `UseAuthorization()`
+    - `MapControllers()`
+- Build verified: 0 errors

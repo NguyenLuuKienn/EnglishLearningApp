@@ -14,8 +14,8 @@ Create standardized API response models (`ApiResponse<T>` and `PagedResponse<T>`
 
 | File | Action |
 |------|--------|
-| `EnglishLearning.WebAPI/Extensions/ApiResponse.cs` | Create |
-| `EnglishLearning.WebAPI/Extensions/PagedResponse.cs` | Create |
+| `EnglishLearning.WebAPI/Models/Common/ApiResponse.cs` | Create |
+| `EnglishLearning.WebAPI/Models/Common/PagedResponse.cs` | Create |
 
 ## Steps
 
@@ -31,7 +31,7 @@ Create standardized API response models (`ApiResponse<T>` and `PagedResponse<T>`
    - `NotFound(message)` — not found response
 
 ### Step 2: Create PagedResponse<T>
-1. Inherit from `ApiResponse<IReadOnlyList<T>>` or contain paged data
+1. Inherit from `ApiResponse<IReadOnlyList<T>>`
 2. Additional properties:
    - `PageNumber` (int)
    - `PageSize` (int)
@@ -44,7 +44,7 @@ Create standardized API response models (`ApiResponse<T>` and `PagedResponse<T>`
 
 ```csharp
 // ApiResponse.cs
-namespace EnglishLearning.WebAPI.Extensions;
+namespace EnglishLearning.WebAPI.Models.Common;
 
 public class ApiResponse<T>
 {
@@ -70,7 +70,7 @@ public class ApiResponse<T>
 }
 
 // PagedResponse.cs
-namespace EnglishLearning.WebAPI.Extensions;
+namespace EnglishLearning.WebAPI.Models.Common;
 
 public class PagedResponse<T> : ApiResponse<IReadOnlyList<T>>
 {
@@ -102,18 +102,31 @@ public class PagedResponse<T> : ApiResponse<IReadOnlyList<T>>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] `ApiResponse<T>` has factory methods: Ok, BadRequest, NotFound
-- [ ] `PagedResponse<T>` extends `ApiResponse<IReadOnlyList<T>>`
-- [ ] `PagedResponse<T>` calculates TotalPages correctly
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] `ApiResponse<T>` has factory methods: Ok, BadRequest, NotFound ✅
+- [x] `PagedResponse<T>` extends `ApiResponse<IReadOnlyList<T>>` ✅
+- [x] `PagedResponse<T>` calculates TotalPages correctly ✅
 
 ## Acceptance Criteria
 
-- [ ] `ApiResponse<T>` with Success, Message, Data, Errors properties
-- [ ] `ApiResponse<T>.Ok()` factory method for success
-- [ ] `ApiResponse<T>.BadRequest()` factory method for errors
-- [ ] `ApiResponse<T>.NotFound()` factory method for 404
-- [ ] `PagedResponse<T>` inherits from `ApiResponse<IReadOnlyList<T>>`
-- [ ] `PagedResponse<T>` has PageNumber, PageSize, TotalRecords, TotalPages
-- [ ] `PagedResponse<T>.Ok()` factory method calculates TotalPages
-- [ ] WebAPI project builds successfully
+- [x] `ApiResponse<T>` with Success, Message, Data, Errors properties ✅
+- [x] `ApiResponse<T>.Ok()` factory method for success ✅
+- [x] `ApiResponse<T>.BadRequest()` factory method for errors ✅
+- [x] `ApiResponse<T>.NotFound()` factory method for 404 ✅
+- [x] `PagedResponse<T>` inherits from `ApiResponse<IReadOnlyList<T>>` ✅
+- [x] `PagedResponse<T>` has PageNumber, PageSize, TotalRecords, TotalPages ✅
+- [x] `PagedResponse<T>.Ok()` factory method calculates TotalPages ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- `ApiResponse<T>` — generic wrapper với properties: Success, Message, Data, Errors
+  - Factory methods: `Ok()`, `BadRequest()`, `NotFound()`
+  - Namespace: `EnglishLearning.WebAPI.Models.Common`
+- `PagedResponse<T>` — kế thừa `ApiResponse<IReadOnlyList<T>>`
+  - Properties: PageNumber, PageSize, TotalRecords, TotalPages
+  - Factory method `Ok()` tự tính `TotalPages = Ceiling(TotalRecords / PageSize)`
+  - Namespace: `EnglishLearning.WebAPI.Models.Common`
+- Build verified: 0 errors

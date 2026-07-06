@@ -70,17 +70,31 @@ Update `appsettings.json` with required configuration: connection strings, JWT s
 
 ## Verification
 
-- [ ] `ConnectionStrings:DefaultConnection` exists
-- [ ] `Jwt:Key`, `Jwt:Issuer`, `Jwt:Audience` exist
-- [ ] Connection string uses localdb for development
-- [ ] WebAPI project builds successfully
+- [x] `ConnectionStrings:DefaultConnection` exists ✅
+- [x] `Jwt:Key`, `Jwt:Issuer`, `Jwt:Audience` exist ✅
+- [x] Connection string uses localdb for development ✅
+- [x] WebAPI project builds successfully ✅
 
 ## Acceptance Criteria
 
-- [ ] `appsettings.json` has `ConnectionStrings:DefaultConnection` with SQL Server localdb
-- [ ] `appsettings.json` has `Jwt:Key` (at least 32 characters)
-- [ ] `appsettings.json` has `Jwt:Issuer` set to "EnglishLearningAPI"
-- [ ] `appsettings.json` has `Jwt:Audience` set to "EnglishLearningClient"
-- [ ] `appsettings.json` has `Jwt:ExpirationInMinutes` set to 60
-- [ ] `appsettings.Development.json` has development connection string
-- [ ] JSON is valid (no syntax errors)
+- [x] `appsettings.json` has `ConnectionStrings:DefaultConnection` with SQL Server localdb ✅
+- [x] `appsettings.json` has `Jwt:Key` (at least 32 characters) ✅
+- [x] `appsettings.json` has `Jwt:Issuer` set to "EnglishLearningAPI" ✅
+- [x] `appsettings.json` has `Jwt:Audience` set to "EnglishLearningClient" ✅
+- [x] `appsettings.json` has `Jwt:ExpirationInMinutes` set to 60 ✅
+- [x] `appsettings.Development.json` has development connection string ✅
+- [x] JSON is valid (no syntax errors) ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- **appsettings.json** — cấu hình chính:
+  - `ConnectionStrings:DefaultConnection` — SQL Server localdb (`EnglishLearningDb`)
+  - `Jwt:Key` — "YourSuperSecretKeyThatIsAtLeast32CharactersLong!" (48 ký tự)
+  - `Jwt:Issuer` — "EnglishLearningAPI"
+  - `Jwt:Audience` — "EnglishLearningClient"
+  - `Jwt:ExpirationInMinutes` — 60
+- **appsettings.Development.json** — cấu hình development:
+  - `ConnectionStrings:DefaultConnection` — localdb (ghi đè cho môi trường dev)
+- Build verified: 0 errors

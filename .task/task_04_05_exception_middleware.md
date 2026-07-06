@@ -103,20 +103,38 @@ public static class ExceptionMiddlewareExtensions
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] Middleware catches exceptions and returns JSON
-- [ ] Different exception types map to correct HTTP status codes
-- [ ] Development environment shows full exception details
-- [ ] Production environment shows generic error message
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] Middleware catches exceptions and returns JSON ✅
+- [x] Different exception types map to correct HTTP status codes ✅
+- [x] Development environment shows full exception details ✅
+- [x] Production environment shows generic error message ✅
 
 ## Acceptance Criteria
 
-- [ ] `ExceptionMiddleware` implements middleware pattern with `InvokeAsync`
-- [ ] Constructor accepts RequestDelegate, ILogger, IHostEnvironment
-- [ ] ArgumentException → 400 Bad Request
-- [ ] KeyNotFoundException → 404 Not Found
-- [ ] Default → 500 Internal Server Error
-- [ ] Response is JSON formatted using `ApiResponse<object>`
-- [ ] Development mode shows full exception details
-- [ ] `UseGlobalExceptionHandling()` extension method exists
-- [ ] WebAPI project builds successfully
+- [x] `ExceptionMiddleware` implements middleware pattern with `InvokeAsync` ✅
+- [x] Constructor accepts RequestDelegate, ILogger, IHostEnvironment ✅
+- [x] ArgumentException → 400 Bad Request ✅
+- [x] KeyNotFoundException → 404 Not Found ✅
+- [x] Default → 500 Internal Server Error ✅
+- [x] Response is JSON formatted using `ApiResponse<object>` ✅
+- [x] Development mode shows full exception details ✅
+- [x] `UseGlobalExceptionHandling()` extension method exists ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- **ExceptionMiddleware** — global middleware với `InvokeAsync(HttpContext context)`
+  - Constructor inject: `RequestDelegate`, `ILogger<ExceptionMiddleware>`, `IHostEnvironment`
+  - Try/catch quanh `_next(context)`, log error bằng `_logger.LogError()`
+  - Exception mapping qua pattern matching:
+    - `ArgumentException` → 400 Bad Request
+    - `KeyNotFoundException` → 404 Not Found
+    - Default → 500 Internal Server Error
+  - Response: `ApiResponse<object>.BadRequest()` với JSON serialization
+  - Development mode: hiển thị `ex.ToString()` (full stack trace)
+  - Production mode: hiển thị generic message
+- **ExceptionMiddlewareExtensions** — extension method `UseGlobalExceptionHandling(this IApplicationBuilder app)`
+  - Namespace: `EnglishLearning.WebAPI.Middlewares`
+- Build verified: 0 errors

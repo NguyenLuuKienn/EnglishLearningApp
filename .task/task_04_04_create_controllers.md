@@ -169,19 +169,43 @@ public class VocabulariesController : ControllerBase
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All controllers use `[ApiController]` and `[Route("api/[controller]")]`
-- [ ] All controllers inject `IMediator`
-- [ ] All endpoints return `ApiResponse<T>` wrapped responses
-- [ ] Proper HTTP status codes: 200 OK, 201 Created, 204 NoContent, 400 BadRequest, 404 NotFound
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All controllers use `[ApiController]` and `[Route("api/[controller]")]` ✅
+- [x] All controllers inject `IMediator` ✅
+- [x] All endpoints return `ApiResponse<T>` wrapped responses ✅
+- [x] Proper HTTP status codes: 200 OK, 201 Created, 204 NoContent, 400 BadRequest, 404 NotFound ✅
 
 ## Acceptance Criteria
 
-- [ ] `VocabulariesController` with POST, GET (list), GET (by id), PUT, DELETE endpoints
-- [ ] `QuizzesController` with POST, GET (list), GET (by id), PUT, DELETE endpoints
-- [ ] `QuizResultsController` with POST (submit), GET (by id), GET (by user) endpoints
-- [ ] All controllers inject IMediator
-- [ ] Request contracts are mapped to CQRS commands/queries
-- [ ] Results are wrapped in ApiResponse<T> or PagedResponse<T>
-- [ ] Proper HTTP status codes returned
-- [ ] WebAPI project builds successfully
+- [x] `VocabulariesController` with POST, GET (list), GET (by id), PUT, DELETE endpoints ✅
+- [x] `QuizzesController` with POST, GET (list), GET (by id), PUT, DELETE endpoints ✅
+- [x] `QuizResultsController` with POST (submit), GET (by id), GET (by user) endpoints ✅
+- [x] All controllers inject IMediator ✅
+- [x] Request contracts are mapped to CQRS commands/queries ✅
+- [x] Results are wrapped in ApiResponse<T> or PagedResponse<T> ✅
+- [x] Proper HTTP status codes returned ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- **VocabulariesController** — 5 endpoints: POST (Create), GET (GetAll paged + filter by difficulty), GET (GetById), PUT (Update), DELETE (Delete)
+  - Map `CreateVocabularyRequest` → `CreateVocabularyCommand`
+  - Map `UpdateVocabularyRequest` → `UpdateVocabularyCommand`
+  - GET (list) trả về `PagedResponse<VocabularyDto>`, GET (by id) trả về `ApiResponse<VocabularyDto>`
+- **QuizzesController** — 5 endpoints: POST (Create), GET (GetAll paged + filter by difficulty), GET (GetById), PUT (Update), DELETE (Delete)
+  - Map `CreateQuizRequest` → `CreateQuizCommand` (kèm nested Questions/Choices qua `QuestionCommand`, `ChoiceCommand`)
+  - Map `UpdateQuizRequest` → `UpdateQuizCommand`
+  - GET (list) trả về `PagedResponse<QuizDto>`, GET (by id) trả về `ApiResponse<QuizDto>`
+- **QuizResultsController** — 3 endpoints: POST (submit), GET (GetById), GET (GetByUserId paged)
+  - Map `SubmitQuizResultRequest` → `SubmitQuizResultCommand` (kèm nested Answers qua `AnswerCommand`)
+  - POST submit trả về `ApiResponse<QuizResultDto>`, GET (by user) trả về `PagedResponse<QuizResultDto>`
+- **Pattern chung:**
+  - Tất cả controllers inject `IMediator` qua constructor
+  - `[ApiController]`, `[Route("api/[controller]")]`
+  - Kiểm tra `result.IsSuccess` → trả về `BadRequest` hoặc `NotFound` tương ứng
+  - Success → `Ok()`, `CreatedAtAction()`, `NoContent()` theo HTTP semantics
+  - Error handling: `result.Errors?.ToList() ?? [result.Error ?? string.Empty]`
+  - NotFound detection: `result.Error?.Contains("not found", StringComparison.OrdinalIgnoreCase) == true`
+- Build verified: 0 errors

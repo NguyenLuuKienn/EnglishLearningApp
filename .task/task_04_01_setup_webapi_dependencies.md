@@ -47,8 +47,8 @@ Configure the WebAPI project file with required project references and NuGet pac
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="*" />
-    <PackageReference Include="BCrypt.Net-Next" Version="*" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 </Project>
@@ -56,15 +56,26 @@ Configure the WebAPI project file with required project references and NuGet pac
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All NuGet packages are restored
-- [ ] Project references to Application and Infrastructure are working
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All NuGet packages are restored ✅
+- [x] Project references to Application and Infrastructure are working ✅
 
 ## Acceptance Criteria
 
-- [ ] `EnglishLearning.WebAPI` references `EnglishLearning.Application`
-- [ ] `EnglishLearning.WebAPI` references `EnglishLearning.Infrastructure`
-- [ ] JWT Bearer authentication package is installed
-- [ ] BCrypt.Net-Next package is installed
-- [ ] Swashbuckle (Swagger) package is still present
-- [ ] WebAPI project builds successfully
+- [x] `EnglishLearning.WebAPI` references `EnglishLearning.Application` ✅
+- [x] `EnglishLearning.WebAPI` references `EnglishLearning.Infrastructure` ✅
+- [x] JWT Bearer authentication package is installed ✅
+- [x] BCrypt.Net-Next package is installed ✅
+- [x] Swashbuckle (Swagger) package is still present ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- Project references: `EnglishLearning.Application` + `EnglishLearning.Infrastructure`
+- NuGet packages installed:
+  - `Microsoft.AspNetCore.Authentication.JwtBearer` 8.0.8
+  - `BCrypt.Net-Next` 4.0.3
+  - `Swashbuckle.AspNetCore` 6.6.2
+- Build verified: 0 errors

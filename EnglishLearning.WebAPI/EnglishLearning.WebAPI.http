@@ -1,6 +1,122 @@
 @EnglishLearning.WebAPI_HostAddress = http://localhost:5055
 
-GET {{EnglishLearning.WebAPI_HostAddress}}/weatherforecast/
+### ========================================
+### Vocabulary Endpoints
+### ========================================
+
+### Create Vocabulary
+POST {{EnglishLearning.WebAPI_HostAddress}}/api/vocabularies
+Content-Type: application/json
+
+{
+  "word": "Apple",
+  "definition": "A round fruit with red or green skin and crisp flesh.",
+  "example": "I eat an apple every day.",
+  "partOfSpeech": "Noun",
+  "difficulty": 0
+}
+
+### Get All Vocabularies (paged)
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/vocabularies?pageNumber=1&pageSize=10
 Accept: application/json
 
-###
+### Get Vocabulary by ID
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/vocabularies/{id}
+Accept: application/json
+
+### Update Vocabulary
+PUT {{EnglishLearning.WebAPI_HostAddress}}/api/vocabularies/{id}
+Content-Type: application/json
+
+{
+  "word": "Apple Updated",
+  "definition": "A round fruit with red or green skin and crisp flesh.",
+  "example": "I eat an apple every day.",
+  "partOfSpeech": "Noun",
+  "difficulty": 0
+}
+
+### Delete Vocabulary
+DELETE {{EnglishLearning.WebAPI_HostAddress}}/api/vocabularies/{id}
+
+### ========================================
+### Quiz Endpoints
+### ========================================
+
+### Create Quiz
+POST {{EnglishLearning.WebAPI_HostAddress}}/api/quizzes
+Content-Type: application/json
+
+{
+  "title": "Beginner English Quiz",
+  "description": "A quiz for beginner level",
+  "difficulty": 0,
+  "timeLimitMinutes": 10,
+  "passingScore": 50,
+  "questions": [
+    {
+      "questionText": "What is the meaning of 'apple'?",
+      "questionType": 0,
+      "difficulty": 0,
+      "correctAnswer": "A fruit",
+      "choices": [
+        { "choiceText": "A fruit", "isCorrect": true },
+        { "choiceText": "A vegetable", "isCorrect": false },
+        { "choiceText": "An animal", "isCorrect": false },
+        { "choiceText": "A color", "isCorrect": false }
+      ]
+    }
+  ]
+}
+
+### Get All Quizzes (paged)
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/quizzes?pageNumber=1&pageSize=10
+Accept: application/json
+
+### Get Quiz by ID
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/quizzes/{id}
+Accept: application/json
+
+### Update Quiz
+PUT {{EnglishLearning.WebAPI_HostAddress}}/api/quizzes/{id}
+Content-Type: application/json
+
+{
+  "title": "Beginner English Quiz Updated",
+  "description": "A quiz for beginner level",
+  "difficulty": 0,
+  "timeLimitMinutes": 10,
+  "passingScore": 50
+}
+
+### Delete Quiz
+DELETE {{EnglishLearning.WebAPI_HostAddress}}/api/quizzes/{id}
+
+### ========================================
+### Quiz Result Endpoints
+### ========================================
+
+### Submit Quiz Result
+POST {{EnglishLearning.WebAPI_HostAddress}}/api/quizresults/submit
+Content-Type: application/json
+
+{
+  "quizId": "00000000-0000-0000-0000-000000000000",
+  "userId": "user-123",
+  "durationMinutes": 5,
+  "answers": [
+    {
+      "questionId": "00000000-0000-0000-0000-000000000000",
+      "selectedChoiceId": "00000000-0000-0000-0000-000000000000",
+      "answerText": null
+    }
+  ]
+}
+
+### Get Quiz Result by ID
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/quizresults/{id}
+Accept: application/json
+
+### Get User Quiz Results (paged)
+GET {{EnglishLearning.WebAPI_HostAddress}}/api/quizresults/user/{userId}?pageNumber=1&pageSize=10
+Accept: application/json

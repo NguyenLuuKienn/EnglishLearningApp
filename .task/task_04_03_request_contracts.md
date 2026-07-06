@@ -14,11 +14,14 @@ Create request DTOs (contracts) for all API endpoints. These define the expected
 
 | File | Action |
 |------|--------|
-| `Contracts/Requests/CreateVocabularyRequest.cs` | Create |
-| `Contracts/Requests/UpdateVocabularyRequest.cs` | Create |
-| `Contracts/Requests/CreateQuizRequest.cs` | Create |
-| `Contracts/Requests/UpdateQuizRequest.cs` | Create |
-| `Contracts/Requests/SubmitQuizResultRequest.cs` | Create |
+| `Models/Requests/Vocabulary/CreateVocabularyRequest.cs` | Create |
+| `Models/Requests/Vocabulary/UpdateVocabularyRequest.cs` | Create |
+| `Models/Requests/Quizzes/CreateQuizRequest.cs` | Create |
+| `Models/Requests/Quizzes/QuestionRequest.cs` | Create |
+| `Models/Requests/Quizzes/ChoiceRequest.cs` | Create |
+| `Models/Requests/Quizzes/UpdateQuizRequest.cs` | Create |
+| `Models/Requests/QuizResults/SubmitQuizResultRequest.cs` | Create |
+| `Models/Requests/QuizResults/AnswerRequest.cs` | Create |
 
 ## Steps
 
@@ -30,7 +33,7 @@ Create request DTOs (contracts) for all API endpoints. These define the expected
 1. `CreateQuizRequest` — Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions (list of QuestionRequest)
 2. `QuestionRequest` — QuestionText, QuestionType, Difficulty, CorrectAnswer, Choices (list of ChoiceRequest)
 3. `ChoiceRequest` — ChoiceText, IsCorrect
-4. `UpdateQuizRequest` — same as Create
+4. `UpdateQuizRequest` — Title, Description, Difficulty, TimeLimitMinutes, PassingScore
 
 ### Step 3: Create QuizResult requests
 1. `SubmitQuizResultRequest` — QuizId, UserId, DurationMinutes, Answers (list of AnswerRequest)
@@ -43,9 +46,10 @@ Create request DTOs (contracts) for all API endpoints. These define the expected
 
 ```csharp
 // CreateVocabularyRequest.cs
+using EnglishLearning.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnglishLearning.WebAPI.Contracts.Requests;
+namespace EnglishLearning.WebAPI.Models.Requests.Vocabulary;
 
 public class CreateVocabularyRequest
 {
@@ -63,13 +67,14 @@ public class CreateVocabularyRequest
     [StringLength(50)]
     public string? PartOfSpeech { get; set; }
 
-    public Domain.Enums.DifficultyLevel Difficulty { get; set; }
+    public DifficultyLevel Difficulty { get; set; }
 }
 
 // UpdateVocabularyRequest.cs
+using EnglishLearning.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnglishLearning.WebAPI.Contracts.Requests;
+namespace EnglishLearning.WebAPI.Models.Requests.Vocabulary;
 
 public class UpdateVocabularyRequest
 {
@@ -87,13 +92,14 @@ public class UpdateVocabularyRequest
     [StringLength(50)]
     public string? PartOfSpeech { get; set; }
 
-    public Domain.Enums.DifficultyLevel Difficulty { get; set; }
+    public DifficultyLevel Difficulty { get; set; }
 }
 
 // CreateQuizRequest.cs
+using EnglishLearning.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnglishLearning.WebAPI.Contracts.Requests;
+namespace EnglishLearning.WebAPI.Models.Requests.Quizzes;
 
 public class CreateQuizRequest
 {
@@ -104,7 +110,7 @@ public class CreateQuizRequest
     [StringLength(1000)]
     public string? Description { get; set; }
 
-    public Domain.Enums.DifficultyLevel Difficulty { get; set; }
+    public DifficultyLevel Difficulty { get; set; }
     public int TimeLimitMinutes { get; set; }
     public decimal PassingScore { get; set; } = 50m;
 
@@ -112,17 +118,28 @@ public class CreateQuizRequest
     public List<QuestionRequest> Questions { get; set; } = new();
 }
 
+// QuestionRequest.cs
+using EnglishLearning.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
+
+namespace EnglishLearning.WebAPI.Models.Requests.Quizzes;
+
 public class QuestionRequest
 {
     [Required]
     [StringLength(2000)]
     public string QuestionText { get; set; } = string.Empty;
 
-    public Domain.Enums.QuestionType QuestionType { get; set; }
-    public Domain.Enums.DifficultyLevel Difficulty { get; set; }
+    public QuestionType QuestionType { get; set; }
+    public DifficultyLevel Difficulty { get; set; }
     public string? CorrectAnswer { get; set; }
     public List<ChoiceRequest> Choices { get; set; } = new();
 }
+
+// ChoiceRequest.cs
+using System.ComponentModel.DataAnnotations;
+
+namespace EnglishLearning.WebAPI.Models.Requests.Quizzes;
 
 public class ChoiceRequest
 {
@@ -134,9 +151,10 @@ public class ChoiceRequest
 }
 
 // UpdateQuizRequest.cs
+using EnglishLearning.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnglishLearning.WebAPI.Contracts.Requests;
+namespace EnglishLearning.WebAPI.Models.Requests.Quizzes;
 
 public class UpdateQuizRequest
 {
@@ -147,7 +165,7 @@ public class UpdateQuizRequest
     [StringLength(1000)]
     public string? Description { get; set; }
 
-    public Domain.Enums.DifficultyLevel Difficulty { get; set; }
+    public DifficultyLevel Difficulty { get; set; }
     public int TimeLimitMinutes { get; set; }
     public decimal PassingScore { get; set; }
 }
@@ -155,7 +173,7 @@ public class UpdateQuizRequest
 // SubmitQuizResultRequest.cs
 using System.ComponentModel.DataAnnotations;
 
-namespace EnglishLearning.WebAPI.Contracts.Requests;
+namespace EnglishLearning.WebAPI.Models.Requests.QuizResults;
 
 public class SubmitQuizResultRequest
 {
@@ -171,6 +189,11 @@ public class SubmitQuizResultRequest
     public List<AnswerRequest> Answers { get; set; } = new();
 }
 
+// AnswerRequest.cs
+using System.ComponentModel.DataAnnotations;
+
+namespace EnglishLearning.WebAPI.Models.Requests.QuizResults;
+
 public class AnswerRequest
 {
     [Required]
@@ -183,21 +206,40 @@ public class AnswerRequest
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All request classes have `[Required]` and `[StringLength]` attributes
-- [ ] Nested request objects (QuestionRequest, ChoiceRequest, AnswerRequest) are defined
-- [ ] Enums are properly referenced from Domain layer
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All request classes have `[Required]` and `[StringLength]` attributes ✅
+- [x] Nested request objects (QuestionRequest, ChoiceRequest, AnswerRequest) are in separate files ✅
+- [x] Enums are properly referenced from Domain layer ✅
 
 ## Acceptance Criteria
 
-- [ ] `CreateVocabularyRequest` with Word, Definition, Example, PartOfSpeech, Difficulty
-- [ ] `UpdateVocabularyRequest` with same properties
-- [ ] `CreateQuizRequest` with Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions
-- [ ] `QuestionRequest` with QuestionText, QuestionType, Difficulty, CorrectAnswer, Choices
-- [ ] `ChoiceRequest` with ChoiceText, IsCorrect
-- [ ] `UpdateQuizRequest` with Title, Description, Difficulty, TimeLimitMinutes, PassingScore
-- [ ] `SubmitQuizResultRequest` with QuizId, UserId, DurationMinutes, Answers
-- [ ] `AnswerRequest` with QuestionId, SelectedChoiceId, AnswerText
+- [x] `CreateVocabularyRequest` with Word, Definition, Example, PartOfSpeech, Difficulty ✅
+- [x] `UpdateVocabularyRequest` with same properties ✅
+- [x] `CreateQuizRequest` with Title, Description, Difficulty, TimeLimitMinutes, PassingScore, Questions ✅
+- [x] `QuestionRequest` with QuestionText, QuestionType, Difficulty, CorrectAnswer, Choices ✅
+- [x] `ChoiceRequest` with ChoiceText, IsCorrect ✅
+- [x] `UpdateQuizRequest` with Title, Description, Difficulty, TimeLimitMinutes, PassingScore ✅
+- [x] `SubmitQuizResultRequest` with QuizId, UserId, DurationMinutes, Answers ✅
+- [x] `AnswerRequest` with QuestionId, SelectedChoiceId, AnswerText ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-06
+
+- **Folder structure:** `Models/Requests/{Feature}/`
+- **Vocabulary requests:**
+  - `CreateVocabularyRequest` — Word (required, max 200), Definition (required, max 1000), Example (max 1000), PartOfSpeech (max 50), Difficulty
+  - `UpdateVocabularyRequest` — same as Create
+- **Quiz requests:**
+  - `CreateQuizRequest` — Title (required, max 200), Description (max 1000), Difficulty, TimeLimitMinutes, PassingScore, Questions (min 1)
+  - `QuestionRequest` — QuestionText (required, max 2000), QuestionType, Difficulty, CorrectAnswer, Choices
+  - `ChoiceRequest` — ChoiceText (required, max 500), IsCorrect
+  - `UpdateQuizRequest` — Title, Description, Difficulty, TimeLimitMinutes, PassingScore
+- **QuizResult requests:**
+  - `SubmitQuizResultRequest` — QuizId (required), UserId (required), DurationMinutes, Answers (min 1)
+  - `AnswerRequest` — QuestionId (required), SelectedChoiceId, AnswerText
+- Build verified: 0 errors
 - [ ] All required fields have `[Required]` attribute
 - [ ] String fields have `[StringLength]` attribute
 - [ ] WebAPI project builds successfully
