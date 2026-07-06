@@ -39,6 +39,6 @@ public class ApplicationDbContext : DbContext
             .HasMany(q => q.Results)
             .WithOne(r => r.Quiz)
             .HasForeignKey(r => r.QuizId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
