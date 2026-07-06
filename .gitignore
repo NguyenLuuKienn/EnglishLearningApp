@@ -168,6 +168,4 @@ ehthumbs.db
 Desktop.ini
 
 # Project planning & documentation folders (local only)
-.plan/
-.task/
-.requirement/
+.skills/
