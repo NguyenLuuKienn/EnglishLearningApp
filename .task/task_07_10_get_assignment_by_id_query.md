@@ -64,13 +64,22 @@ public class GetAssignmentByIdQueryHandler(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler throws if assignment not found
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler throws if assignment not found ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetAssignmentByIdQuery` with AssignmentId
-- [ ] `GetAssignmentByIdQueryHandler` finds assignment by Id
-- [ ] Throws KeyNotFoundException if not found
-- [ ] Returns `QuizAssignmentDto`
-- [ ] Application project builds successfully
+- [x] `GetAssignmentByIdQuery` with AssignmentId ✅
+- [x] `GetAssignmentByIdQueryHandler` finds assignment by Id ✅
+- [x] Throws KeyNotFoundException if not found ✅
+- [x] Returns `QuizAssignmentDto` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **GetAssignmentByIdQuery** — AssignmentId → `IRequest<QuizAssignmentDto>`
+- **GetAssignmentByIdQueryHandler** — Finds assignment by Id, AutoMapper mapping
+- Primary constructor injection, throws `KeyNotFoundException` with `AssignmentErrorMessages`
+- Build verified: 0 errors

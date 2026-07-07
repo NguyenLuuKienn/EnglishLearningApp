@@ -120,13 +120,24 @@ public class GetUserRankQueryHandler : IRequestHandler<GetUserRankQuery, Result<
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] GetLeaderboard returns top N users
-- [ ] GetUserRank returns user's rank
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] GetLeaderboard returns top N users ✅
+- [x] GetUserRank returns user's rank ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetLeaderboardQuery` returns top N users ordered by TotalScore
-- [ ] `GetUserRankQuery` returns user's current rank
-- [ ] Rank is 1-based index
-- [ ] Application project builds successfully
+- [x] `GetLeaderboardQuery` returns top N users ordered by TotalScore ✅
+- [x] `GetUserRankQuery` returns user's current rank ✅
+- [x] Rank is 1-based index ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **GetLeaderboardQuery** — Count → `IRequest<List<LeaderboardDto>>`
+- **GetLeaderboardQueryHandler** — Uses `GetTopUsersAsync` + `GetByIdAsync` per user for actual Username
+- **GetUserRankQuery** — UserId → `IRequest<int>`
+- **GetUserRankQueryHandler** — Uses `GetRankByUserIdAsync` from repository
+- Primary constructor injection, throws `KeyNotFoundException` with `LeaderboardErrorMessages`
+- Build verified: 0 errors

@@ -79,14 +79,23 @@ public class GetUserAssignmentsQueryHandler(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler gets assignments by userId and role
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler gets assignments by userId and role ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetUserAssignmentsQuery` with UserId
-- [ ] `GetUserAssignmentsQueryHandler` gets user's role
-- [ ] Returns assignments for specific user AND user's role
-- [ ] Excludes cancelled assignments
-- [ ] Returns `List<QuizAssignmentDto>`
-- [ ] Application project builds successfully
+- [x] `GetUserAssignmentsQuery` with UserId ✅
+- [x] `GetUserAssignmentsQueryHandler` gets user's role ✅
+- [x] Returns assignments for specific user AND user's role ✅
+- [x] Excludes cancelled assignments ✅
+- [x] Returns `List<QuizAssignmentDto>` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **GetUserAssignmentsQuery** — UserId → `IRequest<List<QuizAssignmentDto>>`
+- **GetUserAssignmentsQueryHandler** — Gets user role, filters assignments by userId + role, excludes cancelled, AutoMapper mapping
+- Primary constructor injection, throws `KeyNotFoundException` with `AuthErrorMessages`
+- Build verified: 0 errors

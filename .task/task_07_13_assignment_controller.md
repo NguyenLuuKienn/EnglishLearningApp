@@ -106,17 +106,29 @@ public class AssignmentsController : ControllerBase
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All endpoints return proper ApiResponse
-- [ ] Admin/Teacher endpoints require authorization
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All endpoints return proper ApiResponse ✅
+- [x] Admin/Teacher endpoints require authorization ✅
 
 ## Acceptance Criteria
 
-- [ ] `AssignmentsController` with `[ApiController]`, `[Route("api/[controller]")]`
-- [ ] `POST /` — AssignQuiz, requires Admin/Teacher role
-- [ ] `POST /{id}/cancel` — CancelAssignment, requires Admin/Teacher role
-- [ ] `GET /user/{userId}` — GetUserAssignments, requires auth
-- [ ] `GET /active` — GetActiveAssignments, public
-- [ ] `GET /{id}` — GetAssignmentById, public
-- [ ] All responses wrapped in `ApiResponse<T>`
-- [ ] WebAPI project builds successfully
+- [x] `AssignmentsController` with `[ApiController]`, `[Route("api/[controller]")]` ✅
+- [x] `POST /` — AssignQuiz, requires Admin/Teacher role ✅
+- [x] `POST /{id}/cancel` — CancelAssignment, requires Admin/Teacher role ✅
+- [x] `GET /user/{userId}` — GetUserAssignments, requires auth ✅
+- [x] `GET /active` — GetActiveAssignments, public ✅
+- [x] `GET /{id}` — GetAssignmentById, public ✅
+- [x] All responses wrapped in `ApiResponse<T>` ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **AssignmentsController** — Primary constructor, `[Authorize]` on controller:
+  - `POST /` — AssignQuizCommand, `[Authorize(Roles = "Admin,Teacher")]`
+  - `POST /{id}/cancel` — CancelAssignmentCommand, `[Authorize(Roles = "Admin,Teacher")]`
+  - `GET /user/{userId}` — GetUserAssignmentsQuery
+  - `GET /active` — GetActiveAssignmentsQuery
+  - `GET /{id}` — GetAssignmentByIdQuery
+- Build verified: 0 errors

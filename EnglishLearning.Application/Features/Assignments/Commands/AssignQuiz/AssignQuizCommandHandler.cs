@@ -1,0 +1,33 @@
+using EnglishLearning.Domain.Constants;
+using EnglishLearning.Domain.Entities;
+using EnglishLearning.Domain.Interfaces;
+using MediatR;
+
+namespace EnglishLearning.Application.Features.Assignments.Commands.AssignQuiz;
+
+public class AssignQuizCommandHandler(
+    IQuizAssignmentRepository _assignmentRepository,
+    IQuizRepository _quizRepository) : IRequestHandler<AssignQuizCommand, Guid>
+{
+    public async Task<Guid> Handle(AssignQuizCommand request, CancellationToken cancellationToken)
+    {
+        var quiz = await _quizRepository.GetByIdAsync(request.QuizId);
+        if (quiz == null)
+            throw new KeyNotFoundException(CommonErrorMessages.ResourceNotFound);
+
+        if (request.TargetRole == null && string.IsNullOrEmpty(request.TargetUserId))
+            throw new ArgumentException(AssignmentErrorMessages.TargetRequired);
+
+        var assignment = QuizAssignment.Create(
+            request.QuizId,
+            request.TargetRole,
+            request.TargetUserId,
+            request.StartTime,
+            request.EndTime);
+
+        await _assignmentRepository.AddAsync(assignment);
+        await _assignmentRepository.SaveChangesAsync(cancellationToken);
+
+        return assignment.Id;
+    }
+}

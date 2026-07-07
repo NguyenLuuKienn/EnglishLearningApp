@@ -60,12 +60,20 @@ public class Leaderboard : Common.BaseEntity
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] Leaderboard entity has all properties
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] Leaderboard entity has all properties ✅
 
 ## Acceptance Criteria
 
-- [ ] `Leaderboard` inherits from `BaseEntity`
-- [ ] Properties: UserId, TotalScore, QuizzesCompleted, AverageScore, Streak, LastActiveDate
-- [ ] Factory method `Create()` initializes with zeros
-- [ ] Domain project builds successfully
+- [x] `Leaderboard` inherits from `BaseEntity` ✅
+- [x] Properties: UserId, TotalScore, QuizzesCompleted, AverageScore, Streak, LastActiveDate ✅
+- [x] Factory method `Create()` initializes with zeros ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **Leaderboard** — UserId, TotalScore, QuizzesCompleted, AverageScore, Streak, LastActiveDate
+- Factory method `Create(userId)` initializes scores/counts to 0, `LastActiveDate = DateTime.UtcNow`
+- Build verified: 0 errors

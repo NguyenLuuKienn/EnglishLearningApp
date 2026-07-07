@@ -92,12 +92,12 @@ public class UpdateLeaderboardCommandHandler : IRequestHandler<UpdateLeaderboard
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler updates leaderboard stats correctly
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler updates leaderboard stats correctly ✅
 
 ## Acceptance Criteria
 
-- [ ] `UpdateLeaderboardCommand` with UserId, Score
+- [x] `UpdateLeaderboardCommand` with UserId, Score ✅
 - [ ] Handler creates leaderboard if not exists
 - [ ] Updates TotalScore, QuizzesCompleted, AverageScore
 - [ ] Calculates streak based on LastActiveDate

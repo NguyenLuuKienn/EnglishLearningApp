@@ -91,12 +91,12 @@ public class GetUserHistoryQueryHandler : IRequestHandler<GetUserHistoryQuery, R
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Returns paged LearningHistoryDto
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Returns paged LearningHistoryDto ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetUserHistoryQuery` with UserId, PageNumber, PageSize
-- [ ] Handler filters by UserId, orders by CreatedAt desc
+- [x] `GetUserHistoryQuery` with UserId, PageNumber, PageSize ✅
+- [x] Handler filters by UserId, orders by CreatedAt desc ✅
 - [ ] Returns `Result<PagedResult<LearningHistoryDto>>`
 - [ ] Application project builds successfully

@@ -1,6 +1,7 @@
-﻿namespace EnglishLearning.Domain.Entities;
+﻿using EnglishLearning.Domain.Common;
+namespace EnglishLearning.Domain.Entities;
 
-public class Vocabulary : Common.BaseEntity
+public class Vocabulary : BaseEntity
 {
     public string Word { get; set; } = string.Empty;
     public string Definition { get; set; } = string.Empty;

@@ -45,16 +45,24 @@ public interface IQuizAssignmentRepository : IRepository<QuizAssignment>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] IQuizAssignmentRepository inherits from IRepository<QuizAssignment>
-- [ ] Custom methods defined
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] IQuizAssignmentRepository inherits from IRepository<QuizAssignment> ✅
+- [x] Custom methods defined ✅
 
 ## Acceptance Criteria
 
-- [ ] `IQuizAssignmentRepository` interface in `EnglishLearning.Domain.Interfaces` namespace
-- [ ] Inherits from `IRepository<QuizAssignment>`
-- [ ] `GetByUserIdAsync(string userId)` returns assignments for specific user
-- [ ] `GetByRoleAsync(UserRole role)` returns assignments for role
-- [ ] `GetActiveAssignmentsAsync()` returns currently active assignments
-- [ ] `GetExpiringSoonAsync(DateTime before)` returns assignments expiring before date
-- [ ] Domain project builds successfully
+- [x] `IQuizAssignmentRepository` interface in `EnglishLearning.Domain.Interfaces` namespace ✅
+- [x] Inherits from `IRepository<QuizAssignment>` ✅
+- [x] `GetByUserIdAsync(string userId)` returns assignments for specific user ✅
+- [x] `GetByRoleAsync(UserRole role)` returns assignments for role ✅
+- [x] `GetActiveAssignmentsAsync()` returns currently active assignments ✅
+- [x] `GetExpiringSoonAsync(DateTime before)` returns assignments expiring before date ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **IQuizAssignmentRepository** — `GetByUserIdAsync`, `GetByRoleAsync`, `GetActiveAssignmentsAsync`, `GetExpiringSoonAsync`
+- Namespace: `EnglishLearning.Domain.Interfaces`
+- Build verified: 0 errors

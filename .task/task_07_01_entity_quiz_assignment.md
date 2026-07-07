@@ -72,14 +72,23 @@ public class QuizAssignment : BaseEntity
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] QuizAssignment entity has all properties
-- [ ] Factory method exists
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] QuizAssignment entity has all properties ✅
+- [x] Factory method exists ✅
 
 ## Acceptance Criteria
 
-- [ ] `QuizAssignment` inherits from `BaseEntity`
-- [ ] Properties: QuizId, TargetRole, TargetUserId, StartTime, EndTime, Status
-- [ ] `TargetRole` and `TargetUserId` are nullable (mutually exclusive)
-- [ ] Factory method `Create()` initializes Status as Scheduled
-- [ ] Domain project builds successfully
+- [x] `QuizAssignment` inherits from `BaseEntity` ✅
+- [x] Properties: QuizId, TargetRole, TargetUserId, StartTime, EndTime, Status ✅
+- [x] `TargetRole` and `TargetUserId` are nullable (mutually exclusive) ✅
+- [x] Factory method `Create()` initializes Status as Scheduled ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **QuizAssignment** — QuizId, TargetRole (nullable), TargetUserId (nullable), StartTime, EndTime, Status
+- Factory method `Create()` sets `Status = AssignmentStatus.Scheduled`
+- Navigation property: `Quiz`
+- Build verified: 0 errors

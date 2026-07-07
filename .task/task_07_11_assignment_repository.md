@@ -111,13 +111,13 @@ public class QuizAssignmentConfiguration : IEntityTypeConfiguration<QuizAssignme
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] Repository implements IQuizAssignmentRepository
-- [ ] Configuration defines table and constraints
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] Repository implements IQuizAssignmentRepository ✅
+- [x] Configuration defines table and constraints ✅
 
 ## Acceptance Criteria
 
-- [ ] `QuizAssignmentRepository` implements `IQuizAssignmentRepository`
+- [x] `QuizAssignmentRepository` implements `IQuizAssignmentRepository` ✅
 - [ ] Custom methods: GetByUserIdAsync, GetByRoleAsync, GetActiveAssignmentsAsync, GetExpiringSoonAsync
 - [ ] `QuizAssignmentConfiguration` sets table name "QuizAssignments"
 - [ ] FK to Quizzes with Restrict delete

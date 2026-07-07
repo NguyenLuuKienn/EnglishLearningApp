@@ -58,6 +58,99 @@ namespace EnglishLearning.Infrastructure.Migrations
                     b.ToTable("Choices", (string)null);
                 });
 
+            modelBuilder.Entity("EnglishLearning.Domain.Entities.Leaderboard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AverageScore")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastActiveDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuizzesCompleted")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Streak")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalScore")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Leaderboards", (string)null);
+                });
+
+            modelBuilder.Entity("EnglishLearning.Domain.Entities.LearningHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ActionType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<decimal?>("Score")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("TargetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedAt");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LearningHistories", (string)null);
+                });
+
             modelBuilder.Entity("EnglishLearning.Domain.Entities.Question", b =>
                 {
                     b.Property<Guid>("Id")
@@ -129,9 +222,15 @@ namespace EnglishLearning.Infrastructure.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("PassingScore")
                         .HasPrecision(5, 2)
                         .HasColumnType("decimal(5,2)");
+
+                    b.Property<DateTime?>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TimeLimitMinutes")
                         .HasColumnType("int");
@@ -152,6 +251,58 @@ namespace EnglishLearning.Infrastructure.Migrations
                     b.HasIndex("Difficulty");
 
                     b.ToTable("Quizzes", (string)null);
+                });
+
+            modelBuilder.Entity("EnglishLearning.Domain.Entities.QuizAssignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("QuizId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TargetRole")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TargetUserId")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EndTime");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("StartTime");
+
+                    b.HasIndex("TargetRole");
+
+                    b.HasIndex("TargetUserId");
+
+                    b.ToTable("QuizAssignments", (string)null);
                 });
 
             modelBuilder.Entity("EnglishLearning.Domain.Entities.QuizResult", b =>
@@ -269,12 +420,12 @@ namespace EnglishLearning.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            CreatedAt = new DateTime(2026, 7, 7, 5, 50, 25, 233, DateTimeKind.Utc).AddTicks(5986),
+                            CreatedAt = new DateTime(2026, 7, 7, 6, 34, 16, 644, DateTimeKind.Utc).AddTicks(3022),
                             Email = "admin@englishlearning.com",
                             IsActive = true,
-                            PasswordHash = "$2a$11$sMZhcxblhWg9BuQj8jM6Zu7ZR3QCsJ2Ba4cf9dAz5UheQ3BEFYBYq",
+                            PasswordHash = "$2a$11$9iuEFUXFa87PO6wabg9e6uLCe973ldUe1729uRkM5XUWB81BGogd.",
                             Role = 1,
-                            UpdatedAt = new DateTime(2026, 7, 7, 5, 50, 25, 233, DateTimeKind.Utc).AddTicks(5986),
+                            UpdatedAt = new DateTime(2026, 7, 7, 6, 34, 16, 644, DateTimeKind.Utc).AddTicks(3023),
                             Username = "admin"
                         });
                 });
@@ -349,6 +500,17 @@ namespace EnglishLearning.Infrastructure.Migrations
                     b.HasOne("EnglishLearning.Domain.Entities.Vocabulary", null)
                         .WithMany("Questions")
                         .HasForeignKey("VocabularyId");
+
+                    b.Navigation("Quiz");
+                });
+
+            modelBuilder.Entity("EnglishLearning.Domain.Entities.QuizAssignment", b =>
+                {
+                    b.HasOne("EnglishLearning.Domain.Entities.Quiz", "Quiz")
+                        .WithMany()
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Quiz");
                 });

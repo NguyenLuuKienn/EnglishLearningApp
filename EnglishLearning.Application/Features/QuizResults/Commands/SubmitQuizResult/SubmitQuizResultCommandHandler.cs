@@ -1,5 +1,7 @@
 using AutoMapper;
 using EnglishLearning.Application.DTOs;
+using EnglishLearning.Application.Features.History.Commands.RecordHistory;
+using EnglishLearning.Application.Features.Leaderboard.Commands.UpdateLeaderboard;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Entities;
 using EnglishLearning.Domain.Enums;
@@ -9,9 +11,10 @@ using MediatR;
 namespace EnglishLearning.Application.Features.QuizResults.Commands.SubmitQuizResult;
 
 public class SubmitQuizResultCommandHandler(
-    IQuizRepository _quizRepository, 
-    IQuizResultRepository _quizResultRepository, 
-    IMapper _mapper) : IRequestHandler<SubmitQuizResultCommand, QuizResultDto>
+    IQuizRepository _quizRepository,
+    IQuizResultRepository _quizResultRepository,
+    IMapper _mapper,
+    IMediator _mediator) : IRequestHandler<SubmitQuizResultCommand, QuizResultDto>
 {
     public async Task<QuizResultDto> Handle(SubmitQuizResultCommand request, CancellationToken cancellationToken)
     {
@@ -49,6 +52,19 @@ public class SubmitQuizResultCommandHandler(
 
         await _quizResultRepository.AddAsync(result);
         await _quizResultRepository.SaveChangesAsync(cancellationToken);
+
+        // Record history
+        await _mediator.Send(new RecordHistoryCommand(
+            request.UserId,
+            ActionType.CompleteQuiz,
+            request.QuizId,
+            $"Quiz completed with score {result.Score}%",
+            result.Score), cancellationToken);
+
+        // Update leaderboard
+        await _mediator.Send(new UpdateLeaderboardCommand(
+            request.UserId,
+            result.Score), cancellationToken);
 
         return _mapper.Map<QuizResultDto>(result);
     }

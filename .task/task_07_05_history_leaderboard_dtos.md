@@ -62,12 +62,21 @@ public class LeaderboardDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Both DTOs have required properties
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Both DTOs have required properties ✅
 
 ## Acceptance Criteria
 
-- [ ] `LearningHistoryDto` with Id, UserId, ActionType, TargetId, Details, Score, CreatedAt
-- [ ] `LeaderboardDto` with Id, UserId, Username, TotalScore, QuizzesCompleted, AverageScore, Streak, Rank
-- [ ] Both in `EnglishLearning.Application.DTOs` namespace
-- [ ] Application project builds successfully
+- [x] `LearningHistoryDto` with Id, UserId, ActionType, TargetId, Details, Score, CreatedAt ✅
+- [x] `LeaderboardDto` with Id, UserId, Username, TotalScore, QuizzesCompleted, AverageScore, Streak, Rank ✅
+- [x] Both in `EnglishLearning.Application.DTOs` namespace ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **LearningHistoryDto** — Id, UserId, ActionType, TargetId, Details (nullable), Score (nullable), CreatedAt
+- **LeaderboardDto** — Id, UserId, Username, TotalScore, QuizzesCompleted, AverageScore, Streak, Rank
+- Namespace: `EnglishLearning.Application.DTOs`
+- Build verified: 0 errors

@@ -24,5 +24,15 @@ public class MappingsProfile : Profile
 
         // QuizResult
         CreateMap<QuizResult, QuizResultDto>();
+
+        // QuizAssignment
+        CreateMap<QuizAssignment, QuizAssignmentDto>()
+            .ForMember(dest => dest.QuizTitle, opt => opt.MapFrom(src => src.Quiz.Title));
+
+        // LearningHistory
+        CreateMap<LearningHistory, LearningHistoryDto>();
+
+        // Leaderboard
+        CreateMap<Leaderboard, LeaderboardDto>();
     }
 }

@@ -61,12 +61,21 @@ public interface ILeaderboardRepository : IRepository<Leaderboard>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] Both interfaces inherit from IRepository
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] Both interfaces inherit from IRepository ✅
 
 ## Acceptance Criteria
 
-- [ ] `ILearningHistoryRepository` with GetByUserIdAsync, GetRecentByUserIdAsync
-- [ ] `ILeaderboardRepository` with GetByUserIdAsync, GetTopUsersAsync, GetRankByUserIdAsync
-- [ ] Both inherit from `IRepository<T>`
-- [ ] Domain project builds successfully
+- [x] `ILearningHistoryRepository` with GetByUserIdAsync, GetRecentByUserIdAsync ✅
+- [x] `ILeaderboardRepository` with GetByUserIdAsync, GetTopUsersAsync, GetRankByUserIdAsync ✅
+- [x] Both inherit from `IRepository<T>` ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **ILearningHistoryRepository** — `GetByUserIdAsync(userId, pageNumber, pageSize)`, `GetRecentByUserIdAsync(userId, count)`
+- **ILeaderboardRepository** — `GetByUserIdAsync(userId)`, `GetTopUsersAsync(count)`, `GetRankByUserIdAsync(userId)`
+- Namespace: `EnglishLearning.Domain.Interfaces`
+- Build verified: 0 errors

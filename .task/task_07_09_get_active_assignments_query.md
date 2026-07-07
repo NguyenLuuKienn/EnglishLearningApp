@@ -68,13 +68,22 @@ public class GetActiveAssignmentsQueryHandler(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler filters by time range
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler filters by time range ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetActiveAssignmentsQuery` returns active assignments
-- [ ] `GetActiveAssignmentsQueryHandler` filters by StartTime <= now <= EndTime
-- [ ] Excludes cancelled assignments
-- [ ] Returns `List<QuizAssignmentDto>`
-- [ ] Application project builds successfully
+- [x] `GetActiveAssignmentsQuery` returns active assignments ✅
+- [x] `GetActiveAssignmentsQueryHandler` filters by StartTime <= now <= EndTime ✅
+- [x] Excludes cancelled assignments ✅
+- [x] Returns `List<QuizAssignmentDto>` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **GetActiveAssignmentsQuery** → `IRequest<List<QuizAssignmentDto>>`
+- **GetActiveAssignmentsQueryHandler** — Filters by `StartTime <= now <= EndTime`, excludes cancelled, AutoMapper mapping
+- Primary constructor injection
+- Build verified: 0 errors

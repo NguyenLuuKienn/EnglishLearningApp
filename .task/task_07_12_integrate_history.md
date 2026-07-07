@@ -46,13 +46,22 @@ await _mediator.Send(new UpdateLeaderboardCommand(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] History is recorded on quiz submit
-- [ ] Leaderboard is updated on quiz submit
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] History is recorded on quiz submit ✅
+- [x] Leaderboard is updated on quiz submit ✅
 
 ## Acceptance Criteria
 
-- [ ] SubmitQuizResultCommandHandler sends RecordHistoryCommand after saving
-- [ ] ActionType is CompleteQuiz
-- [ ] SubmitQuizResultCommandHandler sends UpdateLeaderboardCommand with score
-- [ ] Application project builds successfully
+- [x] SubmitQuizResultCommandHandler sends RecordHistoryCommand after saving ✅
+- [x] ActionType is CompleteQuiz ✅
+- [x] SubmitQuizResultCommandHandler sends UpdateLeaderboardCommand with score ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **SubmitQuizResultCommandHandler** — Injected `IMediator`, after saving QuizResult:
+  - Sends `RecordHistoryCommand` (ActionType.CompleteQuiz, score details)
+  - Sends `UpdateLeaderboardCommand` (score)
+- Build verified: 0 errors

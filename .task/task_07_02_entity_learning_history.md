@@ -57,13 +57,21 @@ public class LearningHistory : Common.BaseEntity
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] LearningHistory entity has all properties
-- [ ] Factory method exists
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] LearningHistory entity has all properties ✅
+- [x] Factory method exists ✅
 
 ## Acceptance Criteria
 
-- [ ] `LearningHistory` inherits from `BaseEntity`
-- [ ] Properties: UserId, ActionType, TargetId, Details, Score
-- [ ] Factory method `Create()` exists
-- [ ] Domain project builds successfully
+- [x] `LearningHistory` inherits from `BaseEntity` ✅
+- [x] Properties: UserId, ActionType, TargetId, Details, Score ✅
+- [x] Factory method `Create()` exists ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **LearningHistory** — UserId, ActionType, TargetId, Details (nullable), Score (nullable)
+- Factory method `Create(userId, actionType, targetId, details, score)`
+- Build verified: 0 errors

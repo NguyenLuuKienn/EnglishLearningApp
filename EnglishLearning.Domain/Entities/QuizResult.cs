@@ -1,6 +1,7 @@
-﻿namespace EnglishLearning.Domain.Entities;
+﻿using EnglishLearning.Domain.Common;
+namespace EnglishLearning.Domain.Entities;
 
-public class QuizResult : Common.BaseEntity
+public class QuizResult : BaseEntity
 {
     public Guid QuizId { get; set; }
     public string UserId { get; set; } = string.Empty;

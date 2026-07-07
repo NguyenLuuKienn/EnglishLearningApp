@@ -37,11 +37,19 @@ public enum AssignmentStatus
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] AssignmentStatus enum has all values
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] AssignmentStatus enum has all values ✅
 
 ## Acceptance Criteria
 
-- [ ] `AssignmentStatus` enum in `EnglishLearning.Domain.Enums` namespace
-- [ ] Values: Scheduled, Active, Completed, Cancelled
-- [ ] Domain project builds successfully
+- [x] `AssignmentStatus` enum in `EnglishLearning.Domain.Enums` namespace ✅
+- [x] Values: Scheduled, Active, Completed, Cancelled ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **AssignmentStatus** — Scheduled = 0, Active = 1, Completed = 2, Cancelled = 3
+- Namespace: `EnglishLearning.Domain.Enums`
+- Build verified: 0 errors

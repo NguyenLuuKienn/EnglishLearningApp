@@ -76,13 +76,22 @@ public class RecordHistoryCommandHandler : IRequestHandler<RecordHistoryCommand,
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler creates and saves LearningHistory
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler creates and saves LearningHistory ✅
 
 ## Acceptance Criteria
 
-- [ ] `RecordHistoryCommand` with UserId, ActionType, TargetId, Details, Score
-- [ ] `RecordHistoryCommandHandler` creates LearningHistory entity
-- [ ] Saves via UnitOfWork
-- [ ] Returns `Result<Guid>` (HistoryId)
-- [ ] Application project builds successfully
+- [x] `RecordHistoryCommand` with UserId, ActionType, TargetId, Details, Score ✅
+- [x] `RecordHistoryCommandHandler` creates LearningHistory entity ✅
+- [x] Saves via UnitOfWork ✅
+- [x] Returns `Guid` (HistoryId) ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **RecordHistoryCommand** — UserId, ActionType, TargetId, Details, Score → `IRequest<Guid>`
+- **RecordHistoryCommandHandler** — Creates LearningHistory via factory, saves via UnitOfWork
+- Primary constructor injection, `SaveChangesAsync(cancellationToken)`
+- Build verified: 0 errors

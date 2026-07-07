@@ -1,6 +1,7 @@
-﻿namespace EnglishLearning.Domain.Entities;
+﻿using EnglishLearning.Domain.Common;
+namespace EnglishLearning.Domain.Entities;
 
-public class Question : Common.BaseEntity
+public class Question : BaseEntity
 {
     public string QuestionText { get; set; } = string.Empty;
     public Enums.QuestionType QuestionType { get; set; }

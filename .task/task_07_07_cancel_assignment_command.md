@@ -66,14 +66,23 @@ public class CancelAssignmentCommandHandler(IQuizAssignmentRepository _assignmen
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler validates assignment exists and is not already cancelled
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler validates assignment exists and is not already cancelled ✅
 
 ## Acceptance Criteria
 
-- [ ] `CancelAssignmentCommand` with AssignmentId
-- [ ] `CancelAssignmentCommandHandler` finds assignment by Id
-- [ ] Throws KeyNotFoundException if not found
-- [ ] Throws InvalidOperationException if already cancelled
-- [ ] Sets Status to Cancelled
-- [ ] Application project builds successfully
+- [x] `CancelAssignmentCommand` with AssignmentId ✅
+- [x] `CancelAssignmentCommandHandler` finds assignment by Id ✅
+- [x] Throws KeyNotFoundException if not found ✅
+- [x] Throws InvalidOperationException if already cancelled ✅
+- [x] Sets Status to Cancelled ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **CancelAssignmentCommand** — AssignmentId → `IRequest`
+- **CancelAssignmentCommandHandler** — Validates assignment exists & not already cancelled, sets Status = Cancelled
+- Primary constructor injection, throws exceptions with `AssignmentErrorMessages`
+- Build verified: 0 errors

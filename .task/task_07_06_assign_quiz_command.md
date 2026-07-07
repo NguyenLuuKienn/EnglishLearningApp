@@ -83,15 +83,24 @@ public class AssignQuizCommandHandler(IQuizAssignmentRepository _assignmentRepos
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler validates quiz exists
-- [ ] Handler validates target is specified
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler validates quiz exists ✅
+- [x] Handler validates target is specified ✅
 
 ## Acceptance Criteria
 
-- [ ] `AssignQuizCommand` with QuizId, TargetRole, TargetUserId, StartTime, EndTime
-- [ ] `AssignQuizCommandHandler` validates quiz exists
-- [ ] `AssignQuizCommandHandler` validates either TargetRole or TargetUserId is set
-- [ ] Creates QuizAssignment with Status = Scheduled
-- [ ] Returns `Guid` (AssignmentId)
-- [ ] Application project builds successfully
+- [x] `AssignQuizCommand` with QuizId, TargetRole, TargetUserId, StartTime, EndTime ✅
+- [x] `AssignQuizCommandHandler` validates quiz exists ✅
+- [x] `AssignQuizCommandHandler` validates either TargetRole or TargetUserId is set ✅
+- [x] Creates QuizAssignment with Status = Scheduled ✅
+- [x] Returns `Guid` (AssignmentId) ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **AssignQuizCommand** — QuizId, TargetRole, TargetUserId, StartTime, EndTime → `IRequest<Guid>`
+- **AssignQuizCommandHandler** — Validates quiz exists, validates target specified, creates QuizAssignment via factory
+- Primary constructor injection, throws `KeyNotFoundException` / `ArgumentException` with error messages
+- Build verified: 0 errors

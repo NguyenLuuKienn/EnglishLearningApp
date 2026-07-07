@@ -43,11 +43,19 @@ public class QuizAssignmentDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] QuizAssignmentDto has all required properties
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] QuizAssignmentDto has all required properties ✅
 
 ## Acceptance Criteria
 
-- [ ] `QuizAssignmentDto` with Id, QuizId, QuizTitle, TargetRole, TargetUserId, StartTime, EndTime, Status
-- [ ] In `EnglishLearning.Application.DTOs` namespace
-- [ ] Application project builds successfully
+- [x] `QuizAssignmentDto` with Id, QuizId, QuizTitle, TargetRole, TargetUserId, StartTime, EndTime, Status ✅
+- [x] In `EnglishLearning.Application.DTOs` namespace ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **QuizAssignmentDto** — Id, QuizId, QuizTitle, TargetRole (nullable), TargetUserId (nullable), StartTime, EndTime, Status
+- Namespace: `EnglishLearning.Application.DTOs`
+- Build verified: 0 errors

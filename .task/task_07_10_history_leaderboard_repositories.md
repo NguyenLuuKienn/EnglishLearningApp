@@ -138,13 +138,23 @@ public class LeaderboardConfiguration : IEntityTypeConfiguration<Leaderboard>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] Both repositories implement their interfaces
-- [ ] Configurations define tables and indexes
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] Both repositories implement their interfaces ✅
+- [x] Configurations define tables and indexes ✅
 
 ## Acceptance Criteria
 
-- [ ] `LearningHistoryRepository` implements `ILearningHistoryRepository`
-- [ ] `LeaderboardRepository` implements `ILeaderboardRepository`
-- [ ] Configurations set correct table names and indexes
-- [ ] Infrastructure project builds successfully
+- [x] `LearningHistoryRepository` implements `ILearningHistoryRepository` ✅
+- [x] `LeaderboardRepository` implements `ILeaderboardRepository` ✅
+- [x] Configurations set correct table names and indexes ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **LearningHistoryRepository** — Primary constructor, `GetByUserIdAsync` returns `(List, TotalRecords)` tuple via `_dbSet.Where().CountAsync()` + `_dbSet.Where().Skip().Take().ToListAsync()`, `GetRecentByUserIdAsync`
+- **LeaderboardRepository** — Primary constructor, `GetByUserIdAsync` via `_dbSet.FirstOrDefaultAsync()`, `GetTopUsersAsync` via `_dbSet.OrderByDescending().Take().ToListAsync()`, `GetRankByUserIdAsync` via `_dbSet.CountAsync()`
+- **LearningHistoryConfiguration** — Table "LearningHistories", indexes on UserId/CreatedAt
+- **LeaderboardConfiguration** — Table "Leaderboards", unique index on UserId, precision on scores
+- Build verified: 0 errors

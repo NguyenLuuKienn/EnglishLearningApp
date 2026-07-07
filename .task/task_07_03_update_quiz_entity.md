@@ -32,11 +32,18 @@ public DateTime? EndTime { get; set; }
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] Quiz entity has StartTime and EndTime properties
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] Quiz entity has StartTime and EndTime properties ✅
 
 ## Acceptance Criteria
 
-- [ ] `Quiz` entity has `StartTime` (DateTime?) property
-- [ ] `Quiz` entity has `EndTime` (DateTime?) property
-- [ ] Domain project builds successfully
+- [x] `Quiz` entity has `StartTime` (DateTime?) property ✅
+- [x] `Quiz` entity has `EndTime` (DateTime?) property ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **Quiz** — Added `StartTime` (DateTime?) and `EndTime` (DateTime?) for scheduling support
+- Build verified: 0 errors
