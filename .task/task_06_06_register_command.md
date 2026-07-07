@@ -89,15 +89,25 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<Gu
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] RegisterCommand has Username, Email, Password
-- [ ] Handler validates username/email uniqueness
-- [ ] Password is hashed with BCrypt
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] RegisterCommand has Username, Email, Password ✅
+- [x] Handler validates username/email uniqueness ✅
+- [x] Password is hashed with BCrypt ✅
 
 ## Acceptance Criteria
 
-- [ ] `RegisterCommand` record with Username, Email, Password
-- [ ] `RegisterCommandHandler` checks username/email uniqueness
-- [ ] Password hashed with BCrypt before saving
-- [ ] Returns `Result<Guid>` (UserId on success)
-- [ ] Application project builds successfully
+- [x] `RegisterCommand` record with Username, Email, Password ✅
+- [x] `RegisterCommandHandler` checks username/email uniqueness ✅
+- [x] Password hashed with BCrypt before saving ✅
+- [x] Returns `Result<Guid>` (UserId on success) ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **RegisterCommand** — Username, Email, Password → `IRequest<Result<Guid>>`
+- **RegisterCommandHandler** — Validates uniqueness, BCrypt hash, creates User, saves via UnitOfWork
+- Namespace: `EnglishLearning.Application.Features.Auth.Commands.Register`
+- Dependencies added: `BCrypt.Net-Next` 4.0.3
+- Build verified: 0 errors

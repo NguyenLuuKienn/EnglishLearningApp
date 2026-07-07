@@ -4,22 +4,11 @@ using EnglishLearning.WebAPI.Models.Common;
 
 namespace EnglishLearning.WebAPI.Middlewares;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware(
+    RequestDelegate _next,
+    ILogger<ExceptionMiddleware> _logger,
+    IHostEnvironment _environment)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
-    private readonly IHostEnvironment _environment;
-
-    public ExceptionMiddleware(
-        RequestDelegate next,
-        ILogger<ExceptionMiddleware> logger,
-        IHostEnvironment environment)
-    {
-        _next = next;
-        _logger = logger;
-        _environment = environment;
-    }
-
     public async Task InvokeAsync(HttpContext context)
     {
         try
@@ -37,6 +26,9 @@ public class ExceptionMiddleware
             {
                 ArgumentException => (HttpStatusCode.BadRequest, ex.Message),
                 KeyNotFoundException => (HttpStatusCode.NotFound, ex.Message),
+                UnauthorizedAccessException => (HttpStatusCode.Unauthorized, ex.Message),
+                InvalidOperationException when ex.Message.Contains("already exists", StringComparison.OrdinalIgnoreCase)
+                    => (HttpStatusCode.Conflict, ex.Message),
                 _ => (HttpStatusCode.InternalServerError, "An internal server error occurred")
             };
 

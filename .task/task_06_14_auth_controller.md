@@ -111,16 +111,29 @@ public class AuthController : ControllerBase
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All endpoints return proper ApiResponse
-- [ ] GetProfile requires [Authorize]
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All endpoints return proper ApiResponse ✅
+- [x] GetProfile requires [Authorize] ✅
 
 ## Acceptance Criteria
 
-- [ ] `AuthController` with `[ApiController]`, `[Route("api/[controller]")]`
-- [ ] `POST /register` — returns 200 Ok or 400 BadRequest
-- [ ] `POST /login` — returns 200 Ok with tokens or 401 Unauthorized
-- [ ] `POST /refresh-token` — returns 200 Ok with new tokens or 401 Unauthorized
-- [ ] `GET /profile` — requires [Authorize], returns 200 Ok or 404 NotFound
-- [ ] All responses wrapped in `ApiResponse<T>`
-- [ ] WebAPI project builds successfully
+- [x] `AuthController` with `[ApiController]`, `[Route("api/[controller]")]` ✅
+- [x] `POST /register` — returns 200 Ok or 400 BadRequest ✅
+- [x] `POST /login` — returns 200 Ok with tokens or 401 Unauthorized ✅
+- [x] `POST /refresh-token` — returns 200 Ok with new tokens or 401 Unauthorized ✅
+- [x] `GET /profile` — requires [Authorize], returns 200 Ok or 404 NotFound ✅
+- [x] All responses wrapped in `ApiResponse<T>` ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **AuthController** — Primary constructor, 4 endpoints:
+  - `POST /register` — RegisterCommand → `ApiResponse<Guid>` (200 Ok)
+  - `POST /login` — LoginCommand → `ApiResponse<TokenDto>` (200 Ok)
+  - `POST /refresh-token` — RefreshTokenCommand → `ApiResponse<TokenDto>` (200 Ok)
+  - `GET /profile` — `[Authorize]`, extracts UserId from JWT claim → `ApiResponse<UserDto>` (200 Ok)
+- Exceptions caught by `ExceptionMiddleware` → proper HTTP status codes (401, 409, 404)
+- Namespace: `EnglishLearning.WebAPI.Controllers`
+- Build verified: 0 errors

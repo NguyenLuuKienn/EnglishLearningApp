@@ -77,12 +77,22 @@ public class GetProfileQueryHandler : IRequestHandler<GetProfileQuery, Result<Us
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] GetProfileQuery returns UserDto
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] GetProfileQuery returns UserDto ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetProfileQuery` with UserId
-- [ ] `GetProfileQueryHandler` finds user by Id
-- [ ] Returns `Result<UserDto>` with user info (no password)
-- [ ] Application project builds successfully
+- [x] `GetProfileQuery` with UserId ✅
+- [x] `GetProfileQueryHandler` finds user by Id ✅
+- [x] Returns `UserDto` with user info (no password) ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **GetProfileQuery** — UserId → `IRequest<UserDto>`
+- **GetProfileQueryHandler** — Finds user by Id, maps to UserDto (excludes PasswordHash)
+- Namespace: `EnglishLearning.Application.Features.Auth.Queries.GetProfile`
+- Primary constructor injection, throws `KeyNotFoundException` with `AuthErrorMessages.UserNotFound`
+- Build verified: 0 errors

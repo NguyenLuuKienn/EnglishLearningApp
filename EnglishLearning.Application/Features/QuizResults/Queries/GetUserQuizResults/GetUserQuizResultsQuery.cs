@@ -8,4 +8,4 @@ public record GetUserQuizResultsQuery(
     string UserId,
     int PageNumber,
     int PageSize
-) : IRequest<Result<PagedResult<QuizResultDto>>>;
+) : IRequest<PagedResult<QuizResultDto>>;

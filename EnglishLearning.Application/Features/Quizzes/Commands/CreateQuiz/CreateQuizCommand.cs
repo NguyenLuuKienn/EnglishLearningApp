@@ -1,4 +1,3 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Enums;
 using MediatR;
 
@@ -24,4 +23,4 @@ public record CreateQuizCommand(
     int TimeLimitMinutes,
     decimal PassingScore,
     List<QuestionCommand> Questions
-) : IRequest<Result<Guid>>;
+) : IRequest<Guid>;

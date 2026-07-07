@@ -90,15 +90,25 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] UserRepository implements IUserRepository
-- [ ] UserConfiguration defines table and constraints
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] UserRepository implements IUserRepository ✅
+- [x] UserConfiguration defines table and constraints ✅
 
 ## Acceptance Criteria
 
-- [ ] `UserRepository` inherits `Repository<User>` and implements `IUserRepository`
-- [ ] `GetByUsernameAsync` and `GetByEmailAsync` implemented
-- [ ] `UserConfiguration` sets table name "Users"
-- [ ] Username and Email are unique indexed
-- [ ] Role converted to int
-- [ ] Infrastructure project builds successfully
+- [x] `UserRepository` inherits `Repository<User>` and implements `IUserRepository` ✅
+- [x] `GetByUsernameAsync` and `GetByEmailAsync` implemented ✅
+- [x] `UserConfiguration` sets table name "Users" ✅
+- [x] Username and Email are unique indexed ✅
+- [x] Role converted to int ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **UserRepository** — Primary constructor, `GetByUsernameAsync`, `GetByEmailAsync` via `_dbSet.FirstOrDefaultAsync`
+- **UserConfiguration** — Table "Users", Username unique index (max 100), Email unique index (max 200), Role HasConversion<int>, AvatarUrl max 500
+- **ApplicationDbContext** — Added `DbSet<User> Users`
+- **DependencyInjection** — Registered `IUserRepository → UserRepository` (Scoped)
+- Build verified: 0 errors

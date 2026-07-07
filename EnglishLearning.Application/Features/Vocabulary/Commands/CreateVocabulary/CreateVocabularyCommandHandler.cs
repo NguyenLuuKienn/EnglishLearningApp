@@ -1,20 +1,13 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 using VocabularyEntity = EnglishLearning.Domain.Entities.Vocabulary;
 
 namespace EnglishLearning.Application.Features.Vocabulary.Commands.CreateVocabulary;
 
-public class CreateVocabularyCommandHandler : IRequestHandler<CreateVocabularyCommand, Result<Guid>>
+public class CreateVocabularyCommandHandler(
+    IVocabularyRepository _vocabularyRepository) : IRequestHandler<CreateVocabularyCommand, Guid>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public CreateVocabularyCommandHandler(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result<Guid>> Handle(CreateVocabularyCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateVocabularyCommand request, CancellationToken cancellationToken)
     {
         var entity = new VocabularyEntity
         {
@@ -25,9 +18,9 @@ public class CreateVocabularyCommandHandler : IRequestHandler<CreateVocabularyCo
             Difficulty = request.Difficulty
         };
 
-        await _unitOfWork.Vocabularies.AddAsync(entity);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _vocabularyRepository.AddAsync(entity);
+        await _vocabularyRepository.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(entity.Id);
+        return entity.Id;
     }
 }

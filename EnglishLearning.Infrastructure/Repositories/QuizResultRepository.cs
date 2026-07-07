@@ -6,12 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EnglishLearning.Infrastructure.Repositories;
 
-public class QuizResultRepository : Repository<QuizResult>, IQuizResultRepository
+public class QuizResultRepository(ApplicationDbContext context) : Repository<QuizResult>(context), IQuizResultRepository
 {
-    public QuizResultRepository(ApplicationDbContext context) : base(context)
-    {
-    }
-
     public async Task<IEnumerable<QuizResult>> GetByUserIdAsync(string userId)
     {
         return await _dbSet

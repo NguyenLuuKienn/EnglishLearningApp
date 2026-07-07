@@ -1,6 +1,5 @@
-using EnglishLearning.Application.Common;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Vocabulary.Commands.DeleteVocabulary;
 
-public record DeleteVocabularyCommand(Guid Id) : IRequest<Result>;
+public record DeleteVocabularyCommand(Guid Id) : IRequest;

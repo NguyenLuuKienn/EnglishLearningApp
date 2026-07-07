@@ -126,15 +126,24 @@ public class TokenService : ITokenService
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] TokenService implements ITokenService
-- [ ] JWT token generated with claims
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] TokenService implements ITokenService ✅
+- [x] JWT token generated with claims ✅
 
 ## Acceptance Criteria
 
-- [ ] `TokenService` implements `ITokenService`
-- [ ] `GenerateTokensAsync` creates JWT with Name, Email, Role, NameIdentifier claims
-- [ ] AccessToken expires in 1 hour
-- [ ] RefreshToken is random 32-byte Base64 string
-- [ ] `GetPrincipalFromExpiredToken` validates and extracts claims
-- [ ] Infrastructure project builds successfully
+- [x] `TokenService` implements `ITokenService` ✅
+- [x] `GenerateTokensAsync` creates JWT with Name, Email, Role, NameIdentifier claims ✅
+- [x] AccessToken expires in 1 hour ✅
+- [x] RefreshToken is random 32-byte Base64 string ✅
+- [x] `GetPrincipalFromExpiredToken` validates and extracts claims ✅
+- [x] Infrastructure project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **TokenService** — Primary constructor with `IConfiguration`, generates JWT (Name, Email, Role, NameIdentifier claims), 1-hour expiry, 32-byte random refresh token
+- **NuGet packages added** — `System.IdentityModel.Tokens.Jwt` 7.6.2, `Microsoft.IdentityModel.Tokens` 7.6.2
+- **DependencyInjection** — Registered `ITokenService → TokenService` (Scoped)
+- Build verified: 0 errors

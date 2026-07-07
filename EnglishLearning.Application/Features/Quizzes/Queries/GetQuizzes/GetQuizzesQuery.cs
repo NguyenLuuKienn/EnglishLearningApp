@@ -9,4 +9,4 @@ public record GetQuizzesQuery(
     int PageNumber,
     int PageSize,
     DifficultyLevel? Difficulty
-) : IRequest<Result<PagedResult<QuizDto>>>;
+) : IRequest<PagedResult<QuizDto>>;

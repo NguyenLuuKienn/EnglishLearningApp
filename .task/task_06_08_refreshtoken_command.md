@@ -85,16 +85,26 @@ public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, R
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] RefreshTokenCommand validates tokens
-- [ ] Returns new TokenDto
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] RefreshTokenCommand validates tokens ✅
+- [x] Returns new TokenDto ✅
 
 ## Acceptance Criteria
 
-- [ ] `RefreshTokenCommand` with AccessToken, RefreshToken
-- [ ] Handler validates expired access token
-- [ ] Validates refresh token matches and not expired
-- [ ] Generates new token pair
-- [ ] Updates user's refresh token
-- [ ] Returns `Result<TokenDto>`
-- [ ] Application project builds successfully
+- [x] `RefreshTokenCommand` with AccessToken, RefreshToken ✅
+- [x] Handler validates expired access token ✅
+- [x] Validates refresh token matches and not expired ✅
+- [x] Generates new token pair ✅
+- [x] Updates user's refresh token ✅
+- [x] Returns `TokenDto` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **RefreshTokenCommand** — AccessToken, RefreshToken → `IRequest<TokenDto>`
+- **RefreshTokenCommandHandler** — Validates expired access token via ITokenService, checks refresh token match & expiry, generates new tokens, updates user
+- Namespace: `EnglishLearning.Application.Features.Auth.Commands.RefreshToken`
+- Primary constructor injection, throws `UnauthorizedAccessException` with `AuthErrorMessages`
+- Build verified: 0 errors

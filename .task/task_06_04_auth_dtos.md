@@ -56,13 +56,22 @@ public class TokenDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] UserDto has all required properties
-- [ ] TokenDto has AccessToken, RefreshToken, ExpiresIn
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] UserDto has all required properties ✅
+- [x] TokenDto has AccessToken, RefreshToken, ExpiresIn ✅
 
 ## Acceptance Criteria
 
-- [ ] `UserDto` with Id, Username, Email, Role, AvatarUrl, CreatedAt
-- [ ] `TokenDto` with AccessToken, RefreshToken, ExpiresIn
-- [ ] Both in `EnglishLearning.Application.DTOs` namespace
-- [ ] Application project builds successfully
+- [x] `UserDto` with Id, Username, Email, Role, AvatarUrl, CreatedAt ✅
+- [x] `TokenDto` with AccessToken, RefreshToken, ExpiresIn ✅
+- [x] Both in `EnglishLearning.Application.DTOs` namespace ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **UserDto** — Id, Username, Email, Role (UserRole), AvatarUrl, CreatedAt
+- **TokenDto** — AccessToken, RefreshToken, ExpiresIn
+- Namespace: `EnglishLearning.Application.DTOs`
+- Build verified: 0 errors

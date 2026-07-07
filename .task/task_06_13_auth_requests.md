@@ -84,13 +84,23 @@ public class RefreshTokenRequest
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All request classes have data annotations
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All request classes have data annotations ✅
 
 ## Acceptance Criteria
 
-- [ ] `RegisterRequest` with Username, Email, Password (validated)
-- [ ] `LoginRequest` with Username, Password
-- [ ] `RefreshTokenRequest` with AccessToken, RefreshToken
-- [ ] All in `EnglishLearning.WebAPI.Models.Requests.Auth` namespace
-- [ ] WebAPI project builds successfully
+- [x] `RegisterRequest` with Username, Email, Password (validated) ✅
+- [x] `LoginRequest` with Username, Password ✅
+- [x] `RefreshTokenRequest` with AccessToken, RefreshToken ✅
+- [x] All in `EnglishLearning.WebAPI.Models.Requests.Auth` namespace ✅
+- [x] WebAPI project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **RegisterRequest** — Username (Required, max 100), Email (Required, EmailAddress, max 200), Password (Required, min 6)
+- **LoginRequest** — Username (Required), Password (Required)
+- **RefreshTokenRequest** — AccessToken (Required), RefreshToken (Required)
+- Namespace: `EnglishLearning.WebAPI.Models.Requests.Auth`
+- Build verified: 0 errors

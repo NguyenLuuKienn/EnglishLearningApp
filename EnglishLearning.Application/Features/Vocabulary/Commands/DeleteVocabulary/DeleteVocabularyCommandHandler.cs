@@ -1,28 +1,19 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Vocabulary.Commands.DeleteVocabulary;
 
-public class DeleteVocabularyCommandHandler : IRequestHandler<DeleteVocabularyCommand, Result>
+public class DeleteVocabularyCommandHandler(
+    IVocabularyRepository _vocabularyRepository) : IRequestHandler<DeleteVocabularyCommand>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public DeleteVocabularyCommandHandler(IUnitOfWork unitOfWork)
+    public async Task Handle(DeleteVocabularyCommand request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result> Handle(DeleteVocabularyCommand request, CancellationToken cancellationToken)
-    {
-        var entity = await _unitOfWork.Vocabularies.GetByIdAsync(request.Id);
+        var entity = await _vocabularyRepository.GetByIdAsync(request.Id);
         if (entity == null)
-            return Result.Failure(VocabularyErrorMessages.NotFound);
+            throw new KeyNotFoundException(VocabularyErrorMessages.NotFound);
 
-        _unitOfWork.Vocabularies.Delete(entity);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return Result.Success();
+        _vocabularyRepository.Delete(entity);
+        await _vocabularyRepository.SaveChangesAsync(cancellationToken);
     }
 }

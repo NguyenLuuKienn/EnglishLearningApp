@@ -63,16 +63,26 @@ public class User : Common.BaseEntity
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] User entity inherits from BaseEntity
-- [ ] All properties are defined correctly
-- [ ] Factory method `Create()` exists
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] User entity inherits from BaseEntity ✅
+- [x] All properties are defined correctly ✅
+- [x] Factory method `Create()` exists ✅
 
 ## Acceptance Criteria
 
-- [ ] `User` entity inherits from `BaseEntity`
-- [ ] Properties: Username, Email, PasswordHash, RefreshToken, RefreshTokenExpiry, Role, AvatarUrl, IsActive
-- [ ] `Username` max 100 chars, `Email` max 200 chars
-- [ ] `Role` uses `UserRole` enum
-- [ ] Factory method `Create()` with username, email, passwordHash, role
-- [ ] Domain project builds successfully
+- [x] `User` entity inherits from `BaseEntity` ✅
+- [x] Properties: Username, Email, PasswordHash, RefreshToken, RefreshTokenExpiry, Role, AvatarUrl, IsActive ✅
+- [x] `Username` max 100 chars, `Email` max 200 chars ✅
+- [x] `Role` uses `UserRole` enum ✅
+- [x] Factory method `Create()` with username, email, passwordHash, role ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **User entity** — kế thừa `BaseEntity`
+  - Properties: Username, Email, PasswordHash, RefreshToken, RefreshTokenExpiry, Role (UserRole), AvatarUrl, IsActive (default true)
+  - Factory method `Create(username, email, passwordHash, role = UserRole.User)`
+  - Namespace: `EnglishLearning.Domain.Entities`
+- Build verified: 0 errors

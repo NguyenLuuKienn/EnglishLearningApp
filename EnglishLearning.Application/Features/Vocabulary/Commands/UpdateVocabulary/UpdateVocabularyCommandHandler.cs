@@ -1,24 +1,17 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Vocabulary.Commands.UpdateVocabulary;
 
-public class UpdateVocabularyCommandHandler : IRequestHandler<UpdateVocabularyCommand, Result<Guid>>
+public class UpdateVocabularyCommandHandler(
+    IVocabularyRepository _vocabularyRepository) : IRequestHandler<UpdateVocabularyCommand, Guid>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UpdateVocabularyCommandHandler(IUnitOfWork unitOfWork)
+    public async Task<Guid> Handle(UpdateVocabularyCommand request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result<Guid>> Handle(UpdateVocabularyCommand request, CancellationToken cancellationToken)
-    {
-        var entity = await _unitOfWork.Vocabularies.GetByIdAsync(request.Id);
+        var entity = await _vocabularyRepository.GetByIdAsync(request.Id);
         if (entity == null)
-            return Result<Guid>.Failure(VocabularyErrorMessages.NotFound);
+            throw new KeyNotFoundException(VocabularyErrorMessages.NotFound);
 
         entity.Word = request.Word;
         entity.Definition = request.Definition;
@@ -27,9 +20,9 @@ public class UpdateVocabularyCommandHandler : IRequestHandler<UpdateVocabularyCo
         entity.Difficulty = request.Difficulty;
         entity.UpdatedAt = DateTime.UtcNow;
 
-        _unitOfWork.Vocabularies.Update(entity);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _vocabularyRepository.Update(entity);
+        await _vocabularyRepository.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(entity.Id);
+        return entity.Id;
     }
 }

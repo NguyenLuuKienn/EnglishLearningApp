@@ -40,14 +40,24 @@ public interface IUserRepository : IRepository<User>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] IUserRepository inherits from IRepository<User>
-- [ ] Custom methods: GetByUsernameAsync, GetByEmailAsync
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] IUserRepository inherits from IRepository<User> ✅
+- [x] Custom methods: GetByUsernameAsync, GetByEmailAsync ✅
 
 ## Acceptance Criteria
 
-- [ ] `IUserRepository` interface in `EnglishLearning.Domain.Interfaces` namespace
-- [ ] Inherits from `IRepository<User>`
-- [ ] `GetByUsernameAsync(string username)` returns `Task<User?>`
-- [ ] `GetByEmailAsync(string email)` returns `Task<User?>`
-- [ ] Domain project builds successfully
+- [x] `IUserRepository` interface in `EnglishLearning.Domain.Interfaces` namespace ✅
+- [x] Inherits from `IRepository<User>` ✅
+- [x] `GetByUsernameAsync(string username)` returns `Task<User?>` ✅
+- [x] `GetByEmailAsync(string email)` returns `Task<User?>` ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **IUserRepository** — kế thừa `IRepository<User>`
+  - `GetByUsernameAsync(string username)` → `Task<User?>`
+  - `GetByEmailAsync(string email)` → `Task<User?>`
+  - Namespace: `EnglishLearning.Domain.Interfaces`
+- Build verified: 0 errors

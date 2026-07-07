@@ -43,13 +43,21 @@ public interface ITokenService
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] ITokenService interface has required methods
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] ITokenService interface has required methods ✅
 
 ## Acceptance Criteria
 
-- [ ] `ITokenService` interface in `EnglishLearning.Application.Interfaces` namespace
-- [ ] `GenerateTokensAsync(User)` returns `Task<TokenDto>`
-- [ ] `GenerateNewRefreshTokenAsync()` returns `Task<string>`
-- [ ] `GetPrincipalFromExpiredToken(string)` returns `ClaimsPrincipal?`
-- [ ] Application project builds successfully
+- [x] `ITokenService` interface in `EnglishLearning.Application.Interfaces` namespace ✅
+- [x] `GenerateTokensAsync(User)` returns `Task<TokenDto>` ✅
+- [x] `GenerateNewRefreshTokenAsync()` returns `Task<string>` ✅
+- [x] `GetPrincipalFromExpiredToken(string)` returns `ClaimsPrincipal?` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **ITokenService** — GenerateTokensAsync, GenerateNewRefreshTokenAsync, GetPrincipalFromExpiredToken
+- Namespace: `EnglishLearning.Application.Interfaces`
+- Build verified: 0 errors

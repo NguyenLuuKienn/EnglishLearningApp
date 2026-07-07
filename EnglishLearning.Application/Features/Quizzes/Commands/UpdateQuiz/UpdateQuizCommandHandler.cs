@@ -1,24 +1,16 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Quizzes.Commands.UpdateQuiz;
 
-public class UpdateQuizCommandHandler : IRequestHandler<UpdateQuizCommand, Result<Guid>>
+public class UpdateQuizCommandHandler(IQuizRepository _quizRepository) : IRequestHandler<UpdateQuizCommand, Guid>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UpdateQuizCommandHandler(IUnitOfWork unitOfWork)
+    public async Task<Guid> Handle(UpdateQuizCommand request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result<Guid>> Handle(UpdateQuizCommand request, CancellationToken cancellationToken)
-    {
-        var quiz = await _unitOfWork.Quizzes.GetByIdAsync(request.Id);
+        var quiz = await _quizRepository.GetByIdAsync(request.Id);
         if (quiz == null)
-            return Result<Guid>.Failure(QuizErrorMessages.NotFound);
+            throw new KeyNotFoundException(QuizErrorMessages.NotFound);
 
         quiz.Title = request.Title;
         quiz.Description = request.Description;
@@ -27,9 +19,9 @@ public class UpdateQuizCommandHandler : IRequestHandler<UpdateQuizCommand, Resul
         quiz.PassingScore = request.PassingScore;
         quiz.UpdatedAt = DateTime.UtcNow;
 
-        _unitOfWork.Quizzes.Update(quiz);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _quizRepository.Update(quiz);
+        await _quizRepository.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(quiz.Id);
+        return quiz.Id;
     }
 }

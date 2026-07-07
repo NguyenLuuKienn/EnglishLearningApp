@@ -1,4 +1,3 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Application.DTOs;
 using MediatR;
 
@@ -15,4 +14,4 @@ public record SubmitQuizResultCommand(
     string UserId,
     int DurationMinutes,
     List<AnswerCommand> Answers
-) : IRequest<Result<QuizResultDto>>;
+) : IRequest<QuizResultDto>;

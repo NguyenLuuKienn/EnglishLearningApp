@@ -14,6 +14,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Question> Questions => Set<Question>();
     public DbSet<Choice> Choices => Set<Choice>();
     public DbSet<QuizResult> QuizResults => Set<QuizResult>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -40,5 +41,8 @@ public class ApplicationDbContext : DbContext
             .WithOne(r => r.Quiz)
             .HasForeignKey(r => r.QuizId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Seed initial data
+        DataSeeder.Seed(builder);
     }
 }

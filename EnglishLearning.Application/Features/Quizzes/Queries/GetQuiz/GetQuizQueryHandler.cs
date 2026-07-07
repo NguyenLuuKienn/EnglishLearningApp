@@ -1,5 +1,4 @@
 using AutoMapper;
-using EnglishLearning.Application.Common;
 using EnglishLearning.Application.DTOs;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Interfaces;
@@ -7,23 +6,16 @@ using MediatR;
 
 namespace EnglishLearning.Application.Features.Quizzes.Queries.GetQuiz;
 
-public class GetQuizQueryHandler : IRequestHandler<GetQuizQuery, Result<QuizDto>>
+public class GetQuizQueryHandler(
+    IQuizRepository _quizRepository, 
+    IMapper _mapper) : IRequestHandler<GetQuizQuery, QuizDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public GetQuizQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public async Task<QuizDto> Handle(GetQuizQuery request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
-
-    public async Task<Result<QuizDto>> Handle(GetQuizQuery request, CancellationToken cancellationToken)
-    {
-        var quiz = await _unitOfWork.Quizzes.GetQuizWithQuestionsAsync(request.Id);
+        var quiz = await _quizRepository.GetQuizWithQuestionsAsync(request.Id);
         if (quiz == null)
-            return Result<QuizDto>.Failure(QuizErrorMessages.NotFound);
+            throw new KeyNotFoundException(QuizErrorMessages.NotFound);
 
-        return Result<QuizDto>.Success(_mapper.Map<QuizDto>(quiz));
+        return _mapper.Map<QuizDto>(quiz);
     }
 }

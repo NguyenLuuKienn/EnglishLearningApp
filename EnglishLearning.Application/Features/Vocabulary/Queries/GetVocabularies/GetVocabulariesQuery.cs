@@ -9,4 +9,4 @@ public record GetVocabulariesQuery(
     int PageNumber,
     int PageSize,
     DifficultyLevel? Difficulty
-) : IRequest<Result<PagedResult<VocabularyDto>>>;
+) : IRequest<PagedResult<VocabularyDto>>;

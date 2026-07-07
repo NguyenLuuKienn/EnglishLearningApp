@@ -1,5 +1,4 @@
 using AutoMapper;
-using EnglishLearning.Application.Common;
 using EnglishLearning.Application.DTOs;
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Entities;
@@ -9,22 +8,16 @@ using MediatR;
 
 namespace EnglishLearning.Application.Features.QuizResults.Commands.SubmitQuizResult;
 
-public class SubmitQuizResultCommandHandler : IRequestHandler<SubmitQuizResultCommand, Result<QuizResultDto>>
+public class SubmitQuizResultCommandHandler(
+    IQuizRepository _quizRepository, 
+    IQuizResultRepository _quizResultRepository, 
+    IMapper _mapper) : IRequestHandler<SubmitQuizResultCommand, QuizResultDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public SubmitQuizResultCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public async Task<QuizResultDto> Handle(SubmitQuizResultCommand request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
-
-    public async Task<Result<QuizResultDto>> Handle(SubmitQuizResultCommand request, CancellationToken cancellationToken)
-    {
-        var quiz = await _unitOfWork.Quizzes.GetQuizWithQuestionsAsync(request.QuizId);
+        var quiz = await _quizRepository.GetQuizWithQuestionsAsync(request.QuizId);
         if (quiz == null)
-            return Result<QuizResultDto>.Failure(QuizErrorMessages.NotFound);
+            throw new KeyNotFoundException(QuizErrorMessages.NotFound);
 
         int correctAnswers = 0;
 
@@ -54,9 +47,9 @@ public class SubmitQuizResultCommandHandler : IRequestHandler<SubmitQuizResultCo
             request.DurationMinutes
         );
 
-        await _unitOfWork.QuizResults.AddAsync(result);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _quizResultRepository.AddAsync(result);
+        await _quizResultRepository.SaveChangesAsync(cancellationToken);
 
-        return Result<QuizResultDto>.Success(_mapper.Map<QuizResultDto>(result));
+        return _mapper.Map<QuizResultDto>(result);
     }
 }

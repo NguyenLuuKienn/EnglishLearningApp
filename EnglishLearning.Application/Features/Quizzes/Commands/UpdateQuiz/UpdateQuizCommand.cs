@@ -1,4 +1,3 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Enums;
 using MediatR;
 
@@ -11,4 +10,4 @@ public record UpdateQuizCommand(
     DifficultyLevel Difficulty,
     int TimeLimitMinutes,
     decimal PassingScore
-) : IRequest<Result<Guid>>;
+) : IRequest<Guid>;

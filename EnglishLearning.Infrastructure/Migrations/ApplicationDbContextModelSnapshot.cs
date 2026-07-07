@@ -207,6 +207,78 @@ namespace EnglishLearning.Infrastructure.Migrations
                     b.ToTable("QuizResults", (string)null);
                 });
 
+            modelBuilder.Entity("EnglishLearning.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AvatarUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RefreshTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
+                        .IsUnique();
+
+                    b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            CreatedAt = new DateTime(2026, 7, 7, 5, 50, 25, 233, DateTimeKind.Utc).AddTicks(5986),
+                            Email = "admin@englishlearning.com",
+                            IsActive = true,
+                            PasswordHash = "$2a$11$sMZhcxblhWg9BuQj8jM6Zu7ZR3QCsJ2Ba4cf9dAz5UheQ3BEFYBYq",
+                            Role = 1,
+                            UpdatedAt = new DateTime(2026, 7, 7, 5, 50, 25, 233, DateTimeKind.Utc).AddTicks(5986),
+                            Username = "admin"
+                        });
+                });
+
             modelBuilder.Entity("EnglishLearning.Domain.Entities.Vocabulary", b =>
                 {
                     b.Property<Guid>("Id")

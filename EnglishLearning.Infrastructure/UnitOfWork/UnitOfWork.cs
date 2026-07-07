@@ -4,17 +4,11 @@ using EnglishLearning.Infrastructure.Repositories;
 
 namespace EnglishLearning.Infrastructure.UnitOfWork;
 
-public class UnitOfWork : IUnitOfWork
+public class UnitOfWork(ApplicationDbContext _context) : IUnitOfWork
 {
-    private readonly ApplicationDbContext _context;
     private QuizRepository? _quizRepository;
     private VocabularyRepository? _vocabularyRepository;
     private QuizResultRepository? _quizResultRepository;
-
-    public UnitOfWork(ApplicationDbContext context)
-    {
-        _context = context;
-    }
 
     public IQuizRepository Quizzes => _quizRepository ??= new QuizRepository(_context);
     public IVocabularyRepository Vocabularies => _vocabularyRepository ??= new VocabularyRepository(_context);

@@ -1,4 +1,3 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Application.DTOs;
 using EnglishLearning.Application.Features.Quizzes.Commands.CreateQuiz;
 using EnglishLearning.Application.Features.Quizzes.Commands.DeleteQuiz;
@@ -9,21 +8,16 @@ using EnglishLearning.Domain.Enums;
 using EnglishLearning.WebAPI.Models.Common;
 using EnglishLearning.WebAPI.Models.Requests.Quizzes;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnglishLearning.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class QuizzesController : ControllerBase
+[Authorize]
+public class QuizzesController(IMediator _mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public QuizzesController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateQuizRequest request)
     {
@@ -35,13 +29,8 @@ public class QuizzesController : ControllerBase
                 q.CorrectAnswer, q.Choices.Select(c => new ChoiceCommand(c.ChoiceText, c.IsCorrect)).ToList()
             )).ToList());
 
-        var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-            return BadRequest(ApiResponse<Guid>.BadRequest(
-                result.Errors?.ToList() ?? [result.Error ?? string.Empty]));
-
-        return CreatedAtAction(nameof(GetById), new { id = result.Value }, result.Value);
+        var id = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 
     [HttpGet]
@@ -51,13 +40,8 @@ public class QuizzesController : ControllerBase
         [FromQuery] DifficultyLevel? difficulty = null)
     {
         var query = new GetQuizzesQuery(pageNumber, pageSize, difficulty);
-        var result = await _mediator.Send(query);
+        var paged = await _mediator.Send(query);
 
-        if (!result.IsSuccess)
-            return BadRequest(ApiResponse<PagedResult<QuizDto>>.BadRequest(
-                result.Errors?.ToList() ?? [result.Error ?? string.Empty]));
-
-        var paged = result.Value!;
         return Ok(PagedResponse<QuizDto>.Ok(
             paged.Items, paged.PageNumber, paged.PageSize, paged.TotalRecords));
     }
@@ -66,12 +50,9 @@ public class QuizzesController : ControllerBase
     public async Task<IActionResult> GetById(Guid id)
     {
         var query = new GetQuizQuery(id);
-        var result = await _mediator.Send(query);
+        var dto = await _mediator.Send(query);
 
-        if (!result.IsSuccess)
-            return NotFound(ApiResponse<QuizDto>.NotFound(result.Error ?? string.Empty));
-
-        return Ok(ApiResponse<QuizDto>.Ok(result.Value!));
+        return Ok(ApiResponse<QuizDto>.Ok(dto));
     }
 
     [HttpPut("{id}")]
@@ -81,28 +62,15 @@ public class QuizzesController : ControllerBase
             id, request.Title, request.Description, request.Difficulty,
             request.TimeLimitMinutes, request.PassingScore);
 
-        var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-        {
-            if (result.Error?.Contains("not found", StringComparison.OrdinalIgnoreCase) == true)
-                return NotFound(ApiResponse<Guid>.NotFound(result.Error ?? string.Empty));
-
-            return BadRequest(ApiResponse<Guid>.BadRequest(
-                result.Errors?.ToList() ?? [result.Error ?? string.Empty]));
-        }
-
-        return Ok(ApiResponse<Guid>.Ok(result.Value!, "Updated successfully"));
+        var updatedId = await _mediator.Send(command);
+        return Ok(ApiResponse<Guid>.Ok(updatedId, "Updated successfully"));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         var command = new DeleteQuizCommand(id);
-        var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-            return NotFound(ApiResponse<string>.NotFound(result.Error ?? string.Empty));
+        await _mediator.Send(command);
 
         return NoContent();
     }

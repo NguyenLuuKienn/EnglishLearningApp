@@ -8,22 +8,13 @@ using System.Linq.Expressions;
 
 namespace EnglishLearning.Application.Features.QuizResults.Queries.GetUserQuizResults;
 
-public class GetUserQuizResultsQueryHandler : IRequestHandler<GetUserQuizResultsQuery, Result<PagedResult<QuizResultDto>>>
+public class GetUserQuizResultsQueryHandler(IQuizResultRepository _quizResultRepository, IMapper _mapper) : IRequestHandler<GetUserQuizResultsQuery, PagedResult<QuizResultDto>>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public GetUserQuizResultsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
-
-    public async Task<Result<PagedResult<QuizResultDto>>> Handle(GetUserQuizResultsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResult<QuizResultDto>> Handle(GetUserQuizResultsQuery request, CancellationToken cancellationToken)
     {
         Expression<Func<QuizResult, bool>> predicate = r => r.UserId == request.UserId;
 
-        var (items, totalRecords) = await _unitOfWork.QuizResults.GetPagedAsync(
+        var (items, totalRecords) = await _quizResultRepository.GetPagedAsync(
             request.PageNumber,
             request.PageSize,
             predicate,
@@ -32,9 +23,7 @@ public class GetUserQuizResultsQueryHandler : IRequestHandler<GetUserQuizResults
 
         var dtos = _mapper.Map<List<QuizResultDto>>(items);
 
-        var pagedResult = PagedResult<QuizResultDto>.Create(
+        return PagedResult<QuizResultDto>.Create(
             dtos, request.PageNumber, request.PageSize, totalRecords);
-
-        return Result<PagedResult<QuizResultDto>>.Success(pagedResult);
     }
 }

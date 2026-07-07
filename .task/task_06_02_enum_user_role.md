@@ -35,11 +35,19 @@ public enum UserRole
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] UserRole enum has User and Admin values
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] UserRole enum has User and Admin values ✅
 
 ## Acceptance Criteria
 
-- [ ] `UserRole` enum defined in `EnglishLearning.Domain.Enums` namespace
-- [ ] Values: `User = 0`, `Admin = 1`
-- [ ] Domain project builds successfully
+- [x] `UserRole` enum defined in `EnglishLearning.Domain.Enums` namespace ✅
+- [x] Values: `User = 0`, `Admin = 1` ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **UserRole enum** — `User = 0`, `Admin = 1`
+  - Namespace: `EnglishLearning.Domain.Enums`
+- Build verified: 0 errors

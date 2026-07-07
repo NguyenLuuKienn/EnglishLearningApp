@@ -1,20 +1,12 @@
-using EnglishLearning.Application.Common;
 using EnglishLearning.Domain.Entities;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Quizzes.Commands.CreateQuiz;
 
-public class CreateQuizCommandHandler : IRequestHandler<CreateQuizCommand, Result<Guid>>
+public class CreateQuizCommandHandler(IQuizRepository _quizRepository) : IRequestHandler<CreateQuizCommand, Guid>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public CreateQuizCommandHandler(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result<Guid>> Handle(CreateQuizCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateQuizCommand request, CancellationToken cancellationToken)
     {
         var quiz = new Quiz
         {
@@ -49,9 +41,9 @@ public class CreateQuizCommandHandler : IRequestHandler<CreateQuizCommand, Resul
             quiz.Questions.Add(question);
         }
 
-        await _unitOfWork.Quizzes.AddAsync(quiz);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _quizRepository.AddAsync(quiz);
+        await _quizRepository.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(quiz.Id);
+        return quiz.Id;
     }
 }

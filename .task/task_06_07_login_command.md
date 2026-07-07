@@ -89,18 +89,27 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<TokenDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] LoginCommand has Username, Password
-- [ ] Handler verifies password with BCrypt
-- [ ] Returns TokenDto with AccessToken and RefreshToken
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] LoginCommand has Username, Password ✅
+- [x] Handler verifies password with BCrypt ✅
+- [x] Returns TokenDto with AccessToken and RefreshToken ✅
 
 ## Acceptance Criteria
 
-- [ ] `LoginCommand` record with Username, Password
-- [ ] `LoginCommandHandler` finds user by username
-- [ ] Password verified with BCrypt
-- [ ] Checks if user is active
-- [ ] Generates JWT tokens via ITokenService
-- [ ] Updates user's RefreshToken in database
-- [ ] Returns `Result<TokenDto>`
-- [ ] Application project builds successfully
+- [x] `LoginCommand` record with Username, Password ✅
+- [x] `LoginCommandHandler` finds user by username ✅
+- [x] Password verified with BCrypt ✅
+- [x] Checks if user is active ✅
+- [x] Generates JWT tokens via ITokenService ✅
+- [x] Updates user's RefreshToken in database ✅
+- [x] Returns `Result<TokenDto>` ✅
+- [x] Application project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **LoginCommand** — Username, Password → `IRequest<Result<TokenDto>>`
+- **LoginCommandHandler** — BCrypt verify, checks IsActive, generates tokens via ITokenService, updates RefreshToken + expiry (30 days)
+- Namespace: `EnglishLearning.Application.Features.Auth.Commands.Login`
+- Build verified: 0 errors

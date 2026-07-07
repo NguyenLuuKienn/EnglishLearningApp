@@ -6,12 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EnglishLearning.Infrastructure.Repositories;
 
-public class VocabularyRepository : Repository<Vocabulary>, IVocabularyRepository
+public class VocabularyRepository(ApplicationDbContext context) : Repository<Vocabulary>(context), IVocabularyRepository
 {
-    public VocabularyRepository(ApplicationDbContext context) : base(context)
-    {
-    }
-
     public async Task<Vocabulary?> GetByWordAsync(string word)
     {
         return await _dbSet
