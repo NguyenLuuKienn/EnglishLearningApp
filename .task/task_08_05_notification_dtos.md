@@ -43,10 +43,14 @@ public class NotificationDto
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] NotificationDto has all required properties
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] NotificationDto has all required properties ✅
 
 ## Acceptance Criteria
+
+- [x] `NotificationDto` in `EnglishLearning.Application.DTOs` namespace ✅
+- [x] Properties: Id, UserId, Type, Title, Message, IsRead, Data, CreatedAt ✅
+- [x] Application project builds successfully ✅
 
 - [ ] `NotificationDto` with Id, UserId, Type, Title, Message, IsRead, Data, CreatedAt
 - [ ] In `EnglishLearning.Application.DTOs` namespace

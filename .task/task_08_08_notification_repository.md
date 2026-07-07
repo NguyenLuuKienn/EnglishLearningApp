@@ -92,14 +92,14 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] Repository implements INotificationRepository
-- [ ] Configuration defines table and constraints
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] Repository implements INotificationRepository ✅
+- [x] Configuration defines table and constraints ✅
 
 ## Acceptance Criteria
 
-- [ ] `NotificationRepository` implements `INotificationRepository`
-- [ ] Custom methods: GetByUserIdAsync, GetUnreadCountAsync
-- [ ] `NotificationConfiguration` sets table name "Notifications"
-- [ ] Indexes on UserId, IsRead, CreatedAt
-- [ ] Infrastructure project builds successfully
+- [x] `NotificationRepository` implements `INotificationRepository` ✅
+- [x] Custom methods: GetByUserIdAsync (with isRead filter), GetUnreadCountAsync ✅
+- [x] `NotificationConfiguration` sets table name "Notifications" ✅
+- [x] Indexes on UserId, IsRead, CreatedAt ✅
+- [x] Infrastructure project builds successfully ✅

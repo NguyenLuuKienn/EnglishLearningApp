@@ -62,13 +62,29 @@ public class Notification : BaseEntity
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] Notification entity has all properties
-- [ ] Factory method exists
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] Notification entity has all properties ✅
+- [x] Factory method exists ✅
 
 ## Acceptance Criteria
 
-- [ ] `Notification` inherits from `BaseEntity`
-- [ ] Properties: UserId, Type, Title, Message, IsRead, Data
-- [ ] Factory method `Create()` initializes IsRead as false
-- [ ] Domain project builds successfully
+- [x] `Notification` inherits from `BaseEntity` ✅
+- [x] Properties: UserId, Type, Title, Message, IsRead, Data ✅
+- [x] Factory method `Create()` initializes IsRead as false ✅
+- [x] Domain project builds successfully ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **Notification** — UserId, Type (NotificationType), Title, Message, IsRead (default false), Data (nullable)
+- Factory method `Create(userId, type, title, message, data)`
+- Build verified: 0 errors ✅
+
+---
+
+## ✅ Completed: 2026-07-07
+
+- **Notification** — UserId, Type (NotificationType), Title, Message, IsRead (default false), Data (nullable)
+- Factory method `Create(userId, type, title, message, data)`
+- Build verified: 0 errors

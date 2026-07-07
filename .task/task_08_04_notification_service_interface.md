@@ -39,12 +39,12 @@ public interface INotificationService
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] INotificationService interface has required methods
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] INotificationService interface has required methods ✅
 
 ## Acceptance Criteria
 
-- [ ] `INotificationService` interface in `EnglishLearning.Application.Interfaces` namespace
-- [ ] `SendToUserAsync` sends notification to specific user
-- [ ] `SendToRoleAsync` sends notification to all users with specific role
-- [ ] Application project builds successfully
+- [x] `INotificationService` interface in `EnglishLearning.Application.Interfaces` namespace ✅
+- [x] `SendToUserAsync` sends notification to specific user ✅
+- [x] `SendToRoleAsync` sends notification to all users with specific role ✅
+- [x] Application project builds successfully ✅

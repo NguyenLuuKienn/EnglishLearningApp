@@ -40,14 +40,17 @@ public interface INotificationRepository : IRepository<Notification>
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Domain` — 0 errors
-- [ ] INotificationRepository inherits from IRepository<Notification>
-- [ ] Custom methods defined
+- [x] Run `dotnet build EnglishLearning.Domain` — 0 errors ✅
+- [x] INotificationRepository inherits from IRepository<Notification> ✅
+- [x] Custom methods defined ✅
 
 ## Acceptance Criteria
 
-- [ ] `INotificationRepository` interface in `EnglishLearning.Domain.Interfaces` namespace
-- [ ] Inherits from `IRepository<Notification>`
+- [x] `INotificationRepository` interface in `EnglishLearning.Domain.Interfaces` namespace ✅
+- [x] Inherits from `IRepository<Notification>` ✅
+- [x] `GetByUserIdAsync` with pagination and isRead filter ✅
+- [x] `GetUnreadCountAsync` returns unread count ✅
+- [x] Domain project builds successfully ✅
 - [ ] `GetByUserIdAsync(string userId, int pageNumber, int pageSize)` returns paged notifications
 - [ ] `GetUnreadCountAsync(string userId)` returns unread count
 - [ ] Domain project builds successfully

@@ -1,7 +1,11 @@
+using Hangfire;
+using Hangfire.SqlServer;
+using Hangfire.Dashboard;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using EnglishLearning.Application.DependencyInjection;
+using EnglishLearning.Application.Interfaces;
 using EnglishLearning.Infrastructure.DependencyInjection;
 using EnglishLearning.WebAPI.Middlewares;
 
@@ -47,6 +51,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+// Hangfire — Background job scheduler
+builder.Services.AddHangfire(configuration => configuration
+    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection"), new SqlServerStorageOptions
+    {
+        CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+        SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+        QueuePollInterval = TimeSpan.Zero,
+        UseRecommendedIsolationLevel = true
+    }));
+
+builder.Services.AddHangfireServer();
+
 var app = builder.Build();
 
 // Configure middleware pipeline
@@ -61,5 +80,17 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Hangfire Dashboard
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    Authorization = new[] { new HangfireBasicAuthAuthorizationFilter("admin", "Admin@123") }
+});
+
+// Recurring jobs
+RecurringJob.AddOrUpdate<ICheckQuizAssignmentsJob>(
+    "check-quiz-assignments",
+    job => job.CheckAssignments(),
+    "*/5 * * * *"); // Every 5 minutes
 
 app.Run();

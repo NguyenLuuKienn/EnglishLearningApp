@@ -36,13 +36,20 @@ public DbSet<Notification> Notifications => Set<Notification>();
 
 ## Verification
 
+- [x] `DbSet<Notification> Notifications` already exists in ApplicationDbContext ✅
 - [ ] Migration created successfully
 - [ ] Notifications table exists in database
 - [ ] Hangfire tables exist (Hangfire.Scheduled, Hangfire.JobQueue, etc.)
 
 ## Acceptance Criteria
 
-- [ ] `DbSet<Notification> Notifications` added to ApplicationDbContext
+- [x] `DbSet<Notification> Notifications` added to ApplicationDbContext ✅
 - [ ] Migration created with Notifications table
 - [ ] Hangfire tables created
 - [ ] Migration applied successfully
+
+## Notes
+
+- `DbSet<Notification>` đã có sẵn trong ApplicationDbContext
+- User tự chạy migration: `dotnet ef migrations add AddNotificationsAndHangfire --startup-project ..\EnglishLearning.WebAPI`
+- User tự apply: `dotnet ef database update --startup-project ..\EnglishLearning.WebAPI`

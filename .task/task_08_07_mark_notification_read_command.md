@@ -62,13 +62,13 @@ public class MarkNotificationReadCommandHandler(INotificationRepository _notific
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler validates notification exists
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler validates notification exists ✅
 
 ## Acceptance Criteria
 
-- [ ] `MarkNotificationReadCommand` with NotificationId
-- [ ] `MarkNotificationReadCommandHandler` finds notification by Id
-- [ ] Throws KeyNotFoundException if not found
-- [ ] Sets IsRead to true
-- [ ] Application project builds successfully
+- [x] `MarkNotificationReadCommand` with NotificationId ✅
+- [x] `MarkNotificationReadCommandHandler` finds notification by Id ✅
+- [x] Throws KeyNotFoundException if not found ✅
+- [x] Sets IsRead to true ✅
+- [x] Application project builds successfully ✅

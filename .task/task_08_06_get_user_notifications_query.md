@@ -84,13 +84,13 @@ public class GetUserNotificationsQueryHandler(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Application` — 0 errors
-- [ ] Handler filters by userId and read status
+- [x] Run `dotnet build EnglishLearning.Application` — 0 errors ✅
+- [x] Handler filters by userId and read status ✅
 
 ## Acceptance Criteria
 
-- [ ] `GetUserNotificationsQuery` with UserId, PageNumber, PageSize, IsRead filter
-- [ ] `GetUserNotificationsQueryHandler` filters by userId
-- [ ] Optional filter by IsRead status
-- [ ] Returns `PagedResult<NotificationDto>`
-- [ ] Application project builds successfully
+- [x] `GetUserNotificationsQuery` with UserId, PageNumber, PageSize, IsRead filter ✅
+- [x] `GetUserNotificationsQueryHandler` filters by userId ✅
+- [x] Optional filter by IsRead status ✅
+- [x] Returns `PagedResult<NotificationDto>` ✅
+- [x] Application project builds successfully ✅

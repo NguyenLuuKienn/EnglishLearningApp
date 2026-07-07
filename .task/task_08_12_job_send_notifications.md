@@ -79,12 +79,12 @@ public class SendAssignmentNotificationsJob(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] Job sends notification when called
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] Job sends notification when called ✅
 
 ## Acceptance Criteria
 
-- [ ] `ISendAssignmentNotificationsJob` interface with `SendNotifications(Guid assignmentId)` method
-- [ ] `SendAssignmentNotificationsJob` implements the interface
-- [ ] Sends QuizAssigned notification to target user or role
-- [ ] Infrastructure project builds successfully
+- [x] `ISendAssignmentNotificationsJob` interface with `SendNotifications(Guid assignmentId)` method ✅
+- [x] `SendAssignmentNotificationsJob` implements the interface ✅
+- [x] Sends QuizAssigned notification to target user or role ✅
+- [x] Infrastructure project builds successfully ✅

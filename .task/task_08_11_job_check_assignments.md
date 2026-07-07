@@ -121,15 +121,15 @@ public class CheckQuizAssignmentsJob(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] Job checks assignments every 5 minutes
-- [ ] Notifications sent for starting/started/ended quizzes
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] Job checks assignments every 5 minutes ✅
+- [x] Notifications sent for starting/started/ended quizzes ✅
 
 ## Acceptance Criteria
 
-- [ ] `ICheckQuizAssignmentsJob` interface with `CheckAssignments()` method
-- [ ] `CheckQuizAssignmentsJob` implements the interface
-- [ ] Checks for quizzes starting soon (within 1 hour)
-- [ ] Updates assignment status from Scheduled → Active → Completed
-- [ ] Sends appropriate notifications (QuizStartingSoon, QuizStarted, QuizEnded)
-- [ ] Infrastructure project builds successfully
+- [x] `ICheckQuizAssignmentsJob` interface with `CheckAssignments()` method ✅
+- [x] `CheckQuizAssignmentsJob` implements the interface ✅
+- [x] Checks for quizzes starting soon (within 1 hour) ✅
+- [x] Updates assignment status from Scheduled → Active → Completed ✅
+- [x] Sends appropriate notifications (QuizStartingSoon, QuizStarted, QuizEnded) ✅
+- [x] Infrastructure project builds successfully ✅

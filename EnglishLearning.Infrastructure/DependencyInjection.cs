@@ -32,9 +32,13 @@ public static class DependencyInjection
         services.AddScoped<IQuizAssignmentRepository, QuizAssignmentRepository>();
         services.AddScoped<ILearningHistoryRepository, LearningHistoryRepository>();
         services.AddScoped<ILeaderboardRepository, LeaderboardRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
 
         // Register Services
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<ICheckQuizAssignmentsJob, CheckQuizAssignmentsJob>();
+        services.AddScoped<ISendAssignmentNotificationsJob, SendAssignmentNotificationsJob>();
 
         return services;
     }

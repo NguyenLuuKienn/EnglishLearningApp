@@ -34,5 +34,8 @@ public class MappingsProfile : Profile
 
         // Leaderboard
         CreateMap<Leaderboard, LeaderboardDto>();
+
+        // Notification
+        CreateMap<Notification, NotificationDto>();
     }
 }

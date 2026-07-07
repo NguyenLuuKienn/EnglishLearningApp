@@ -62,13 +62,13 @@ public class NotificationService(INotificationRepository _notificationRepository
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors
-- [ ] NotificationService implements INotificationService
-- [ ] SendToRoleAsync sends to all users with matching role
+- [x] Run `dotnet build EnglishLearning.Infrastructure` — 0 errors ✅
+- [x] NotificationService implements INotificationService ✅
+- [x] SendToRoleAsync sends to all users with matching role ✅
 
 ## Acceptance Criteria
 
-- [ ] `NotificationService` implements `INotificationService`
-- [ ] `SendToUserAsync` creates notification for specific user
-- [ ] `SendToRoleAsync` gets all users with role and creates notifications
-- [ ] Infrastructure project builds successfully
+- [x] `NotificationService` implements `INotificationService` ✅
+- [x] `SendToUserAsync` creates notification for specific user ✅
+- [x] `SendToRoleAsync` gets all users with role and creates notifications ✅
+- [x] Infrastructure project builds successfully ✅

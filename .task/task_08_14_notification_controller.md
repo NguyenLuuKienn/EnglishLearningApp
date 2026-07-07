@@ -77,15 +77,15 @@ public class NotificationsController : ControllerBase
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] All endpoints require authorization
-- [ ] GET returns paged notifications
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] All endpoints require authorization ✅
+- [x] GET returns paged notifications ✅
 
 ## Acceptance Criteria
 
-- [ ] `NotificationsController` with `[ApiController]`, `[Route("api/[controller]")]`
-- [ ] `GET /user/{userId}` — GetUserNotifications with pagination and read filter
-- [ ] `PATCH /{id}/read` — MarkNotificationRead
-- [ ] All endpoints require `[Authorize]`
-- [ ] Responses wrapped in `ApiResponse<T>` or `PagedResponse<T>`
+- [x] `NotificationsController` with `[ApiController]`, `[Route("api/[controller]")]` ✅
+- [x] `GET /user/{userId}` — GetUserNotifications with pagination and read filter ✅
+- [x] `PATCH /{id}/read` — MarkNotificationRead ✅
+- [x] All endpoints require `[Authorize]` ✅
+- [x] Responses wrapped in `PagedResponse<T>` ✅
 - [ ] WebAPI project builds successfully

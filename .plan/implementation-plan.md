@@ -124,28 +124,28 @@ Frontend: ReactJS + TailwindCSS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 6.4 | DTOs: UserDto, TokenDto | [.task/task_06_04_auth_dtos.md](../.task/task_06_04_auth_dtos.md) | ⬜ Pending |
-| 6.5 | ITokenService Interface | [.task/task_06_05_token_service_interface.md](../.task/task_06_05_token_service_interface.md) | ⬜ Pending |
-| 6.6 | Command: Register (user chọn role Student/Teacher) | [.task/task_06_06_register_command.md](../.task/task_06_06_register_command.md) | ⬜ Pending |
-| 6.7 | Command: Login | [.task/task_06_07_login_command.md](../.task/task_06_07_login_command.md) | ⬜ Pending |
-| 6.8 | Command: RefreshToken | [.task/task_06_08_refreshtoken_command.md](../.task/task_06_08_refreshtoken_command.md) | ⬜ Pending |
-| 6.9 | Query: GetProfile | [.task/task_06_09_getprofile_query.md](../.task/task_06_09_getprofile_query.md) | ⬜ Pending |
+| 6.4 | DTOs: UserDto, TokenDto | [.task/task_06_04_auth_dtos.md](../.task/task_06_04_auth_dtos.md) | ✅ Done |
+| 6.5 | ITokenService Interface | [.task/task_06_05_token_service_interface.md](../.task/task_06_05_token_service_interface.md) | ✅ Done |
+| 6.6 | Command: Register (user chọn role Student/Teacher) | [.task/task_06_06_register_command.md](../.task/task_06_06_register_command.md) | ✅ Done |
+| 6.7 | Command: Login | [.task/task_06_07_login_command.md](../.task/task_06_07_login_command.md) | ✅ Done |
+| 6.8 | Command: RefreshToken | [.task/task_06_08_refreshtoken_command.md](../.task/task_06_08_refreshtoken_command.md) | ✅ Done |
+| 6.9 | Query: GetProfile | [.task/task_06_09_getprofile_query.md](../.task/task_06_09_getprofile_query.md) | ✅ Done |
 
 ### 6.3 Infrastructure — Auth Implementation
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 6.10 | UserRepository + Configuration | [.task/task_06_10_user_repository.md](../.task/task_06_10_user_repository.md) | ⬜ Pending |
-| 6.11 | TokenService Implementation | [.task/task_06_11_token_service_impl.md](../.task/task_06_11_token_service_impl.md) | ⬜ Pending |
-| 6.12 | Auth Migration + Seed Admin | [.task/task_06_12_auth_migration.md](../.task/task_06_12_auth_migration.md) | ⬜ Pending |
+| 6.10 | UserRepository + Configuration | [.task/task_06_10_user_repository.md](../.task/task_06_10_user_repository.md) | ✅ Done |
+| 6.11 | TokenService Implementation | [.task/task_06_11_token_service_impl.md](../.task/task_06_11_token_service_impl.md) | ✅ Done |
+| 6.12 | Auth Migration + Seed Admin | [.task/task_06_12_auth_migration.md](../.task/task_06_12_auth_migration.md) | 🔄 Pending Migration |
 
 ### 6.4 WebAPI — Auth Controller
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 6.13 | Auth Request Contracts | [.task/task_06_13_auth_requests.md](../.task/task_06_13_auth_requests.md) | ⬜ Pending |
-| 6.14 | AuthController | [.task/task_06_14_auth_controller.md](../.task/task_06_14_auth_controller.md) | ⬜ Pending |
-| 6.15 | Configure JWT + DI + [Authorize] | [.task/task_06_15_configure_jwt_di.md](../.task/task_06_15_configure_jwt_di.md) | ⬜ Pending |
+| 6.13 | Auth Request Contracts | [.task/task_06_13_auth_requests.md](../.task/task_06_13_auth_requests.md) | ✅ Done |
+| 6.14 | AuthController | [.task/task_06_14_auth_controller.md](../.task/task_06_14_auth_controller.md) | ✅ Done |
+| 6.15 | Configure JWT + DI + [Authorize] | [.task/task_06_15_configure_jwt_di.md](../.task/task_06_15_configure_jwt_di.md) | ✅ Done |
 
 ---
 
@@ -157,35 +157,35 @@ Frontend: ReactJS + TailwindCSS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 7.1 | Entity: QuizAssignment (QuizId, TargetRole, TargetUserId, StartTime, EndTime, Status) | [.task/task_07_01_entity_quiz_assignment.md](../.task/task_07_01_entity_quiz_assignment.md) | ⬜ Pending |
-| 7.2 | Enum: AssignmentStatus (Scheduled, Active, Completed, Cancelled) | [.task/task_07_02_enum_assignment_status.md](../.task/task_07_02_enum_assignment_status.md) | ⬜ Pending |
-| 7.3 | Update Quiz Entity (StartTime, EndTime nullable) | [.task/task_07_03_update_quiz_entity.md](../.task/task_07_03_update_quiz_entity.md) | ⬜ Pending |
-| 7.4 | Interface: IQuizAssignmentRepository | [.task/task_07_04_iquiz_assignment_repository.md](../.task/task_07_04_iquiz_assignment_repository.md) | ⬜ Pending |
+| 7.1 | Entity: QuizAssignment (QuizId, TargetRole, TargetUserId, StartTime, EndTime, Status) | [.task/task_07_01_entity_quiz_assignment.md](../.task/task_07_01_entity_quiz_assignment.md) | ✅ Done |
+| 7.2 | Enum: AssignmentStatus (Scheduled, Active, Completed, Cancelled) | [.task/task_07_02_enum_assignment_status.md](../.task/task_07_02_enum_assignment_status.md) | ✅ Done |
+| 7.3 | Update Quiz Entity (StartTime, EndTime nullable) | [.task/task_07_03_update_quiz_entity.md](../.task/task_07_03_update_quiz_entity.md) | ✅ Done |
+| 7.4 | Interface: IQuizAssignmentRepository | [.task/task_07_04_iquiz_assignment_repository.md](../.task/task_07_04_iquiz_assignment_repository.md) | ✅ Done |
 
 ### 7.2 Application — Assignment CQRS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 7.5 | DTOs: QuizAssignmentDto | [.task/task_07_05_assignment_dtos.md](../.task/task_07_05_assignment_dtos.md) | ⬜ Pending |
-| 7.6 | Command: AssignQuizCommand (gán quiz cho role hoặc user) | [.task/task_07_06_assign_quiz_command.md](../.task/task_07_06_assign_quiz_command.md) | ⬜ Pending |
-| 7.7 | Command: CancelAssignmentCommand | [.task/task_07_07_cancel_assignment_command.md](../.task/task_07_07_cancel_assignment_command.md) | ⬜ Pending |
-| 7.8 | Query: GetUserAssignmentsQuery (lấy danh sách assignment của user) | [.task/task_07_08_get_user_assignments_query.md](../.task/task_07_08_get_user_assignments_query.md) | ⬜ Pending |
-| 7.9 | Query: GetActiveAssignmentsQuery (lấy assignment đang active) | [.task/task_07_09_get_active_assignments_query.md](../.task/task_07_09_get_active_assignments_query.md) | ⬜ Pending |
-| 7.10 | Query: GetAssignmentByIdQuery | [.task/task_07_10_get_assignment_by_id_query.md](../.task/task_07_10_get_assignment_by_id_query.md) | ⬜ Pending |
+| 7.5 | DTOs: QuizAssignmentDto | [.task/task_07_05_assignment_dtos.md](../.task/task_07_05_assignment_dtos.md) | ✅ Done |
+| 7.6 | Command: AssignQuizCommand (gán quiz cho role hoặc user) | [.task/task_07_06_assign_quiz_command.md](../.task/task_07_06_assign_quiz_command.md) | ✅ Done |
+| 7.7 | Command: CancelAssignmentCommand | [.task/task_07_07_cancel_assignment_command.md](../.task/task_07_07_cancel_assignment_command.md) | ✅ Done |
+| 7.8 | Query: GetUserAssignmentsQuery (lấy danh sách assignment của user) | [.task/task_07_08_get_user_assignments_query.md](../.task/task_07_08_get_user_assignments_query.md) | ✅ Done |
+| 7.9 | Query: GetActiveAssignmentsQuery (lấy assignment đang active) | [.task/task_07_09_get_active_assignments_query.md](../.task/task_07_09_get_active_assignments_query.md) | ✅ Done |
+| 7.10 | Query: GetAssignmentByIdQuery | [.task/task_07_10_get_assignment_by_id_query.md](../.task/task_07_10_get_assignment_by_id_query.md) | ✅ Done |
 
 ### 7.3 Infrastructure — Assignment Implementation
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 7.11 | QuizAssignmentRepository + Configuration | [.task/task_07_11_assignment_repository.md](../.task/task_07_11_assignment_repository.md) | ⬜ Pending |
-| 7.12 | Migration: Add QuizAssignments table + update Quizzes | [.task/task_07_12_assignment_migration.md](../.task/task_07_12_assignment_migration.md) | ⬜ Pending |
+| 7.11 | QuizAssignmentRepository + Configuration | [.task/task_07_11_assignment_repository.md](../.task/task_07_11_assignment_repository.md) | ✅ Done |
+| 7.12 | Migration: Add QuizAssignments table + update Quizzes | [.task/task_07_12_assignment_migration.md](../.task/task_07_12_assignment_migration.md) | 🔄 Pending Migration |
 
 ### 7.4 WebAPI — Assignment Controller
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 7.13 | AssignmentController (Assign, Cancel, GetUserAssignments, GetActive) | [.task/task_07_13_assignment_controller.md](../.task/task_07_13_assignment_controller.md) | ⬜ Pending |
-| 7.14 | Request Contracts: AssignQuizRequest | [.task/task_07_14_assignment_requests.md](../.task/task_07_14_assignment_requests.md) | ⬜ Pending |
+| 7.13 | AssignmentController (Assign, Cancel, GetUserAssignments, GetActive) | [.task/task_07_13_assignment_controller.md](../.task/task_07_13_assignment_controller.md) | ✅ Done |
+| 7.14 | Request Contracts: AssignQuizRequest | [.task/task_07_14_assignment_requests.md](../.task/task_07_14_assignment_requests.md) | ✅ Done |
 
 ---
 
@@ -197,35 +197,35 @@ Frontend: ReactJS + TailwindCSS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 8.1 | Entity: Notification (UserId, Type, Title, Message, IsRead, Data) | [.task/task_08_01_entity_notification.md](../.task/task_08_01_entity_notification.md) | ⬜ Pending |
-| 8.2 | Enum: NotificationType (QuizAssigned, QuizStartingSoon, QuizStarted, QuizEnded, QuizResultAvailable) | [.task/task_08_02_enum_notification_type.md](../.task/task_08_02_enum_notification_type.md) | ⬜ Pending |
-| 8.3 | Interface: INotificationRepository | [.task/task_08_03_inotification_repository.md](../.task/task_08_03_inotification_repository.md) | ⬜ Pending |
+| 8.1 | Entity: Notification (UserId, Type, Title, Message, IsRead, Data) | [.task/task_08_01_entity_notification.md](../.task/task_08_01_entity_notification.md) | ✅ Done |
+| 8.2 | Enum: NotificationType (QuizAssigned, QuizStartingSoon, QuizStarted, QuizEnded, QuizResultAvailable) | [.task/task_08_02_enum_notification_type.md](../.task/task_08_02_enum_notification_type.md) | ✅ Done |
+| 8.3 | Interface: INotificationRepository | [.task/task_08_03_inotification_repository.md](../.task/task_08_03_inotification_repository.md) | ✅ Done |
 
 ### 8.2 Application — Notification Service
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 8.4 | INotificationService Interface (Send, SendToRole, SendToUser) | [.task/task_08_04_notification_service_interface.md](../.task/task_08_04_notification_service_interface.md) | ⬜ Pending |
-| 8.5 | DTOs: NotificationDto | [.task/task_08_05_notification_dtos.md](../.task/task_08_05_notification_dtos.md) | ⬜ Pending |
-| 8.6 | Query: GetUserNotificationsQuery (paged, filter by read status) | [.task/task_08_06_get_user_notifications_query.md](../.task/task_08_06_get_user_notifications_query.md) | ⬜ Pending |
-| 8.7 | Command: MarkNotificationReadCommand | [.task/task_08_07_mark_notification_read_command.md](../.task/task_08_07_mark_notification_read_command.md) | ⬜ Pending |
+| 8.4 | INotificationService Interface (Send, SendToRole, SendToUser) | [.task/task_08_04_notification_service_interface.md](../.task/task_08_04_notification_service_interface.md) | ✅ Done |
+| 8.5 | DTOs: NotificationDto | [.task/task_08_05_notification_dtos.md](../.task/task_08_05_notification_dtos.md) | ✅ Done |
+| 8.6 | Query: GetUserNotificationsQuery (paged, filter by read status) | [.task/task_08_06_get_user_notifications_query.md](../.task/task_08_06_get_user_notifications_query.md) | ✅ Done |
+| 8.7 | Command: MarkNotificationReadCommand | [.task/task_08_07_mark_notification_read_command.md](../.task/task_08_07_mark_notification_read_command.md) | ✅ Done |
 
 ### 8.3 Infrastructure — Notification & Jobs
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 8.8 | NotificationRepository + Configuration | [.task/task_08_08_notification_repository.md](../.task/task_08_08_notification_repository.md) | ⬜ Pending |
-| 8.9 | NotificationService Implementation | [.task/task_08_09_notification_service_impl.md](../.task/task_08_09_notification_service_impl.md) | ⬜ Pending |
-| 8.10 | Setup Hangfire (background job scheduler) | [.task/task_08_10_setup_hangfire.md](../.task/task_08_10_setup_hangfire.md) | ⬜ Pending |
-| 8.11 | Background Job: CheckQuizAssignments (kiểm tra quiz sắp bắt đầu/đã kết thúc) | [.task/task_08_11_job_check_assignments.md](../.task/task_08_11_job_check_assignments.md) | ⬜ Pending |
-| 8.12 | Background Job: SendAssignmentNotifications (gửi notification khi assign mới) | [.task/task_08_12_job_send_notifications.md](../.task/task_08_12_job_send_notifications.md) | ⬜ Pending |
-| 8.13 | Migration: Add Notifications table | [.task/task_08_13_notification_migration.md](../.task/task_08_13_notification_migration.md) | ⬜ Pending |
+| 8.8 | NotificationRepository + Configuration | [.task/task_08_08_notification_repository.md](../.task/task_08_08_notification_repository.md) | ✅ Done |
+| 8.9 | NotificationService Implementation | [.task/task_08_09_notification_service_impl.md](../.task/task_08_09_notification_service_impl.md) | ✅ Done |
+| 8.10 | Setup Hangfire (background job scheduler) | [.task/task_08_10_setup_hangfire.md](../.task/task_08_10_setup_hangfire.md) | ✅ Done |
+| 8.11 | Background Job: CheckQuizAssignments (kiểm tra quiz sắp bắt đầu/đã kết thúc) | [.task/task_08_11_job_check_assignments.md](../.task/task_08_11_job_check_assignments.md) | ✅ Done |
+| 8.12 | Background Job: SendAssignmentNotifications (gửi notification khi assign mới) | [.task/task_08_12_job_send_notifications.md](../.task/task_08_12_job_send_notifications.md) | ✅ Done |
+| 8.13 | Migration: Add Notifications table | [.task/task_08_13_notification_migration.md](../.task/task_08_13_notification_migration.md) | 🔄 Pending Migration |
 
 ### 8.4 WebAPI — Notification Controller
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 8.14 | NotificationController (GetUserNotifications, MarkRead) | [.task/task_08_14_notification_controller.md](../.task/task_08_14_notification_controller.md) | ⬜ Pending |
+| 8.14 | NotificationController (GetUserNotifications, MarkRead) | [.task/task_08_14_notification_controller.md](../.task/task_08_14_notification_controller.md) | ✅ Done |
 
 ---
 
@@ -237,34 +237,34 @@ Frontend: ReactJS + TailwindCSS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 9.1 | Enum: ActionType (ViewVocabulary, CompleteQuiz, BookmarkWord, StartQuiz) | [.task/task_09_01_enum_action_type.md](../.task/task_09_01_enum_action_type.md) | ⬜ Pending |
-| 9.2 | Entity: LearningHistory | [.task/task_09_02_entity_learning_history.md](../.task/task_09_02_entity_learning_history.md) | ⬜ Pending |
-| 9.3 | Entity: Leaderboard | [.task/task_09_03_entity_leaderboard.md](../.task/task_09_03_entity_leaderboard.md) | ⬜ Pending |
-| 9.4 | Interfaces: ILearningHistoryRepository, ILeaderboardRepository | [.task/task_09_04_history_leaderboard_interfaces.md](../.task/task_09_04_history_leaderboard_interfaces.md) | ⬜ Pending |
+| 9.1 | Enum: ActionType (ViewVocabulary, CompleteQuiz, BookmarkWord, StartQuiz) | [.task/task_09_01_enum_action_type.md](../.task/task_09_01_enum_action_type.md) | ✅ Done |
+| 9.2 | Entity: LearningHistory | [.task/task_09_02_entity_learning_history.md](../.task/task_09_02_entity_learning_history.md) | ✅ Done |
+| 9.3 | Entity: Leaderboard | [.task/task_09_03_entity_leaderboard.md](../.task/task_09_03_entity_leaderboard.md) | ✅ Done |
+| 9.4 | Interfaces: ILearningHistoryRepository, ILeaderboardRepository | [.task/task_09_04_history_leaderboard_interfaces.md](../.task/task_09_04_history_leaderboard_interfaces.md) | ✅ Done |
 
 ### 9.2 Application — History & Leaderboard CQRS
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 9.5 | DTOs: LearningHistoryDto, LeaderboardDto | [.task/task_09_05_history_leaderboard_dtos.md](../.task/task_09_05_history_leaderboard_dtos.md) | ⬜ Pending |
-| 9.6 | Command: RecordHistoryCommand | [.task/task_09_06_record_history_command.md](../.task/task_09_06_record_history_command.md) | ⬜ Pending |
-| 9.7 | Query: GetUserHistoryQuery | [.task/task_09_07_get_user_history_query.md](../.task/task_09_07_get_user_history_query.md) | ⬜ Pending |
-| 9.8 | Command: UpdateLeaderboardCommand | [.task/task_09_08_update_leaderboard_command.md](../.task/task_09_08_update_leaderboard_command.md) | ⬜ Pending |
-| 9.9 | Query: GetLeaderboardQuery & GetUserRankQuery | [.task/task_09_09_leaderboard_queries.md](../.task/task_09_09_leaderboard_queries.md) | ⬜ Pending |
+| 9.5 | DTOs: LearningHistoryDto, LeaderboardDto | [.task/task_09_05_history_leaderboard_dtos.md](../.task/task_09_05_history_leaderboard_dtos.md) | ✅ Done |
+| 9.6 | Command: RecordHistoryCommand | [.task/task_09_06_record_history_command.md](../.task/task_09_06_record_history_command.md) | ✅ Done |
+| 9.7 | Query: GetUserHistoryQuery | [.task/task_09_07_get_user_history_query.md](../.task/task_09_07_get_user_history_query.md) | ✅ Done |
+| 9.8 | Command: UpdateLeaderboardCommand | [.task/task_09_08_update_leaderboard_command.md](../.task/task_09_08_update_leaderboard_command.md) | ✅ Done |
+| 9.9 | Query: GetLeaderboardQuery & GetUserRankQuery | [.task/task_09_09_leaderboard_queries.md](../.task/task_09_09_leaderboard_queries.md) | ✅ Done |
 
 ### 9.3 Infrastructure — History & Leaderboard Implementation
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 9.10 | Repositories + Configurations | [.task/task_09_10_history_leaderboard_repositories.md](../.task/task_09_10_history_leaderboard_repositories.md) | ⬜ Pending |
-| 9.11 | Migration: Add LearningHistories + Leaderboards | [.task/task_09_11_history_migration.md](../.task/task_09_11_history_migration.md) | ⬜ Pending |
+| 9.10 | Repositories + Configurations | [.task/task_09_10_history_leaderboard_repositories.md](../.task/task_09_10_history_leaderboard_repositories.md) | ✅ Done |
+| 9.11 | Migration: Add LearningHistories + Leaderboards | [.task/task_09_11_history_migration.md](../.task/task_09_11_history_migration.md) | 🔄 Pending Migration |
 
 ### 9.4 WebAPI — History & Leaderboard Controllers
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 9.12 | HistoryController + LeaderboardController | [.task/task_09_12_history_leaderboard_controllers.md](../.task/task_09_12_history_leaderboard_controllers.md) | ⬜ Pending |
-| 9.13 | Integrate History into QuizResult handler | [.task/task_09_13_integrate_history.md](../.task/task_09_13_integrate_history.md) | ⬜ Pending |
+| 9.12 | HistoryController + LeaderboardController | [.task/task_09_12_history_leaderboard_controllers.md](../.task/task_09_12_history_leaderboard_controllers.md) | ✅ Done |
+| 9.13 | Integrate History into QuizResult handler | [.task/task_09_13_integrate_history.md](../.task/task_09_13_integrate_history.md) | ✅ Done |
 
 ---
 

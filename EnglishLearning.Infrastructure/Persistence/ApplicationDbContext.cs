@@ -18,6 +18,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<QuizAssignment> QuizAssignments => Set<QuizAssignment>();
     public DbSet<LearningHistory> LearningHistories => Set<LearningHistory>();
     public DbSet<Leaderboard> Leaderboards => Set<Leaderboard>();
+    public DbSet<Notification> Notifications => Set<Notification>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

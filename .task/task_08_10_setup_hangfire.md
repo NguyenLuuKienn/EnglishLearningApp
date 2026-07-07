@@ -76,14 +76,14 @@ RecurringJob.AddOrUpdate<ICheckQuizAssignmentsJob>(
 
 ## Verification
 
-- [ ] Run `dotnet build EnglishLearning.WebAPI` — 0 errors
-- [ ] Hangfire dashboard accessible at /hangfire
-- [ ] Recurring job configured
+- [x] Run `dotnet build EnglishLearning.WebAPI` — 0 errors ✅
+- [x] Hangfire dashboard accessible at /hangfire ✅
+- [x] Recurring job configured ✅
 
 ## Acceptance Criteria
 
-- [ ] Hangfire packages installed
-- [ ] Hangfire configured with SQL Server storage
-- [ ] Hangfire dashboard protected with basic auth
-- [ ] Recurring job scheduled for checking quiz assignments
-- [ ] WebAPI project builds successfully
+- [x] Hangfire packages installed (Hangfire.AspNetCore, Hangfire.SqlServer 1.8.14) ✅
+- [x] Hangfire configured with SQL Server storage ✅
+- [x] Hangfire dashboard protected with basic auth (custom HangfireBasicAuthAuthorizationFilter) ✅
+- [x] Recurring job scheduled for checking quiz assignments (every 5 min) ✅
+- [x] WebAPI project builds successfully ✅
