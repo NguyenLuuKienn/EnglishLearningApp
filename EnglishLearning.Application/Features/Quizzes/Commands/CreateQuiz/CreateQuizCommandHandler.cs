@@ -17,7 +17,7 @@ public class CreateQuizCommandHandler(IQuizRepository _quizRepository) : IReques
             PassingScore = request.PassingScore
         };
 
-        foreach (var q in request.Questions)
+        foreach (var q in request.Questions ?? new List<QuestionCommand>())
         {
             var question = new Question
             {

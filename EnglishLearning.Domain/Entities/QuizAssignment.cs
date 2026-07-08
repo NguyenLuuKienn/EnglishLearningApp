@@ -15,21 +15,5 @@ public class QuizAssignment : BaseEntity
     // Navigation
     public Quiz Quiz { get; set; } = null!;
 
-    public static QuizAssignment Create(
-        Guid quizId,
-        UserRole? targetRole,
-        string? targetUserId,
-        DateTime startTime,
-        DateTime endTime)
-    {
-        return new QuizAssignment
-        {
-            QuizId = quizId,
-            TargetRole = targetRole,
-            TargetUserId = targetUserId,
-            StartTime = startTime,
-            EndTime = endTime,
-            Status = AssignmentStatus.Scheduled
-        };
-    }
+    public QuizAssignment() { }
 }

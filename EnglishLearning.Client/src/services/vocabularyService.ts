@@ -1,6 +1,16 @@
 import api from './api'
 import { Vocabulary, DifficultyLevel, ApiResponse } from '@/types'
 
+interface PagedData<T> {
+  pageNumber: number
+  pageSize: number
+  totalRecords: number
+  totalPages: number
+  success: boolean
+  message: string
+  data: T[]
+}
+
 export const vocabularyService = {
   getAll: async (
     page: number = 1,
@@ -8,10 +18,10 @@ export const vocabularyService = {
     difficulty?: DifficultyLevel,
     search?: string,
   ): Promise<{ items: Vocabulary[]; totalRecords: number }> => {
-    const response = await api.get<ApiResponse<{ items: Vocabulary[]; totalRecords: number }>>('/vocabularies', {
+    const response = await api.get<PagedData<Vocabulary>>('/vocabularies', {
       params: { pageNumber: page, pageSize, difficulty, search },
     })
-    return response.data.data!
+    return { items: response.data.data || [], totalRecords: response.data.totalRecords }
   },
 
   getById: async (id: string): Promise<Vocabulary> => {

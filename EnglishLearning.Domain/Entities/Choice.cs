@@ -9,4 +9,6 @@ public class Choice : BaseEntity
 
     // Navigation
     public Question Question { get; set; } = null!;
+
+    public Choice() { }
 }

@@ -18,19 +18,4 @@ public class QuizResult : BaseEntity
     {
         CompletedAt = DateTime.UtcNow;
     }
-
-    public static QuizResult Create(Guid quizId, string userId, int totalQuestions, int correctAnswers, int durationMinutes)
-    {
-        var score = totalQuestions > 0 ? (decimal)Math.Round((correctAnswers / (double)totalQuestions) * 100, 2) : 0m;
-
-        return new QuizResult
-        {
-            QuizId = quizId,
-            UserId = userId,
-            TotalQuestions = totalQuestions,
-            CorrectAnswers = correctAnswers,
-            DurationMinutes = durationMinutes,
-            Score = score
-        };
-    }
 }

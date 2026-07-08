@@ -11,7 +11,14 @@ public class NotificationService(
 {
     public async Task SendToUserAsync(string userId, NotificationType type, string title, string message, string? data = null)
     {
-        var notification = Notification.Create(userId, type, title, message, data);
+        var notification = new Notification
+        {
+            UserId = userId,
+            Type = type,
+            Title = title,
+            Message = message,
+            Data = data
+        };
         await _notificationRepository.AddAsync(notification);
         await _notificationRepository.SaveChangesAsync();
     }
@@ -23,7 +30,14 @@ public class NotificationService(
 
         foreach (var user in usersWithRole)
         {
-            var notification = Notification.Create(user.Id.ToString(), type, title, message, data);
+            var notification = new Notification
+            {
+                UserId = user.Id.ToString(),
+                Type = type,
+                Title = title,
+                Message = message,
+                Data = data
+            };
             await _notificationRepository.AddAsync(notification);
         }
 

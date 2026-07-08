@@ -11,16 +11,14 @@ public class Leaderboard : BaseEntity
     public int Streak { get; set; }
     public DateTime LastActiveDate { get; set; }
 
-    public static Leaderboard Create(string userId)
+    public Leaderboard() { }
+
+    public void UpdateScore(decimal score)
     {
-        return new Leaderboard
-        {
-            UserId = userId,
-            TotalScore = 0m,
-            QuizzesCompleted = 0,
-            AverageScore = 0m,
-            Streak = 0,
-            LastActiveDate = DateTime.UtcNow
-        };
+        QuizzesCompleted++;
+        TotalScore += score;
+        AverageScore = TotalScore / QuizzesCompleted;
+        Streak++;
+        LastActiveDate = DateTime.UtcNow;
     }
 }

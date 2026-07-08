@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { quizService } from '@/services/quizService'
 import { Quiz, DifficultyLevel } from '@/types'
-import { Plus, Edit, Trash2, X } from 'lucide-react'
+import { Plus, Edit, Trash2, X, Copy, FileQuestion } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function AdminQuizPage() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([])
   const [showForm, setShowForm] = useState(false)
   const [editingQuiz, setEditingQuiz] = useState<Quiz | null>(null)
+  const [copiedId, setCopiedId] = useState<string | null>(null)
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -14,16 +16,29 @@ export default function AdminQuizPage() {
     timeLimitMinutes: 30,
   })
 
+  useEffect(() => {
+    loadQuizzes()
+  }, [])
+
+  const loadQuizzes = () => {
+    quizService
+      .getAll()
+      .then((data) => setQuizzes(data || []))
+      .catch((error) => {
+        console.error('Failed to load quizzes:', error)
+        setQuizzes([])
+      })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (editingQuiz) {
-      const updated = await quizService.update(editingQuiz.id, form)
-      setQuizzes((prev) => prev.map((q) => (q.id === editingQuiz.id ? updated : q)))
+      await quizService.update(editingQuiz.id, form)
     } else {
-      const created = await quizService.create(form)
-      setQuizzes((prev) => [...prev, created])
+      await quizService.create(form)
     }
     resetForm()
+    loadQuizzes()
   }
 
   const handleEdit = (quiz: Quiz) => {
@@ -40,7 +55,13 @@ export default function AdminQuizPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this quiz?')) return
     await quizService.delete(id)
-    setQuizzes((prev) => prev.filter((q) => q.id !== id))
+    loadQuizzes()
+  }
+
+  const copyId = (id: string) => {
+    navigator.clipboard.writeText(id)
+    setCopiedId(id)
+    setTimeout(() => setCopiedId(null), 2000)
   }
 
   const resetForm = () => {
@@ -61,6 +82,53 @@ export default function AdminQuizPage() {
           New Quiz
         </button>
       </div>
+
+      {/* Quiz List */}
+      {quizzes.length === 0 ? (
+        <div className="card text-center">
+          <p className="text-gray-500">No quizzes yet. Create one to get started.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {quizzes.map((q) => (
+            <div key={q.id} className="card">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900">{q.title}</h3>
+                  <p className="text-sm text-gray-500">{q.description}</p>
+                  <div className="mt-2 flex items-center gap-3">
+                    <span className="badge badge-primary">{q.difficulty}</span>
+                    <span className="text-xs text-gray-400">{q.timeLimitMinutes} min</span>
+                    <span className="text-xs font-mono text-gray-400">ID: {q.id.slice(0, 8)}...</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    className="btn btn-secondary text-xs"
+                    onClick={() => copyId(q.id)}
+                    title="Copy Quiz ID"
+                  >
+                    {copiedId === q.id ? 'Copied!' : <Copy className="h-4 w-4" />}
+                  </button>
+                  <Link
+                    to={`/admin/quizzes/${q.id}/questions`}
+                    className="btn btn-secondary text-xs gap-1"
+                  >
+                    <FileQuestion className="h-4 w-4" />
+                    Questions
+                  </Link>
+                  <button className="btn btn-secondary" onClick={() => handleEdit(q)}>
+                    <Edit className="h-4 w-4" />
+                  </button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(q.id)}>
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Form Modal */}
       {showForm && (

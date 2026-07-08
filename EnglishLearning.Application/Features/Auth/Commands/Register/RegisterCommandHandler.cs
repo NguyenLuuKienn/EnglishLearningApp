@@ -23,7 +23,14 @@ public class RegisterCommandHandler(
 
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-        var user = User.Create(request.Username, request.Email, passwordHash, UserRole.User);
+        var user = new User
+        {
+            Username = request.Username,
+            Email = request.Email,
+            PasswordHash = passwordHash,
+            Role = request.Role,
+            IsActive = true
+        };
         await _userRepository.AddAsync(user);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

@@ -1,20 +1,26 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '@/store/AuthContext'
 import { quizService } from '@/services/quizService'
 import { QuizAssignment, AssignmentStatus } from '@/types'
 import { ClipboardList, Clock, CheckCircle, XCircle, Calendar } from 'lucide-react'
 
 export default function QuizListPage() {
+  const { user } = useAuth()
   const [assignments, setAssignments] = useState<QuizAssignment[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    if (!user) return
     quizService
-      .getUserAssignments()
+      .getUserAssignmentsByUserId(user.id)
       .then((data) => setAssignments(data || []))
-      .catch(() => setAssignments([]))
+      .catch((error) => {
+        console.error('Failed to load quiz assignments:', error)
+        setAssignments([])
+      })
       .finally(() => setIsLoading(false))
-  }, [])
+  }, [user])
 
   const statusConfig: Record<AssignmentStatus, { label: string; badge: string; icon: any }> = {
     Scheduled: { label: 'Scheduled', badge: 'badge-primary', icon: Calendar },
@@ -53,7 +59,7 @@ export default function QuizListPage() {
                       <Icon className="h-5 w-5 text-primary-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{a.quiz?.title}</h3>
+                      <h3 className="font-semibold text-gray-900">{a.quizTitle}</h3>
                       <p className="text-sm text-gray-500">
                         {new Date(a.startTime).toLocaleDateString()} —{' '}
                         {new Date(a.endTime).toLocaleDateString()}

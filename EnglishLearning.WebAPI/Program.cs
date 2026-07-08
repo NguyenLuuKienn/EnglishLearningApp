@@ -1,6 +1,5 @@
 using Hangfire;
 using Hangfire.SqlServer;
-using Hangfire.Dashboard;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -8,11 +7,17 @@ using EnglishLearning.Application.DependencyInjection;
 using EnglishLearning.Application.Interfaces;
 using EnglishLearning.Infrastructure.DependencyInjection;
 using EnglishLearning.WebAPI.Middlewares;
+using Microsoft.AspNetCore.Http.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddEndpointsApiExplorer();
 
 // Swagger

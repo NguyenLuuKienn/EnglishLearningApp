@@ -22,5 +22,5 @@ public record CreateQuizCommand(
     DifficultyLevel Difficulty,
     int TimeLimitMinutes,
     decimal PassingScore,
-    List<QuestionCommand> Questions
+    List<QuestionCommand>? Questions
 ) : IRequest<Guid>;

@@ -3,4 +3,5 @@
   <Project Path="EnglishLearning.Domain/EnglishLearning.Domain.csproj" />
   <Project Path="EnglishLearning.Infrastructure/EnglishLearning.Infrastructure.csproj" />
   <Project Path="EnglishLearning.WebAPI/EnglishLearning.WebAPI.csproj" />
+  <Project Path="EnglishLearnningApp.UnitTest/EnglishLearnning.UnitTest.csproj" Id="3fed20d3-7b9c-40fa-a5e8-4913011093b2" />
 </Solution>

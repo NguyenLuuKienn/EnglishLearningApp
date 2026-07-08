@@ -14,7 +14,10 @@ export default function HistoryPage() {
     historyService
       .getUserHistory(user.id)
       .then((data) => setHistory(data.items || []))
-      .catch(() => setHistory([]))
+      .catch((error) => {
+        console.error('Failed to load history:', error)
+        setHistory([])
+      })
       .finally(() => setIsLoading(false))
   }, [user])
 

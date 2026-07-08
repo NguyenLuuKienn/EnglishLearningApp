@@ -14,15 +14,5 @@ public class User : BaseEntity
     public string? AvatarUrl { get; set; }
     public bool IsActive { get; set; } = true;
 
-    public static User Create(string username, string email, string passwordHash, UserRole role = UserRole.User)
-    {
-        return new User
-        {
-            Username = username,
-            Email = email,
-            PasswordHash = passwordHash,
-            Role = role,
-            IsActive = true
-        };
-    }
+    public User() { }
 }

@@ -2,6 +2,7 @@ namespace EnglishLearning.Domain.Enums;
 
 public enum UserRole
 {
-    User = 0,
-    Admin = 1
+    Student = 0,
+    Teacher = 1,
+    Admin = 2
 }

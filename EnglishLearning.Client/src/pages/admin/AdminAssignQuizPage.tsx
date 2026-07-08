@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { quizService } from '@/services/quizService'
-import { UserRole } from '@/types'
-import { Plus, X } from 'lucide-react'
+import { UserRole, Quiz, QuizAssignment } from '@/types'
+import { Plus, X, ClipboardList } from 'lucide-react'
 
 export default function AdminAssignQuizPage() {
+  const [quizzes, setQuizzes] = useState<Quiz[]>([])
+  const [assignments, setAssignments] = useState<QuizAssignment[]>([])
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({
     quizId: '',
@@ -12,6 +14,31 @@ export default function AdminAssignQuizPage() {
     startTime: '',
     endTime: '',
   })
+
+  useEffect(() => {
+    loadQuizzes()
+    loadAssignments()
+  }, [])
+
+  const loadQuizzes = () => {
+    quizService
+      .getAll()
+      .then((data) => setQuizzes(data || []))
+      .catch((error) => {
+        console.error('Failed to load quizzes:', error)
+        setQuizzes([])
+      })
+  }
+
+  const loadAssignments = () => {
+    quizService
+      .getActiveAssignments()
+      .then((data) => setAssignments(data || []))
+      .catch((error) => {
+        console.error('Failed to load assignments:', error)
+        setAssignments([])
+      })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +51,7 @@ export default function AdminAssignQuizPage() {
     })
     setShowForm(false)
     setForm({ quizId: '', targetRole: '', targetUserId: '', startTime: '', endTime: '' })
+    loadAssignments()
   }
 
   return (
@@ -39,6 +67,38 @@ export default function AdminAssignQuizPage() {
         </button>
       </div>
 
+      {/* Assignments List */}
+      {assignments.length === 0 ? (
+        <div className="card text-center">
+          <ClipboardList className="mx-auto h-12 w-12 text-gray-300" />
+          <p className="mt-4 text-gray-500">No active assignments yet.</p>
+        </div>
+      ) : (
+        <div className="mb-6 space-y-3">
+          {assignments.map((a) => (
+            <div key={a.id} className="card">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-gray-900">{a.quizTitle || 'Quiz'}</h3>
+                  <p className="text-sm text-gray-500">
+                    To: {a.targetRole || 'All Users'} |{' '}
+                    {new Date(a.startTime).toLocaleDateString()} —{' '}
+                    {new Date(a.endTime).toLocaleDateString()}
+                  </p>
+                </div>
+                <span className={`badge ${
+                  a.status === 'Active' ? 'badge-success' :
+                  a.status === 'Scheduled' ? 'badge-primary' :
+                  a.status === 'Completed' ? 'badge-warning' : 'badge-danger'
+                }`}>
+                  {a.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Assignment Form */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
@@ -52,15 +112,20 @@ export default function AdminAssignQuizPage() {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium text-gray-700">Quiz ID</label>
-                <input
-                  type="text"
+                <label className="mb-1 block text-sm font-medium text-gray-700">Quiz</label>
+                <select
                   className="input"
-                  placeholder="Enter quiz UUID"
                   value={form.quizId}
                   onChange={(e) => setForm({ ...form, quizId: e.target.value })}
                   required
-                />
+                >
+                  <option value="">Select a quiz</option>
+                  {quizzes.map((q) => (
+                    <option key={q.id} value={q.id}>
+                      {q.title} ({q.id.slice(0, 8)}...)
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="mb-4">

@@ -13,4 +13,6 @@ public class Question : BaseEntity
     // Navigation
     public Quiz Quiz { get; set; } = null!;
     public ICollection<Choice> Choices { get; set; } = new List<Choice>();
+
+    public Question() { }
 }

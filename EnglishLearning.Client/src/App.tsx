@@ -23,6 +23,7 @@ import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminQuizPage from './pages/admin/AdminQuizPage'
 import AdminAssignQuizPage from './pages/admin/AdminAssignQuizPage'
 import AdminVocabularyPage from './pages/admin/AdminVocabularyPage'
+import AdminQuestionsPage from './pages/admin/AdminQuestionsPage'
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminDashboardPage />} />
           <Route path="/admin/quizzes" element={<AdminQuizPage />} />
+          <Route path="/admin/quizzes/:quizId/questions" element={<AdminQuestionsPage />} />
           <Route path="/admin/quizzes/assign" element={<AdminAssignQuizPage />} />
           <Route path="/admin/vocabulary" element={<AdminVocabularyPage />} />
         </Route>

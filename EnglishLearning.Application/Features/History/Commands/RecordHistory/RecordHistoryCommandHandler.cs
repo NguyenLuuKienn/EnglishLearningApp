@@ -10,8 +10,14 @@ public class RecordHistoryCommandHandler(
 {
     public async Task<Guid> Handle(RecordHistoryCommand request, CancellationToken cancellationToken)
     {
-        var history = LearningHistory.Create(
-            request.UserId, request.ActionType, request.TargetId, request.Details, request.Score);
+        var history = new LearningHistory
+        {
+            UserId = request.UserId,
+            ActionType = request.ActionType,
+            TargetId = request.TargetId,
+            Details = request.Details,
+            Score = request.Score
+        };
 
         await _historyRepository.AddAsync(history);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

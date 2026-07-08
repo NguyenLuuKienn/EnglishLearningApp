@@ -1,5 +1,6 @@
 using EnglishLearning.Domain.Constants;
 using EnglishLearning.Domain.Entities;
+using EnglishLearning.Domain.Enums;
 using EnglishLearning.Domain.Interfaces;
 using MediatR;
 
@@ -18,12 +19,15 @@ public class AssignQuizCommandHandler(
         if (request.TargetRole == null && string.IsNullOrEmpty(request.TargetUserId))
             throw new ArgumentException(AssignmentErrorMessages.TargetRequired);
 
-        var assignment = QuizAssignment.Create(
-            request.QuizId,
-            request.TargetRole,
-            request.TargetUserId,
-            request.StartTime,
-            request.EndTime);
+        var assignment = new QuizAssignment
+        {
+            QuizId = request.QuizId,
+            TargetRole = request.TargetRole,
+            TargetUserId = request.TargetUserId,
+            StartTime = request.StartTime,
+            EndTime = request.EndTime,
+            Status = AssignmentStatus.Scheduled
+        };
 
         await _assignmentRepository.AddAsync(assignment);
         await _assignmentRepository.SaveChangesAsync(cancellationToken);

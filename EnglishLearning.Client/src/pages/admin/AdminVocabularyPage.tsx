@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { vocabularyService } from '@/services/vocabularyService'
 import { Vocabulary, DifficultyLevel } from '@/types'
 import { Plus, Edit, Trash2, X } from 'lucide-react'
@@ -14,16 +14,31 @@ export default function AdminVocabularyPage() {
     difficulty: 'Beginner' as DifficultyLevel,
   })
 
+  useEffect(() => {
+    vocabularyService
+      .getAll(1, 100)
+      .then((data) => setVocabularies(data.items || []))
+      .catch((error) => {
+        console.error('Failed to load vocabularies:', error)
+        setVocabularies([])
+      })
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (editingVocab) {
-      const updated = await vocabularyService.update(editingVocab.id, form)
-      setVocabularies((prev) => prev.map((v) => (v.id === editingVocab.id ? updated : v)))
+      await vocabularyService.update(editingVocab.id, form)
     } else {
-      const created = await vocabularyService.create(form)
-      setVocabularies((prev) => [...prev, created])
+      await vocabularyService.create(form)
     }
     resetForm()
+    // Reload list
+    vocabularyService
+      .getAll(1, 100)
+      .then((data) => setVocabularies(data.items || []))
+      .catch((error) => {
+        console.error('Failed to reload vocabularies:', error)
+      })
   }
 
   const handleEdit = (v: Vocabulary) => {
@@ -40,7 +55,13 @@ export default function AdminVocabularyPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this word?')) return
     await vocabularyService.delete(id)
-    setVocabularies((prev) => prev.filter((v) => v.id !== id))
+    // Reload list
+    vocabularyService
+      .getAll(1, 100)
+      .then((data) => setVocabularies(data.items || []))
+      .catch((error) => {
+        console.error('Failed to reload vocabularies:', error)
+      })
   }
 
   const resetForm = () => {

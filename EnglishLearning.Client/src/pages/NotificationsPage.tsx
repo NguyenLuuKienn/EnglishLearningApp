@@ -14,7 +14,10 @@ export default function NotificationsPage() {
     notificationService
       .getUserNotifications(user.id)
       .then((data) => setNotifications(data.items || []))
-      .catch(() => setNotifications([]))
+      .catch((error) => {
+        console.error('Failed to load notifications:', error)
+        setNotifications([])
+      })
       .finally(() => setIsLoading(false))
   }, [user])
 

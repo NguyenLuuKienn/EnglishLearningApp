@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using EnglishLearning.Domain.Enums;
 
 namespace EnglishLearning.WebAPI.Models.Requests.Auth;
 
@@ -16,4 +17,6 @@ public class RegisterRequest
     [Required]
     [MinLength(6)]
     public string Password { get; set; } = string.Empty;
+
+    public UserRole Role { get; set; } = UserRole.Student;
 }

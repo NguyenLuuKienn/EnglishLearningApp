@@ -7,25 +7,24 @@ export interface Quiz {
   description?: string
   difficulty: DifficultyLevel
   timeLimitMinutes?: number
+  passingScore?: number
   createdAt: string
 }
 
 export interface Question {
   id: string
-  quizId: string
-  text: string
+  questionText: string
   questionType: QuestionType
-  choices: Choice[]
-  correctAnswerIndex: number
-  order: number
+  choices: ChoiceForTake[]
 }
 
-export interface Choice {
+export interface ChoiceForTake {
   id: string
-  questionId: string
-  text: string
+  choiceText: string
+}
+
+export interface Choice extends ChoiceForTake {
   isCorrect: boolean
-  order: number
 }
 
 export type QuestionType = 'MultipleChoice' | 'TrueFalse' | 'FillInBlank'
@@ -33,7 +32,7 @@ export type QuestionType = 'MultipleChoice' | 'TrueFalse' | 'FillInBlank'
 export interface QuizAssignment {
   id: string
   quizId: string
-  quiz: Quiz
+  quizTitle: string
   targetRole?: UserRole
   targetUserId?: string
   startTime: string
@@ -56,6 +55,6 @@ export interface QuizResult {
 
 export interface QuizAnswer {
   questionId: string
-  selectedAnswerIndex: number
-  isCorrect: boolean
+  selectedChoiceId?: string
+  answerText?: string
 }

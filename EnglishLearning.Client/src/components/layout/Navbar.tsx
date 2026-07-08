@@ -93,9 +93,10 @@ export default function Navbar() {
             {(user?.role === 'Admin' || user?.role === 'Teacher') && (
               <Link
                 to="/admin"
-                className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="btn btn-primary text-xs gap-1"
               >
-                <Settings className="h-5 w-5" />
+                <Settings className="h-4 w-4" />
+                Admin
               </Link>
             )}
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useAuth } from '@/store/AuthContext'
 import { quizService } from '@/services/quizService'
 import { Quiz, Question, QuizAnswer } from '@/types'
 import { ArrowLeft, Clock } from 'lucide-react'
@@ -7,26 +8,30 @@ import { ArrowLeft, Clock } from 'lucide-react'
 export default function QuizTakePage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [quiz, setQuiz] = useState<Quiz | null>(null)
-  const [questions, _setQuestions] = useState<Question[]>([])
+  const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, number>>({})
+  const [answers, setAnswers] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     if (!id) return
     quizService
-      .getById(id)
-      .then(setQuiz)
+      .getForTake(id)
+      .then((data) => {
+        setQuiz(data)
+        setQuestions(data.questions || [])
+      })
       .catch(console.error)
       .finally(() => setIsLoading(false))
   }, [id])
 
-  const handleSelectAnswer = (answerIndex: number) => {
+  const handleSelectAnswer = (choiceId: string) => {
     const qId = questions[currentQuestion]?.id
     if (qId) {
-      setAnswers((prev) => ({ ...prev, [qId]: answerIndex }))
+      setAnswers((prev) => ({ ...prev, [qId]: choiceId }))
     }
   }
 
@@ -36,12 +41,11 @@ export default function QuizTakePage() {
 
     const quizAnswers: QuizAnswer[] = questions.map((q) => ({
       questionId: q.id,
-      selectedAnswerIndex: answers[q.id] ?? -1,
-      isCorrect: false,
+      selectedChoiceId: answers[q.id] || undefined,
     }))
 
     try {
-      await quizService.submitResult({ quizId: id, answers: quizAnswers })
+      await quizService.submitResult({ quizId: id, userId: user!.id, answers: quizAnswers })
       // Navigate to result page
       navigate(`/quizzes/${id}/result`)
     } catch (err) {
@@ -105,15 +109,15 @@ export default function QuizTakePage() {
 
       {/* Question */}
       <div className="card">
-        <h2 className="text-lg font-semibold text-gray-900">{question?.text}</h2>
+        <h2 className="text-lg font-semibold text-gray-900">{question?.questionText}</h2>
 
         <div className="mt-6 space-y-3">
-          {question?.choices.map((choice, index) => {
-            const isSelected = answers[question.id] === index
+          {question?.choices.map((choice) => {
+            const isSelected = answers[question.id] === choice.id
             return (
               <button
                 key={choice.id}
-                onClick={() => handleSelectAnswer(index)}
+                onClick={() => handleSelectAnswer(choice.id)}
                 className={`flex w-full items-center gap-3 rounded-lg border p-4 text-left transition-colors ${
                   isSelected
                     ? 'border-primary-500 bg-primary-50'
@@ -127,7 +131,7 @@ export default function QuizTakePage() {
                 >
                   {isSelected && <div className="h-2 w-2 rounded-full bg-white" />}
                 </div>
-                <span className="text-gray-700">{choice.text}</span>
+                <span className="text-gray-700">{choice.choiceText}</span>
               </button>
             )
           })}

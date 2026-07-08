@@ -42,13 +42,17 @@ public class SubmitQuizResultCommandHandler(
             }
         }
 
-        var result = QuizResult.Create(
-            request.QuizId,
-            request.UserId,
-            quiz.Questions.Count,
-            correctAnswers,
-            request.DurationMinutes
-        );
+        int totalQuestions = quiz.Questions.Count;
+        var score = totalQuestions > 0 ? (decimal)Math.Round((correctAnswers / (double)totalQuestions) * 100, 2) : 0m;
+        var result = new QuizResult
+        {
+            QuizId = request.QuizId,
+            UserId = request.UserId,
+            TotalQuestions = totalQuestions,
+            CorrectAnswers = correctAnswers,
+            DurationMinutes = request.DurationMinutes,
+            Score = score
+        };
 
         await _quizResultRepository.AddAsync(result);
         await _quizResultRepository.SaveChangesAsync(cancellationToken);

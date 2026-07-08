@@ -1,17 +1,27 @@
 import api from './api'
 import { LearningHistory, Leaderboard, ApiResponse } from '@/types'
 
+interface PagedData<T> {
+  pageNumber: number
+  pageSize: number
+  totalRecords: number
+  totalPages: number
+  success: boolean
+  message: string
+  data: T[]
+}
+
 export const historyService = {
   getUserHistory: async (
     userId: string,
     page: number = 1,
     pageSize: number = 10,
   ): Promise<{ items: LearningHistory[]; totalRecords: number }> => {
-    const response = await api.get<ApiResponse<{ items: LearningHistory[]; totalRecords: number }>>(
+    const response = await api.get<PagedData<LearningHistory>>(
       `/history/user/${userId}`,
       { params: { pageNumber: page, pageSize } },
     )
-    return response.data.data!
+    return { items: response.data.data || [], totalRecords: response.data.totalRecords }
   },
 
   recordHistory: async (data: {

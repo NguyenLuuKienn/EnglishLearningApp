@@ -19,7 +19,7 @@ public class AuthController(IMediator _mediator) : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        var command = new RegisterCommand(request.Username, request.Email, request.Password);
+        var command = new RegisterCommand(request.Username, request.Email, request.Password, request.Role);
         var id = await _mediator.Send(command);
 
         return Ok(ApiResponse<Guid>.Ok(id, "Registration successful"));

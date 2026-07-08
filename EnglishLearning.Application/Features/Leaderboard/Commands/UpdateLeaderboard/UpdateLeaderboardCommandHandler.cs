@@ -17,7 +17,15 @@ public class UpdateLeaderboardCommandHandler(
 
         if (leaderboard == null)
         {
-            leaderboard = LeaderboardEntity.Create(request.UserId);
+            leaderboard = new LeaderboardEntity
+            {
+                UserId = request.UserId,
+                TotalScore = 0m,
+                QuizzesCompleted = 0,
+                AverageScore = 0m,
+                Streak = 0,
+                LastActiveDate = DateTime.UtcNow
+            };
             await _leaderboardRepository.AddAsync(leaderboard);
         }
 

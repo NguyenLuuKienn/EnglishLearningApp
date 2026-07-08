@@ -11,15 +11,5 @@ public class LearningHistory : BaseEntity
     public string? Details { get; set; }
     public decimal? Score { get; set; }
 
-    public static LearningHistory Create(string userId, ActionType actionType, Guid targetId, string? details = null, decimal? score = null)
-    {
-        return new LearningHistory
-        {
-            UserId = userId,
-            ActionType = actionType,
-            TargetId = targetId,
-            Details = details,
-            Score = score
-        };
-    }
+    public LearningHistory() { }
 }

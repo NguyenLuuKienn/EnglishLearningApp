@@ -11,4 +11,6 @@ public class Vocabulary : BaseEntity
 
     // Navigation
     public ICollection<Question> Questions { get; set; } = new List<Question>();
+
+    public Vocabulary() { }
 }

@@ -9,6 +9,11 @@ namespace EnglishLearning.Infrastructure.Repositories;
 public class QuizAssignmentRepository(ApplicationDbContext context)
     : Repository<QuizAssignment>(context), IQuizAssignmentRepository
 {
+    public async Task<List<QuizAssignment>> GetAllWithQuizAsync()
+    {
+        return await _dbSet.Include(a => a.Quiz).ToListAsync();
+    }
+
     public async Task<List<QuizAssignment>> GetByUserIdAsync(string userId)
     {
         return await _dbSet.Where(a => a.TargetUserId == userId).ToListAsync();

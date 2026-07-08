@@ -12,15 +12,5 @@ public class Notification : BaseEntity
     public bool IsRead { get; set; } = false;
     public string? Data { get; set; }
 
-    public static Notification Create(string userId, NotificationType type, string title, string message, string? data = null)
-    {
-        return new Notification
-        {
-            UserId = userId,
-            Type = type,
-            Title = title,
-            Message = message,
-            Data = data
-        };
-    }
+    public Notification() { }
 }

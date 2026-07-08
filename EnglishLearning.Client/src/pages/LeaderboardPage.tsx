@@ -11,7 +11,10 @@ export default function LeaderboardPage() {
     leaderboardService
       .getLeaderboard()
       .then((data) => setLeaderboard(data || []))
-      .catch(() => setLeaderboard([]))
+      .catch((error) => {
+        console.error('Failed to load leaderboard:', error)
+        setLeaderboard([])
+      })
       .finally(() => setIsLoading(false))
   }, [])
 

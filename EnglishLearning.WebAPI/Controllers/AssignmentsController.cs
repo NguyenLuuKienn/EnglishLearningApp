@@ -17,27 +17,6 @@ namespace EnglishLearning.WebAPI.Controllers;
 [Authorize]
 public class AssignmentsController(IMediator _mediator) : ControllerBase
 {
-    [HttpPost]
-    [Authorize(Roles = "Admin,Teacher")]
-    public async Task<IActionResult> Assign([FromBody] AssignQuizRequest request)
-    {
-        var command = new AssignQuizCommand(
-            request.QuizId, request.TargetRole, request.TargetUserId,
-            request.StartTime, request.EndTime);
-
-        var id = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new { id }, id);
-    }
-
-    [HttpPost("{id}/cancel")]
-    [Authorize(Roles = "Admin,Teacher")]
-    public async Task<IActionResult> Cancel(Guid id)
-    {
-        var command = new CancelAssignmentCommand(id);
-        await _mediator.Send(command);
-        return NoContent();
-    }
-
     [HttpGet("user/{userId}")]
     public async Task<IActionResult> GetUserAssignments(string userId)
     {
@@ -60,5 +39,26 @@ public class AssignmentsController(IMediator _mediator) : ControllerBase
         var query = new GetAssignmentByIdQuery(id);
         var assignment = await _mediator.Send(query);
         return Ok(ApiResponse<QuizAssignmentDto>.Ok(assignment));
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Admin,Teacher")]
+    public async Task<IActionResult> Assign([FromBody] AssignQuizRequest request)
+    {
+        var command = new AssignQuizCommand(
+            request.QuizId, request.TargetRole, request.TargetUserId,
+            request.StartTime, request.EndTime);
+
+        var id = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id }, id);
+    }
+
+    [HttpPost("{id}/cancel")]
+    [Authorize(Roles = "Admin,Teacher")]
+    public async Task<IActionResult> Cancel(Guid id)
+    {
+        var command = new CancelAssignmentCommand(id);
+        await _mediator.Send(command);
+        return NoContent();
     }
 }

@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, Link } from 'react-router-dom'
 import { useAuth } from '@/store/AuthContext'
 import Navbar from './Navbar'
 
@@ -28,7 +28,7 @@ export function ProtectedRoute() {
 }
 
 export function AdminRoute() {
-  const { isAuthenticated, isLoading, hasRole } = useAuth()
+  const { isAuthenticated, isLoading, hasRole, user } = useAuth()
 
   if (isLoading) {
     return (
@@ -42,8 +42,29 @@ export function AdminRoute() {
     return <Navigate to="/login" replace />
   }
 
+  // Debug: log user role
+  console.log('AdminRoute check - user:', user?.username, 'role:', user?.role)
+
   if (!hasRole('Admin') && !hasRole('Teacher')) {
-    return <Navigate to="/" replace />
+    return (
+      <div className="min-h-screen">
+        <Navbar />
+        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className="card text-center py-12">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+            <p className="text-gray-600 mb-4">
+              You need <strong>Admin</strong> or <strong>Teacher</strong> role to access this page.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              Your current role: <strong>{user?.role}</strong>
+            </p>
+            <Link to="/" className="btn btn-primary">
+              Go to Dashboard
+            </Link>
+          </div>
+        </main>
+      </div>
+    )
   }
 
   return (

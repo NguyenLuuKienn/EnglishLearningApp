@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '@/store/AuthContext'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { BookOpen, Loader2 } from 'lucide-react'
+import { UserRole } from '@/types'
 
 export default function RegisterPage() {
   const { register, isAuthenticated } = useAuth()
@@ -10,6 +11,7 @@ export default function RegisterPage() {
     username: '',
     email: '',
     password: '',
+    role: 'Student' as UserRole,
   })
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -22,7 +24,7 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      await register(form.username, form.email, form.password)
+      await register(form.username, form.email, form.password, form.role)
       navigate('/')
     } catch {
       setError('Registration failed. Please try again.')
@@ -86,6 +88,19 @@ export default function RegisterPage() {
               required
               minLength={6}
             />
+          </div>
+
+          <div className="mb-6">
+            <label className="mb-1 block text-sm font-medium text-gray-700">Role</label>
+            <select
+              className="input"
+              value={form.role}
+              onChange={(e) => setForm({ ...form, role: e.target.value as UserRole })}
+            >
+              <option value="Student">Student</option>
+              <option value="Teacher">Teacher</option>
+              <option value="Admin">Admin</option>
+            </select>
           </div>
 
           <button type="submit" className="btn btn-primary w-full" disabled={isLoading}>

@@ -1,3 +1,4 @@
+using EnglishLearning.Domain.Enums;
 using MediatR;
 
 namespace EnglishLearning.Application.Features.Auth.Commands.Register;
@@ -5,4 +6,5 @@ namespace EnglishLearning.Application.Features.Auth.Commands.Register;
 public record RegisterCommand(
     string Username,
     string Email,
-    string Password) : IRequest<Guid>;
+    string Password,
+    UserRole Role) : IRequest<Guid>;

@@ -14,18 +14,33 @@ public class GetUserAssignmentsQueryHandler(
 {
     public async Task<List<QuizAssignmentDto>> Handle(GetUserAssignmentsQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId));
+        if (!Guid.TryParse(request.UserId, out var userId))
+            throw new ArgumentException("Invalid user ID format", nameof(request.UserId));
+
+        var user = await _userRepository.GetByIdAsync(userId);
         if (user == null)
             throw new KeyNotFoundException(AuthErrorMessages.UserNotFound);
 
-        var allAssignments = await _assignmentRepository.GetAllAsync();
+        var allAssignments = await _assignmentRepository.GetAllWithQuizAsync();
 
+        var now = DateTime.Now;
+        var userIdStr = userId.ToString();
         var userAssignments = allAssignments
             .Where(a => a.Status != AssignmentStatus.Cancelled &&
-                       (a.TargetUserId == request.UserId || a.TargetRole == user.Role))
+                       (a.TargetUserId == userIdStr || a.TargetRole == user.Role))
             .OrderByDescending(a => a.StartTime)
             .ToList();
 
-        return _mapper.Map<List<QuizAssignmentDto>>(userAssignments);
+        // Compute effective status based on current time
+        var dtos = _mapper.Map<List<QuizAssignmentDto>>(userAssignments);
+        foreach (var dto in dtos)
+        {
+            if (dto.Status == AssignmentStatus.Scheduled && dto.StartTime <= now)
+                dto.Status = AssignmentStatus.Active;
+            else if (dto.Status == AssignmentStatus.Active && dto.EndTime < now)
+                dto.Status = AssignmentStatus.Completed;
+        }
+
+        return dtos;
     }
 }

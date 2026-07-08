@@ -6,7 +6,7 @@ using MediatR;
 namespace EnglishLearning.Application.Features.Auth.Queries.GetProfile;
 
 public class GetProfileQueryHandler(
-    IUserRepository _userRepository) : IRequestHandler<GetProfileQuery, UserDto>
+    IUserRepository _userRepository, AutoMapper.IMapper @object) : IRequestHandler<GetProfileQuery, UserDto>
 {
     public async Task<UserDto> Handle(GetProfileQuery request, CancellationToken cancellationToken)
     {

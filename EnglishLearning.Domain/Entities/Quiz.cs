@@ -16,4 +16,6 @@ public class Quiz : BaseEntity
     // Navigation
     public ICollection<Question> Questions { get; set; } = new List<Question>();
     public ICollection<QuizResult> Results { get; set; } = new List<QuizResult>();
+
+    public Quiz() { }
 }

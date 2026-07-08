@@ -7,7 +7,7 @@ interface AuthContextType {
   isLoading: boolean
   isAuthenticated: boolean
   login: (username: string, password: string) => Promise<void>
-  register: (username: string, email: string, password: string) => Promise<void>
+  register: (username: string, email: string, password: string, role?: UserRole) => Promise<void>
   logout: () => void
   hasRole: (role: UserRole) => boolean
 }
@@ -46,9 +46,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(userData)
   }
 
-  const register = async (username: string, email: string, password: string) => {
-    // Register first (returns user ID)
-    await authService.register({ username, email, password })
+  const register = async (username: string, email: string, password: string, role?: UserRole) => {
+    // Register with role
+    await authService.register({ username, email, password, role: role || 'Student' })
     // Then auto-login
     const tokens = await authService.login({ username, password })
     localStorage.setItem('accessToken', tokens.accessToken)
